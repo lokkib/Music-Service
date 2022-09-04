@@ -1,0 +1,19 @@
+import './BlockSearch.scss';
+
+function BlockSearch({ type = 'search', name = 'search' }) {
+    return (
+        <div className="centerblock__search search">
+            <svg className="search__svg">
+                <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
+            </svg>
+            <input
+                className="search__text"
+                type={type}
+                placeholder="Поиск"
+                name={name}
+            />
+        </div>
+    );
+}
+
+export default BlockSearch;
