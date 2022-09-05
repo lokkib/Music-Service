@@ -1,5 +1,6 @@
 import PlaylistItem from './PlaylistItem/PlaylistItem';
 import './CentralBlockContent.scss';
+import PlaylistTitleTimeIcon from './PlaylistTitleTimeIcon';
 
 function CentralBlockContent() {
     return (
@@ -9,9 +10,10 @@ function CentralBlockContent() {
                 <div className="playlist-title__col col02">Исполнитель</div>
                 <div className="playlist-title__col col03">Альбом</div>
                 <div className="playlist-title__col col04">
-                    <svg className="playlist-title__svg" alt="time">
-                        <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
-                    </svg>
+                    <PlaylistTitleTimeIcon
+                        cls="playlist-title__svg"
+                        alt="time"
+                    ></PlaylistTitleTimeIcon>
                 </div>
             </div>
             <div className="content__playlist playlist">

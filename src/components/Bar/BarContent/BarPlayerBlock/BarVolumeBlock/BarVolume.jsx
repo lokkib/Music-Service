@@ -1,13 +1,15 @@
 import './BarVolume.scss';
+import BarVolumeIcon from './BarVolumeIcon';
 
 function BarVolume() {
     return (
         <div className="bar__volume-block volume">
             <div className="volume__content">
                 <div className="volume__image">
-                    <svg className="volume__svg" alt="volume">
-                        <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
-                    </svg>
+                    <BarVolumeIcon
+                        cls="volume__svg"
+                        alt="volume"
+                    ></BarVolumeIcon>
                 </div>
                 <div className="volume__progress _btn">
                     <input

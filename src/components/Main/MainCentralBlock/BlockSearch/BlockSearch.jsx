@@ -1,17 +1,12 @@
 import './BlockSearch.scss';
+import SearchIcon from './SearchIcon';
+import SearchInput from './SearchInput';
 
-function BlockSearch({ type = 'search', name = 'search' }) {
+function BlockSearch() {
     return (
         <div className="centerblock__search search">
-            <svg className="search__svg">
-                <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-            </svg>
-            <input
-                className="search__text"
-                type={type}
-                placeholder="Поиск"
-                name={name}
-            />
+            <SearchIcon cls="search__svg"></SearchIcon>
+            <SearchInput></SearchInput>
         </div>
     );
 }
