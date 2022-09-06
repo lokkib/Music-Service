@@ -1,6 +1,6 @@
 import './PlayerControlsRepeat.scss';
 
-function PlayerControlsRepeat({ cls, alt }) {
+function PlayerControlsRepeat({ className, alt }) {
     return (
         <svg
             width="20"
@@ -8,7 +8,7 @@ function PlayerControlsRepeat({ cls, alt }) {
             viewBox="0 0 20 18"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={cls}
+            className={className}
             alt={alt}
         >
             <path

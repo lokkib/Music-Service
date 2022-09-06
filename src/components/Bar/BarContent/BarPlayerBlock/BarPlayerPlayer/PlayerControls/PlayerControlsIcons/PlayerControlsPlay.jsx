@@ -1,6 +1,6 @@
 import './PlayerControlsPlay.scss';
 
-function PlayerControlsPlay({ cls, alt }) {
+function PlayerControlsPlay({ className, alt }) {
     return (
         <svg
             width="15"
@@ -8,7 +8,7 @@ function PlayerControlsPlay({ cls, alt }) {
             viewBox="0 0 15 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={cls}
+            className={className}
             alt={alt}
         >
             <path

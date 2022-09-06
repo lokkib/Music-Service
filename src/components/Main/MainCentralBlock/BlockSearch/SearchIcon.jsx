@@ -1,6 +1,6 @@
 import './SearchIcon.scss';
 
-function SearchIcon({ cls }) {
+function SearchIcon({ className }) {
     return (
         <svg
             width="17"
@@ -8,7 +8,7 @@ function SearchIcon({ cls }) {
             viewBox="0 0 17 18"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={cls}
+            className={className}
         >
             <path
                 d="M11.9276 12.7748L15.37 17.0644"

@@ -11,7 +11,7 @@ function CentralBlockContent() {
                 <div className="playlist-title__col col03">Альбом</div>
                 <div className="playlist-title__col col04">
                     <PlaylistTitleTimeIcon
-                        cls="playlist-title__svg"
+                        className="playlist-title__svg"
                         alt="time"
                     ></PlaylistTitleTimeIcon>
                 </div>

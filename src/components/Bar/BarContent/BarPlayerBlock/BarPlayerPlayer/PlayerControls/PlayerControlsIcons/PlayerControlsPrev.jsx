@@ -1,6 +1,6 @@
 import './PlayerControlsPrev.scss';
 
-function PlayerControlsPrev({ cls, alt }) {
+function PlayerControlsPrev({ className, alt }) {
     return (
         <svg
             width="16"
@@ -8,7 +8,7 @@ function PlayerControlsPrev({ cls, alt }) {
             viewBox="0 0 16 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={cls}
+            className={className}
             alt={alt}
         >
             <path d="M1 2V12.5" stroke="white" />

@@ -4,9 +4,9 @@ import TrackAlbum from './TrackAlbum/TrackAlbum';
 import TrackTime from './TrackTime/TrackTme';
 import './PlaylistTrack.scss';
 
-function PlaylistTrack({ cls = 'playlist__track track' }) {
+function PlaylistTrack({ className = 'playlist__track track' }) {
     return (
-        <div className={cls}>
+        <div className={className}>
             <TrackTitle />
             <TrackAuthor />
             <TrackAlbum />

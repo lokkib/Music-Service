@@ -7,13 +7,13 @@ function TrackPlayLikeDislike() {
         <div className="track-play__like-dis">
             <div className="track-play__like _btn-icon">
                 <TrackPlayLikeIcon
-                    cls="track-play__like-svg"
+                    className="track-play__like-svg"
                     alt="like"
                 ></TrackPlayLikeIcon>
             </div>
             <div className="track-play__dislike _btn-icon">
                 <TrackPlayDislikeIcon
-                    cls="track-play__dislike-svg"
+                    className="track-play__dislike-svg"
                     alt="dislike"
                 ></TrackPlayDislikeIcon>
             </div>

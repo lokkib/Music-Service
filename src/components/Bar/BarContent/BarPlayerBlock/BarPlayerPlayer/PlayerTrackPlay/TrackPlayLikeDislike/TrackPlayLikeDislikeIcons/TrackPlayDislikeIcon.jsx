@@ -1,6 +1,6 @@
 import './TrackPlayDislikeIcon.scss';
 
-function TrackPlayDislikeIcon({ cls, alt }) {
+function TrackPlayDislikeIcon({ className, alt }) {
     return (
         <svg
             width="16"
@@ -8,7 +8,7 @@ function TrackPlayDislikeIcon({ cls, alt }) {
             viewBox="0 0 16 15"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={cls}
+            className={className}
             alt={alt}
         >
             <path d="M1 1L15 13.5" stroke="#696969" />

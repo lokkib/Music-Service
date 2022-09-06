@@ -1,14 +1,14 @@
 import './MenuItem.scss';
 
 function MenuItem({
-    cls = 'menu__item',
+    className = 'menu__item',
     content,
-    clsForLink = 'menu__link',
+    classNameForLink = 'menu__link',
     http = 'http://',
 }) {
     return (
-        <li className={cls}>
-            <a href={http} className={clsForLink}>
+        <li className={className}>
+            <a href={http} className={classNameForLink}>
                 {content}
             </a>
         </li>

@@ -1,6 +1,6 @@
 import './BarVolumeIcon.scss';
 
-function BarVolumeIcon({ cls, alt }) {
+function BarVolumeIcon({ className, alt }) {
     return (
         <svg
             width="14"
@@ -8,7 +8,7 @@ function BarVolumeIcon({ cls, alt }) {
             viewBox="0 0 14 18"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={cls}
+            className={className}
             alt={alt}
         >
             <mask id="path-1-inside-1_2985_507" fill="white">

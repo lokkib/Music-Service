@@ -7,7 +7,7 @@ function BarVolume() {
             <div className="volume__content">
                 <div className="volume__image">
                     <BarVolumeIcon
-                        cls="volume__svg"
+                        className="volume__svg"
                         alt="volume"
                     ></BarVolumeIcon>
                 </div>

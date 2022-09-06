@@ -5,7 +5,7 @@ import SearchInput from './SearchInput';
 function BlockSearch() {
     return (
         <div className="centerblock__search search">
-            <SearchIcon cls="search__svg"></SearchIcon>
+            <SearchIcon className="search__svg"></SearchIcon>
             <SearchInput></SearchInput>
         </div>
     );

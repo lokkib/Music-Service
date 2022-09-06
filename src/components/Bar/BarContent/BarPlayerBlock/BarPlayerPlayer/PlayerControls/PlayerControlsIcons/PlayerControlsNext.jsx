@@ -1,6 +1,6 @@
 import './PlayerControlsNext.scss';
 
-function PlayerControlsNext({ alt, cls }) {
+function PlayerControlsNext({ alt, className }) {
     return (
         <svg
             width="16"
@@ -8,7 +8,7 @@ function PlayerControlsNext({ alt, cls }) {
             viewBox="0 0 16 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={cls}
+            className={className}
             alt={alt}
         >
             <path d="M15 2V12.5" stroke="white" />
