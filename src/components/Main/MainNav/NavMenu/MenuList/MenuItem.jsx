@@ -3,12 +3,12 @@ import './MenuItem.scss';
 function MenuItem({
     className = 'menu__item',
     content,
-    classNameForLink = 'menu__link',
+    linkClassName = 'menu__link',
     http = 'http://',
 }) {
     return (
         <li className={className}>
-            <a href={http} className={classNameForLink}>
+            <a href={http} className={linkClassName}>
                 {content}
             </a>
         </li>
