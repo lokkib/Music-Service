@@ -1,13 +1,14 @@
 import MenuItem from './MenuList/MenuItem';
-import './NavMenu.scss';
+
+import { StyledNavMenu } from './StyledNavMenu';
 
 function NavMenu() {
     return (
-        <ul className="menu__list">
+        <StyledNavMenu>
             <MenuItem content="Главное" />
             <MenuItem content="Мой плейлист" />
             <MenuItem content="Войти" />
-        </ul>
+        </StyledNavMenu>
     );
 }
 

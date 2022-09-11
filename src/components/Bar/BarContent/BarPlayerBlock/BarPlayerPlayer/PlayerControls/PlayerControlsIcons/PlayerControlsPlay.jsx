@@ -1,5 +1,3 @@
-import './PlayerControlsPlay.scss';
-
 function PlayerControlsPlay({ className, alt }) {
     return (
         <svg

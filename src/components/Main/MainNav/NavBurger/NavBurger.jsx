@@ -1,13 +1,14 @@
 import BurgerLine from './BurgerLine/BurgerLine';
-import './NavBurger.scss';
+
+import { StyledNavBurger } from './StyledNavBurger';
 
 function NavBurger() {
     return (
-        <div className="nav__burger burger">
+        <StyledNavBurger>
             <BurgerLine />
             <BurgerLine />
             <BurgerLine />
-        </div>
+        </StyledNavBurger>
     );
 }
 

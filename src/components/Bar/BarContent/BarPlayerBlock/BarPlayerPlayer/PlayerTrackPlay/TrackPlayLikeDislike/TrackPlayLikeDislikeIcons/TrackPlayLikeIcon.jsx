@@ -1,4 +1,4 @@
-import './TrackPlayLikeIcon.scss';
+
 
 function TrackPlayLikeIcon({ className, alt }) {
     return (

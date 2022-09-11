@@ -1,4 +1,4 @@
-import './PlayerControlsNext.scss';
+
 
 function PlayerControlsNext({ alt, className }) {
     return (

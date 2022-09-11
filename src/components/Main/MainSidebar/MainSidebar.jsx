@@ -1,13 +1,17 @@
 import SidebarPersonal from './SidebarPersonal/SidebarPersonal';
 import SidebarBlock from './SidebarBlock/SidebarBlock';
-import './MainSidebar.scss';
+
+import { StyledMainSideBar } from './StyledMainSideBar';
 
 function MainSidebar() {
     return (
-        <div className="main__sidebar sidebar">
+        <StyledMainSideBar>
             <SidebarPersonal />
             <SidebarBlock />
-        </div>
+        </StyledMainSideBar>
+        // <div className="main__sidebar sidebar">
+
+        // </div>
     );
 }
 

@@ -1,4 +1,3 @@
-import './PlayerControlsShuffle.scss';
 
 function PlayerControlsShuffle({ className, alt }) {
     return (

@@ -1,5 +1,6 @@
-import './CentralBlockFilter.scss';
+
 import { useState } from 'react';
+import * as S from './StyledCentralBlockFilter';
 
 function CentralBlockFilter() {
     const [searchPerformer, setSearchPerfomer] = useState(false);
@@ -56,36 +57,46 @@ function CentralBlockFilter() {
     }
 
     return (
-        <div className="centerblock__filter filter">
-            <div className="filter__title">Искать по:</div>
+        <S.CentralBlockFilter>
+            <S.FilterTitle>Искать по:</S.FilterTitle>
             <div>
-                <div
+                <S.FilterButton onClick={showSearchResult}>исполнителю</S.FilterButton>
+                {/* <div
                     onClick={showSearchResult}
                     className="filter__button button-author _btn-text"
                 >
                     исполнителю
-                </div>
+                </div> */}
                 {searchImages.perfomer}
             </div>
             <div>
-                <div
+                <S.FilterButton onClick={showSearchResult2}>
+                году выпуска
+                </S.FilterButton>
+                {/* <div
                     onClick={showSearchResult2}
                     className="filter__button button-year _btn-text"
                 >
                     году выпуска
-                </div>
+                </div> */}
                 {searchImages.genre}
             </div>
             <div>
-                <div
+                <S.FilterButton onClick={showSearchResult3}>
+                жанру
+                </S.FilterButton>
+                {/* <div
                     onClick={showSearchResult3}
                     className="filter__button button-genre _btn-text"
                 >
                     жанру
-                </div>
+                </div> */}
                 {searchImages.year}
             </div>
-        </div>
+        </S.CentralBlockFilter>
+        // <div className="centerblock__filter filter">
+            
+        // </div>
     );
 }
 

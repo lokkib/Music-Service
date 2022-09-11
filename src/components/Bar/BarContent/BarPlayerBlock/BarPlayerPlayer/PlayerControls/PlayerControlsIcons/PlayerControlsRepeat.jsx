@@ -1,5 +1,3 @@
-import './PlayerControlsRepeat.scss';
-
 function PlayerControlsRepeat({ className, alt }) {
     return (
         <svg

@@ -1,11 +1,16 @@
 import BarContent from './BarContent/BarContent';
-import './Bar.scss';
+
+import { StyledBar } from './StyledBar';
 
 function Bar() {
     return (
-        <div className="bar">
-            <BarContent />
-        </div>
+        <StyledBar>
+ <BarContent />
+
+        </StyledBar>
+        // <div className="bar">
+           
+        // </div>
     );
 }
 

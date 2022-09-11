@@ -1,13 +1,15 @@
 import PlayerControls from './PlayerControls/PlayerControls';
 import PlayerTrackPlay from './PlayerTrackPlay/PlayerTrackPlay';
-import './BarPlayerPlayer.scss';
+
+import { StyledBarPlayerPlayer } from './StyledBarPlayerPlayer';
 
 function BarPlayerPlayer() {
     return (
-        <div className="bar__player player">
-            <PlayerControls />
+        <StyledBarPlayerPlayer>
+  <PlayerControls />
             <PlayerTrackPlay />
-        </div>
+        </StyledBarPlayerPlayer>
+        
     );
 }
 

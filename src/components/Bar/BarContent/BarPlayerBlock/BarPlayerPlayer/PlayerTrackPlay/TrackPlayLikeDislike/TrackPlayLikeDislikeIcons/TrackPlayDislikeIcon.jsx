@@ -1,4 +1,4 @@
-import './TrackPlayDislikeIcon.scss';
+
 
 function TrackPlayDislikeIcon({ className, alt }) {
     return (

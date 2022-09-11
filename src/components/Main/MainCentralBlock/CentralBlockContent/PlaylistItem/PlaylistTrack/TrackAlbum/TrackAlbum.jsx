@@ -1,7 +1,8 @@
-import './TrackAlbum.scss';
-import { useEffect, useState } from 'react';
 
-function TrackAlbum({ link = 'http://' }) {
+import { useEffect, useState } from 'react';
+import * as S from './StyledTrackAlbum'
+
+function TrackAlbum() {
     const [img, setImg] = useState(
         <img src="../img/Skeleton-track-album.png"></img>
     );
@@ -14,11 +15,19 @@ function TrackAlbum({ link = 'http://' }) {
     }, []);
 
     return (
-        <div className="track__album">
-            <a className="track__album-link" href={link}>
-                {img || '#'}
-            </a>
-        </div>
+        <S.TrackAlbum>
+
+<S.TrackAlbumLink>
+{img || '#'}
+</S.TrackAlbumLink>
+{/* <a className="track__album-link" href={link}>
+                
+            </a> */}
+
+        </S.TrackAlbum>
+        // <div className="track__album">
+            
+        // </div>
     );
 }
 

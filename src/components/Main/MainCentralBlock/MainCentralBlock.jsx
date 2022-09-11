@@ -1,16 +1,22 @@
 import BlockSearch from './BlockSearch/BlockSearch';
 import CentralBlockFilter from './CentralBlockFilter/CentralBlockFilter';
 import CentralBlockContent from './CentralBlockContent/CentralBlockContent';
-import './MainCentralBlock.scss';
+
+import { StyledMainCentralBlock } from './StyledMainCentralBlock';
+import { StyledCBHeading } from './StyledCenterBlockHeading';
 
 function MainCentralBlock() {
     return (
-        <div className="main__centerblock centerblock">
+        <StyledMainCentralBlock>
             <BlockSearch />
-            <h2 className="centerblock__h2">Треки</h2>
+            <StyledCBHeading>Треки</StyledCBHeading>
+            {/* <h2 className="centerblock__h2">Треки</h2> */}
             <CentralBlockFilter />
             <CentralBlockContent />
-        </div>
+        </StyledMainCentralBlock>
+        // <div className="main__centerblock centerblock">
+
+        // </div>
     );
 }
 

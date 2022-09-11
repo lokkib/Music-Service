@@ -1,7 +1,8 @@
-import './BurgerLine.scss';
+
+import { StyledBurgerLine } from './StyledBurgerLine';
 
 function BurgerLine() {
-    return <span className="burger__line"></span>;
+    return <StyledBurgerLine />
 }
 
 export default BurgerLine;

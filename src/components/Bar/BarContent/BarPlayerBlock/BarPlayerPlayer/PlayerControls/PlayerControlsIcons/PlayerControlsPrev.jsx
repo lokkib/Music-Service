@@ -1,4 +1,4 @@
-import './PlayerControlsPrev.scss';
+
 
 function PlayerControlsPrev({ className, alt }) {
     return (

@@ -1,23 +1,28 @@
-import './TrackPlayLikeDislike.scss';
-import TrackPlayLikeIcon from './TrackPlayLikeDislikeIcons/TrackPlayLikeIcon';
-import TrackPlayDislikeIcon from './TrackPlayLikeDislikeIcons/TrackPlayDislikeIcon';
+
+import * as S from './StyledTrackPlayLikeDislike';
+import * as Styled from './TrackPlayLikeDislikeIcons/StyledPlayIcons'
 
 function TrackPlayLikeDislike() {
     return (
-        <div className="track-play__like-dis">
-            <div className="track-play__like _btn-icon">
-                <TrackPlayLikeIcon
-                    className="track-play__like-svg"
-                    alt="like"
-                ></TrackPlayLikeIcon>
-            </div>
-            <div className="track-play__dislike _btn-icon">
-                <TrackPlayDislikeIcon
-                    className="track-play__dislike-svg"
-                    alt="dislike"
-                ></TrackPlayDislikeIcon>
-            </div>
-        </div>
+        <S.TrackPlayLikeDislike>
+            <S.TrackPlayLike>
+           <Styled.PlayIconLike alt='like' />
+                    
+            
+
+            </S.TrackPlayLike>
+{/* <div className="track-play__like _btn-icon"> */}
+                
+            {/* </div> */}
+            <S.TrackPlayDisike>
+            <Styled.PlayIconDislike alt='dislike' />
+            </S.TrackPlayDisike>
+                
+           
+        </S.TrackPlayLikeDislike>
+        
+            
+      
     );
 }
 
