@@ -1,12 +1,16 @@
-import './SidebarItem.scss';
+
+import * as S from './StyledSidebarItem'
 
 function SidebarItem({ alt = "day's playlist", src }) {
     return (
-        <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
-                <img alt={alt} src={src} />
-            </a>
-        </div>
+        <S.SidebarItem>
+            <S.SidebarLink>
+
+            <img alt={alt} src={src} />
+            </S.SidebarLink>
+
+        </S.SidebarItem>
+   
     );
 }
 

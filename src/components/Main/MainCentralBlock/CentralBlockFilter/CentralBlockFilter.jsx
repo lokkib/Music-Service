@@ -1,5 +1,6 @@
-import './CentralBlockFilter.scss';
+
 import { useState } from 'react';
+import * as S from './StyledCentralBlockFilter';
 
 function CentralBlockFilter() {
     const [searchPerformer, setSearchPerfomer] = useState(false);
@@ -56,36 +57,29 @@ function CentralBlockFilter() {
     }
 
     return (
-        <div className="centerblock__filter filter">
-            <div className="filter__title">Искать по:</div>
+        <S.CentralBlockFilter>
+            <S.FilterTitle>Искать по:</S.FilterTitle>
             <div>
-                <div
-                    onClick={showSearchResult}
-                    className="filter__button button-author _btn-text"
-                >
-                    исполнителю
-                </div>
+                <S.FilterButton onClick={showSearchResult}>исполнителю</S.FilterButton>
+                
                 {searchImages.perfomer}
             </div>
             <div>
-                <div
-                    onClick={showSearchResult2}
-                    className="filter__button button-year _btn-text"
-                >
-                    году выпуска
-                </div>
+                <S.FilterButton onClick={showSearchResult2}>
+                году выпуска
+                </S.FilterButton>
+               
                 {searchImages.genre}
             </div>
             <div>
-                <div
-                    onClick={showSearchResult3}
-                    className="filter__button button-genre _btn-text"
-                >
-                    жанру
-                </div>
+                <S.FilterButton onClick={showSearchResult3}>
+                жанру
+                </S.FilterButton>
+               
                 {searchImages.year}
             </div>
-        </div>
+        </S.CentralBlockFilter>
+       
     );
 }
 

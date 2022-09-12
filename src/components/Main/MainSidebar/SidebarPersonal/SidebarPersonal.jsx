@@ -1,11 +1,15 @@
-import './SidebarPersonal.scss';
+
+import * as S from './StyledSideBar';
 
 function SidebarPersonal() {
     return (
-        <div className="sidebar__personal">
-            <p className="sidebar__personal-name">#</p>
-            <div className="sidebar__avatar">#</div>
-        </div>
+        <S.SidebarPersonal>
+            <S.SidebarPersonalName>#</S.SidebarPersonalName>
+           
+            <S.SidebarAvatar>#</S.SidebarAvatar>
+        
+        </S.SidebarPersonal>
+      
     );
 }
 

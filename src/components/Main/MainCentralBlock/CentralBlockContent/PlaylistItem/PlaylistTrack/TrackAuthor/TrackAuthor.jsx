@@ -1,7 +1,8 @@
-import './TrackAuthor.scss';
-import { useState, useEffect } from 'react';
 
-function TrackAuthor({ link = 'http://' }) {
+import { useState, useEffect } from 'react';
+import * as S from './StyledTrackAuthor';
+
+function TrackAuthor() {
     const [img, setImg] = useState(
         <img src="../img/Skeleton-track-author.png"></img>
     );
@@ -14,11 +15,11 @@ function TrackAuthor({ link = 'http://' }) {
     }, []);
 
     return (
-        <div className="track__author">
-            <a className="track__author-link" href={link}>
-                {img || '#'}
-            </a>
-        </div>
+        <S.TrackAuthor>
+            <S.TrackAuthorLink>{img || '#'}</S.TrackAuthorLink>
+           
+        </S.TrackAuthor>
+       
     );
 }
 

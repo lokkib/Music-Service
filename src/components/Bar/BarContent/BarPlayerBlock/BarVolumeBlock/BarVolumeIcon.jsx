@@ -1,4 +1,4 @@
-import './BarVolumeIcon.scss';
+
 
 function BarVolumeIcon({ className, alt }) {
     return (

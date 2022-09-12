@@ -1,13 +1,14 @@
 import BarPlayerPlayer from './BarPlayerPlayer/BarPlayerPlayer';
 import BarVolume from './BarVolumeBlock/BarVolume';
-import './BarPlayerBlock.scss';
+
+import { StyledBarPlayerBlock } from './StyledBarPlayerBlock';
 
 function BarPlayerBlock() {
     return (
-        <div className="bar__player-block">
+        <StyledBarPlayerBlock>
             <BarPlayerPlayer />
             <BarVolume />
-        </div>
+        </StyledBarPlayerBlock>
     );
 }
 

@@ -1,6 +1,7 @@
 import SidebarItem from './SidebarItem/SidebarItem';
-import './SidebarBlock.scss';
+
 import { useState, useEffect } from 'react';
+import * as S from './StyledSidebarContent'
 
 function SidebarBlock() {
     const [musicSelections, setMusicSelections] = useState(
@@ -22,13 +23,16 @@ function SidebarBlock() {
     };
 
     return (
-        <div className="sidebar__block">
-            <div className="sidebar__list">
-                <SidebarItem src={musicSelections || img.playlist} />
+        <S.SidebarBlock>
+            <S.SidebarList>
+
+            <SidebarItem src={musicSelections || img.playlist} />
                 <SidebarItem src={musicSelections || img.hits} />
                 <SidebarItem src={musicSelections || img.indi} />
-            </div>
-        </div>
+            </S.SidebarList>
+
+        </S.SidebarBlock>
+   
     );
 }
 

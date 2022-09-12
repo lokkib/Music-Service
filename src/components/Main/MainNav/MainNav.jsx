@@ -1,19 +1,17 @@
 import NavLogo from './NavLogo/NavLogo';
 import NavBurger from './NavBurger/NavBurger';
 import NavMenu from './NavMenu/NavMenu';
-import './MainNav.scss';
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
+import { StyledMainNav } from './StyledMainNav';
 
 function MainNav() {
     const [menu, setMenu] = useState(false);
 
-    useEffect(() => {
-        document
-            .querySelector('.nav__burger')
-            .addEventListener('click', function () {
-                setMenu(!menu);
-            });
-    });
+    function onClick() {
+        setMenu(!menu);
+    }
+ 
 
     let elem;
 
@@ -22,11 +20,13 @@ function MainNav() {
     }
 
     return (
-        <nav className="main__nav nav">
+        <StyledMainNav>
             <NavLogo />
-            <NavBurger />
+            <NavBurger handleClick={onClick} />
             {elem}
-        </nav>
+            
+        </StyledMainNav>
+        
     );
 }
 

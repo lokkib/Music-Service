@@ -1,13 +1,15 @@
-import './BlockSearch.scss';
+
 import SearchIcon from './SearchIcon';
 import SearchInput from './SearchInput';
+import { StyledBlockSearch } from './StyledBlockSearch';
 
 function BlockSearch() {
     return (
-        <div className="centerblock__search search">
-            <SearchIcon className="search__svg"></SearchIcon>
+        <StyledBlockSearch>
+            <SearchIcon />
             <SearchInput></SearchInput>
-        </div>
+        </StyledBlockSearch>
+        
     );
 }
 

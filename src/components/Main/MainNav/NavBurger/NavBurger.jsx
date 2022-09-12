@@ -1,13 +1,14 @@
 import BurgerLine from './BurgerLine/BurgerLine';
-import './NavBurger.scss';
 
-function NavBurger() {
+import { StyledNavBurger } from './StyledNavBurger';
+
+function NavBurger({handleClick}) {
     return (
-        <div className="nav__burger burger">
+        <StyledNavBurger onClick ={handleClick}>
             <BurgerLine />
             <BurgerLine />
             <BurgerLine />
-        </div>
+        </StyledNavBurger>
     );
 }
 
