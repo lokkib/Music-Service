@@ -1,13 +1,13 @@
 import TrackPlayContain from './TrackPlayContain/TrackPlayContain';
 import TrackPlayLikeDislike from './TrackPlayLikeDislike/TrackPlayLikeDislike';
-import './PlayerTrackPlay.scss';
+import { StyledPlayerTrackPlay } from './StyledPlayerTrackPlay';
 
 function PlayerTrackPlay() {
     return (
-        <div className="player__track-play track-play">
+        <StyledPlayerTrackPlay>
             <TrackPlayContain />
             <TrackPlayLikeDislike />
-        </div>
+        </StyledPlayerTrackPlay>
     );
 }
 

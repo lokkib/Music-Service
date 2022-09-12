@@ -1,5 +1,3 @@
-import './TrackPlayContainIcon.scss';
-
 function TrackPlayContainIcon({ className, alt }) {
     return (
         <svg

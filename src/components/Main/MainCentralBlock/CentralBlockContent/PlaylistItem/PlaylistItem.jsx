@@ -1,11 +1,12 @@
 import PlaylistTrack from './PlaylistTrack/PlaylistTrack';
-import './PlaylistItem.scss';
 
-function PlaylistItem({ className = 'playlist__item' }) {
+import { StyledPlaylistItem } from './StyledPlaylistItem';
+
+function PlaylistItem() {
     return (
-        <div className={className}>
+        <StyledPlaylistItem>
             <PlaylistTrack />
-        </div>
+        </StyledPlaylistItem>
     );
 }
 

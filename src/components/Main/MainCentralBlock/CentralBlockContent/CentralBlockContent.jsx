@@ -1,22 +1,24 @@
 import PlaylistItem from './PlaylistItem/PlaylistItem';
-import './CentralBlockContent.scss';
+
 import PlaylistTitleTimeIcon from './PlaylistTitleTimeIcon';
+import * as S from './StyledCentralBlockContent';
 
 function CentralBlockContent() {
     return (
         <>
-            <div className="content__title playlist-title">
-                <div className="playlist-title__col col01">Трек</div>
-                <div className="playlist-title__col col02">Исполнитель</div>
-                <div className="playlist-title__col col03">Альбом</div>
-                <div className="playlist-title__col col04">
-                    <PlaylistTitleTimeIcon
-                        className="playlist-title__svg"
-                        alt="time"
-                    ></PlaylistTitleTimeIcon>
+            <S.ContentTitle>
+                <S.PlaylistTitleTrack>Трек</S.PlaylistTitleTrack>
+
+                <S.PlaylistTitleAuthor>Исполнитель</S.PlaylistTitleAuthor>
+
+                <S.PlaylistTitleAlbum>Альбом</S.PlaylistTitleAlbum>
+
+                <div>
+                    <PlaylistTitleTimeIcon></PlaylistTitleTimeIcon>
                 </div>
-            </div>
-            <div className="content__playlist playlist">
+            </S.ContentTitle>
+
+            <S.ContentPlaylist>
                 <PlaylistItem />
                 <PlaylistItem />
                 <PlaylistItem />
@@ -28,7 +30,7 @@ function CentralBlockContent() {
                 <PlaylistItem />
                 <PlaylistItem />
                 <PlaylistItem />
-            </div>
+            </S.ContentPlaylist>
         </>
     );
 }

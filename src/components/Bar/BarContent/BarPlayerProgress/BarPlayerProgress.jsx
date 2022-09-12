@@ -1,7 +1,7 @@
-import './BarPlayerProgress.scss';
+import { StyledBarPlayerProgress } from './StyledBarPlayerProgress';
 
 function BarPlayerProgress() {
-    return <div className="bar__player-progress"></div>;
+    return <StyledBarPlayerProgress />;
 }
 
 export default BarPlayerProgress;

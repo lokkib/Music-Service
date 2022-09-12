@@ -1,8 +1,7 @@
-import './TrackTitle.scss';
-import TrackPlayContainIcon from '../../../../../../Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayContain/TrackPLayContainIcon';
 import { useEffect, useState } from 'react';
+import * as S from './StyledTrackTitle';
 
-function TrackTitle(link = 'http://') {
+function TrackTitle() {
     const [img, setImg] = useState(<img src="../img/Skeleton-track.png"></img>);
 
     const [img2, setImg2] = useState(
@@ -18,22 +17,18 @@ function TrackTitle(link = 'http://') {
     }, []);
 
     return (
-        <div className="track__title">
-            <div className="track__title-image">
-                {img || (
-                    <TrackPlayContainIcon
-                        className="track__title-svg"
-                        alt="music"
-                    />
-                )}
-            </div>
+        <S.TrackTitle>
+            <S.TrackTitleImage>
+                {img || <S.TrackPlayContainIcon />}
+            </S.TrackTitleImage>
+
             <div className="track__title-text">
-                <a className="track__title-link" href={link}>
+                <S.TrackTitleLink>
                     {img2 || '#'}
-                    <span className="track__title-span"></span>
-                </a>
+                    <S.TrackTitleSpan />
+                </S.TrackTitleLink>
             </div>
-        </div>
+        </S.TrackTitle>
     );
 }
 
