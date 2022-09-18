@@ -1,17 +1,10 @@
-import './MenuItem.scss';
+import * as S from './StyledMenuList';
 
-function MenuItem({
-    className = 'menu__item',
-    content,
-    linkClassName = 'menu__link',
-    http = 'http://',
-}) {
+function MenuItem({ content, http = 'http://' }) {
     return (
-        <li className={className}>
-            <a href={http} className={linkClassName}>
-                {content}
-            </a>
-        </li>
+        <S.MenuItem>
+            <S.MenuLink href={http}>{content}</S.MenuLink>
+        </S.MenuItem>
     );
 }
 

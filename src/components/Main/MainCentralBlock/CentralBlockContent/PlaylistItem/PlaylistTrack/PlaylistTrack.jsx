@@ -2,16 +2,17 @@ import TrackTitle from './TrackTitle/TrackTitle';
 import TrackAuthor from './TrackAuthor/TrackAuthor';
 import TrackAlbum from './TrackAlbum/TrackAlbum';
 import TrackTime from './TrackTime/TrackTme';
-import './PlaylistTrack.scss';
 
-function PlaylistTrack({ className = 'playlist__track track' }) {
+import { StyledPlaylistTrack } from './StyledPlaylistTrack';
+
+function PlaylistTrack() {
     return (
-        <div className={className}>
+        <StyledPlaylistTrack>
             <TrackTitle />
             <TrackAuthor />
             <TrackAlbum />
             <TrackTime />
-        </div>
+        </StyledPlaylistTrack>
     );
 }
 

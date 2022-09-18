@@ -1,6 +1,6 @@
-import './TrackPlayContain.scss';
 import TrackPlayContainIcon from './TrackPLayContainIcon';
 import { useState, useEffect } from 'react';
+import * as S from './StyledTrackPlayContain';
 
 function TrackPlayContain() {
     const skeletons = {
@@ -25,26 +25,22 @@ function TrackPlayContain() {
     }, []);
 
     return (
-        <div className="track-play__contain">
-            <div className="track-play__image">
+        <S.TrackPlayContain>
+            <S.TrackPlayImage>
                 {img || (
                     <TrackPlayContainIcon
                         className="track-play__svg"
                         alt="music"
                     />
                 )}
-            </div>
-            <div className="track-play__author">
-                <a className="track-play__author-link" href="http://">
-                    {img2 || '#'}
-                </a>
-            </div>
-            <div className="track-play__album">
-                <a className="track-play__album-link" href="http://">
-                    {img2 || '#'}
-                </a>
-            </div>
-        </div>
+            </S.TrackPlayImage>
+            <S.TrackPlayAuthor>
+                <S.TrackPlayAuthorLink>{img2 || '#'}</S.TrackPlayAuthorLink>
+            </S.TrackPlayAuthor>
+            <S.TrackPlayAlbum>
+                <S.TrackPlayAlbumLink>{img2 || '#'}</S.TrackPlayAlbumLink>
+            </S.TrackPlayAlbum>
+        </S.TrackPlayContain>
     );
 }
 

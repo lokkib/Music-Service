@@ -1,10 +1,10 @@
-import './NavLogo.scss';
+import { StyledNavLogo } from './StyledNavLogo';
 
 function NavLogo() {
     return (
-        <div className="nav__logo logo">
+        <StyledNavLogo>
             <img className="logo__image" src="../img/logo.png" alt="logo"></img>
-        </div>
+        </StyledNavLogo>
     );
 }
 

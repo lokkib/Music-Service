@@ -1,14 +1,7 @@
-import './SearchInput.scss';
+import { StyledSearchInput } from './StyledSearchInput';
 
 function SearchInput({ type = 'search', name = 'search' }) {
-    return (
-        <input
-            className="search__text"
-            type={type}
-            placeholder="Поиск"
-            name={name}
-        />
-    );
+    return <StyledSearchInput placeholder="Поиск" type={type} name={name} />;
 }
 
 export default SearchInput;
