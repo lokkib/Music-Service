@@ -6,8 +6,8 @@ function BarPlayerProgress() {
         <>
             <StyledBarPlayerProgress>
                 <Duration
-                    currentTime={sessionStorage.getItem('currentTime')}
-                    duration={sessionStorage.getItem('duration') || false}
+                // currentTime={sessionStorage.getItem('currentTime')}
+                // duration={sessionStorage.getItem('duration') || false}
                 />
             </StyledBarPlayerProgress>
         </>

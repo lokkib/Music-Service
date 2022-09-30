@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useEffect } from 'react';
 
-function Duration({ duration, currentTime }) {
+function Duration(currentTime, duration) {
     const refProgress = useRef(null);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ function Duration({ duration, currentTime }) {
             <progress
                 ref={refProgress}
                 value={currentTime}
-                max={duration * 60}
+                max={duration}
             ></progress>
         </>
     );

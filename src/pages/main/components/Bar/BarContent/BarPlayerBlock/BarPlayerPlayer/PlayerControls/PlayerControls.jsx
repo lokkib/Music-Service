@@ -1,43 +1,39 @@
 import * as S from './StyledPlayerControls';
 import * as Styled from './PlayerControlsIcons/StyledPlayerControlIcons';
-import { useRef } from 'react';
 import { useState } from 'react';
-import Audio from './PlayerControlsIcons/Audio';
 import { useEffect } from 'react';
 import Duration from './PlayerControlsIcons/Duration';
 
-function PlayerControls({ duration, currentTime }) {
+function PlayerControls({ refAudio, duration, currentTime }) {
     const [icon, setIcons] = useState(false);
 
-    const refPlayer = useRef(null);
-
-    function playMusic() {
-        setIcons(!icon);
-        if (icon) {
-            refPlayer.current.pause();
-        } else {
-            refPlayer.current.play();
-        }
-    }
-
-    let emptyTime;
     let elem;
 
+    function playMusic(duration, currentTime) {
+        setIcons(!icon);
+        if (icon) {
+            refAudio.current.pause();
+        } else {
+            refAudio.current.play();
+        }
+        return duration, currentTime;
+    }
+
     useEffect(() => {
-        duration = refPlayer.current.duration;
+        duration = refAudio.current.duration.toFixed(1);
 
         if (isNaN(duration)) {
-            emptyTime = Boolean(sessionStorage.getItem('duration'));
+            duration = false;
         } else {
-            sessionStorage.setItem('duration', `${(duration / 60).toFixed(1)}`);
+            duration = refAudio.current.duration.toFixed(1);
+            console.log(duration);
         }
 
         if (currentTime !== 0) {
-            currentTime = refPlayer.current.currentTime;
-
-            sessionStorage.setItem('currentTime', `${currentTime.toFixed(0)}`);
+            currentTime = refAudio.current.currentTime.toFixed(0);
+            console.log(currentTime);
         } else {
-            emptyTime = Boolean(sessionStorage.getItem('currentTime'));
+            currentTime = false;
         }
     });
 
@@ -45,17 +41,12 @@ function PlayerControls({ duration, currentTime }) {
         elem = <Styled.PlayerControlIconStop alt="stop" />;
     }
 
-    window.onunload = function () {
-        sessionStorage.removeItem('currentTime');
-    };
-
     return (
         <S.PlayerControls style={{ alignItems: 'center' }}>
-            <Audio ref={refPlayer} />
             <S.PlayerBtnPrev>
                 <Styled.PlayerControlIconPrev alt="prev" />
             </S.PlayerBtnPrev>
-            <S.PlayerBtnPlay onClick={playMusic}>
+            <S.PlayerBtnPlay onClick={() => playMusic(duration, currentTime)}>
                 {elem || <Styled.PlayerControlIconPlay alt="play" />}
             </S.PlayerBtnPlay>
             <S.PlayerBtnNext>
@@ -70,12 +61,12 @@ function PlayerControls({ duration, currentTime }) {
                 <Styled.PlayerControlIconShuffle alt="shuffle" />
             </S.PlayerBtnShuffle>
             <Duration
-                duration={
-                    emptyTime || sessionStorage.getItem('duration') || false
-                }
-                currentTime={
-                    emptyTime || sessionStorage.getItem('currentTime') || false
-                }
+            // duration={
+            //     duration || false
+            // }
+            // currentTime={
+            //    currentTime  || false
+            // }
             />
         </S.PlayerControls>
     );

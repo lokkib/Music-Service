@@ -3,6 +3,7 @@ import { forwardRef } from 'react';
 const Audio = forwardRef((props, ref) => {
     return (
         <audio
+            data-d={props}
             ref={ref}
             style={{ display: 'none' }}
             controls
