@@ -1,11 +1,17 @@
 import BarPlayerProgress from './BarPlayerProgress/BarPlayerProgress';
 import BarPlayerBlock from './BarPlayerBlock/BarPlayerBlock';
 
+
 function BarContent() {
+
+
     return (
         <>
-            <BarPlayerProgress />
+      
+        <BarPlayerProgress  />
             <BarPlayerBlock />
+     
+            
         </>
     );
 }

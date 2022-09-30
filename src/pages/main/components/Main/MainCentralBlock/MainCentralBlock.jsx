@@ -5,15 +5,19 @@ import CentralBlockContent from './CentralBlockContent/CentralBlockContent';
 import { StyledMainCentralBlock } from './StyledMainCentralBlock';
 import { StyledCBHeading } from './StyledCenterBlockHeading';
 
-function MainCentralBlock() {
-    return (
-        <StyledMainCentralBlock>
-            <BlockSearch />
-            <StyledCBHeading>Треки</StyledCBHeading>
 
-            <CentralBlockFilter />
-            <CentralBlockContent />
-        </StyledMainCentralBlock>
+function MainCentralBlock() {
+    
+
+    return (
+       
+            <StyledMainCentralBlock >
+                <BlockSearch />
+                <StyledCBHeading >Треки</StyledCBHeading>
+
+                <CentralBlockFilter />
+                <CentralBlockContent />
+            </StyledMainCentralBlock>
     );
 }
 

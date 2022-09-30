@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import * as S from './StyledTrackTitle';
+import { useContext } from 'react';
+import ThemeContext from '../../../../../../../../../themes';
 
 function TrackTitle() {
+    const {theme2} = useContext(ThemeContext);
+    const {theme6} = useContext(ThemeContext);
     const [img, setImg] = useState(<img src="../img/Skeleton-track.png"></img>);
 
     const [img2, setImg2] = useState(
@@ -17,13 +21,13 @@ function TrackTitle() {
     }, []);
 
     return (
-        <S.TrackTitle>
-            <S.TrackTitleImage>
+        <S.TrackTitle >
+            <S.TrackTitleImage style={theme6}>
                 {img || <S.TrackPlayContainIcon />}
             </S.TrackTitleImage>
 
             <div className="track__title-text">
-                <S.TrackTitleLink>
+                <S.TrackTitleLink style={theme2}>
                     {img2 || '#'}
                     <S.TrackTitleSpan />
                 </S.TrackTitleLink>

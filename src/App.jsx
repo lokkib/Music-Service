@@ -2,8 +2,11 @@ import { GlobalStyle } from './GlobalStyle';
 import { AppRoutes } from './Approutes';
 import { useState } from 'react';
 
+
 function App() {
     const [user, setUser] = useState(null);
+
+
 
     const handleLogin = () => setUser('token');
 
@@ -11,7 +14,7 @@ function App() {
 
     return (
         <>
-            <GlobalStyle />
+            <GlobalStyle  />
             <button onClick={handleLogin} style={{ marginLeft: '50%' }}>
                 Сгенерировать токен
             </button>

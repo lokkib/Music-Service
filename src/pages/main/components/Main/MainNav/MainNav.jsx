@@ -4,9 +4,13 @@ import NavMenu from './NavMenu/NavMenu';
 
 import { useState } from 'react';
 import { StyledMainNav } from './StyledMainNav';
+import { useContext } from 'react';
+import ThemeContext from '../../../../../themes';
 
 function MainNav() {
     const [menu, setMenu] = useState(false);
+
+    const {theme2} = useContext(ThemeContext);
 
     function onClick() {
         setMenu(!menu);
@@ -18,8 +22,10 @@ function MainNav() {
         elem = <NavMenu />;
     }
 
+    
+
     return (
-        <StyledMainNav>
+        <StyledMainNav style={theme2}>
             <NavLogo />
             <NavBurger handleClick={onClick} />
             {elem}

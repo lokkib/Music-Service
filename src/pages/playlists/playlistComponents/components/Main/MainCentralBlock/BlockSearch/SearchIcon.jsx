@@ -1,7 +1,10 @@
 import { StyledSearchIcon } from './StyledSearchIcon';
+import { useContext } from 'react';
+import ThemeContext from '../../../../../../../themes';
 
 function SearchIcon() {
-    return <StyledSearchIcon />;
+    const {theme2} = useContext(ThemeContext);
+    return <StyledSearchIcon style={theme2} />;
 }
 
 export default SearchIcon;
