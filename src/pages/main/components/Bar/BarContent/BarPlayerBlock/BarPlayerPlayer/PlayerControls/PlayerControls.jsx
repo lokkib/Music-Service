@@ -1,44 +1,24 @@
 import * as S from './StyledPlayerControls';
 import * as Styled from './PlayerControlsIcons/StyledPlayerControlIcons';
 import { useState } from 'react';
-import { useEffect } from 'react';
-import Duration from './PlayerControlsIcons/Duration';
 
-function PlayerControls({ refAudio, duration, currentTime }) {
+function PlayerControls({ refPlayer, setisPlaying }) {
     const [icon, setIcons] = useState(false);
 
     let elem;
 
-    function playMusic(duration, currentTime) {
-        setIcons(!icon);
-        if (icon) {
-            refAudio.current.pause();
-        } else {
-            refAudio.current.play();
-        }
-        return duration, currentTime;
-    }
-
-    useEffect(() => {
-        duration = refAudio.current.duration.toFixed(1);
-
-        if (isNaN(duration)) {
-            duration = false;
-        } else {
-            duration = refAudio.current.duration.toFixed(1);
-            console.log(duration);
-        }
-
-        if (currentTime !== 0) {
-            currentTime = refAudio.current.currentTime.toFixed(0);
-            console.log(currentTime);
-        } else {
-            currentTime = false;
-        }
-    });
-
     if (icon) {
         elem = <Styled.PlayerControlIconStop alt="stop" />;
+    }
+
+    function changeIsPlaying(icon) {
+        if (icon) {
+            refPlayer.current.pause();
+            setisPlaying(true);
+        } else {
+            refPlayer.current.play();
+            setisPlaying(false);
+        }
     }
 
     return (
@@ -46,7 +26,12 @@ function PlayerControls({ refAudio, duration, currentTime }) {
             <S.PlayerBtnPrev>
                 <Styled.PlayerControlIconPrev alt="prev" />
             </S.PlayerBtnPrev>
-            <S.PlayerBtnPlay onClick={() => playMusic(duration, currentTime)}>
+            <S.PlayerBtnPlay
+                onClick={() => {
+                    setIcons(!icon);
+                    changeIsPlaying(icon);
+                }}
+            >
                 {elem || <Styled.PlayerControlIconPlay alt="play" />}
             </S.PlayerBtnPlay>
             <S.PlayerBtnNext>
@@ -60,14 +45,6 @@ function PlayerControls({ refAudio, duration, currentTime }) {
             <S.PlayerBtnShuffle>
                 <Styled.PlayerControlIconShuffle alt="shuffle" />
             </S.PlayerBtnShuffle>
-            <Duration
-            // duration={
-            //     duration || false
-            // }
-            // currentTime={
-            //    currentTime  || false
-            // }
-            />
         </S.PlayerControls>
     );
 }

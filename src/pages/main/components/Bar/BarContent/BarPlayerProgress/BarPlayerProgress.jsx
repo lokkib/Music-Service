@@ -1,14 +1,11 @@
 import { StyledBarPlayerProgress } from './StyledBarPlayerProgress';
-import Duration from '../BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/Duration';
+import ProgressLine from '../BarPlayerBlock/BarPlayerPlayer/ProgressLine';
 
-function BarPlayerProgress() {
+function BarPlayerProgress({ duration, currentTime }) {
     return (
         <>
             <StyledBarPlayerProgress>
-                <Duration
-                // currentTime={sessionStorage.getItem('currentTime')}
-                // duration={sessionStorage.getItem('duration') || false}
-                />
+                <ProgressLine value={currentTime} max={duration} />
             </StyledBarPlayerProgress>
         </>
     );
