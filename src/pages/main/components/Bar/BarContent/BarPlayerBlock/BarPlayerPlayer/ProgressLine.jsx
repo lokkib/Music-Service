@@ -6,11 +6,12 @@ function ProgressLine({ max, value }) {
     return (
         <>
             <progress
-                color="red"
+               
                 style={{
                     width: '100%',
                     height: '5px',
                     backgroundColor: '#2E2E2E',
+                    color: "red"
                 }}
                 ref={refProgress}
                 value={value}

@@ -34,7 +34,9 @@ function BarPlayerPlayer({ getValues }) {
         }, 1000);
     }, []);
 
-    getValues(duration, currentTime);
+    useEffect(() => {
+        getValues(duration, currentTime);
+    });
 
     return (
         <StyledBarPlayerPlayer>

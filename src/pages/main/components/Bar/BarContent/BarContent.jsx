@@ -2,6 +2,7 @@ import BarPlayerProgress from './BarPlayerProgress/BarPlayerProgress';
 import BarPlayerBlock from './BarPlayerBlock/BarPlayerBlock';
 import { useState } from 'react';
 
+
 function BarContent() {
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
