@@ -1,22 +1,18 @@
-import { useRef } from 'react';
+import { Line } from 'rc-progress';
 
 function ProgressLine({ max, value }) {
-    const refProgress = useRef(null);
+ 
 
     return (
         <>
-            <progress
-               
-                style={{
-                    width: '100%',
-                    height: '5px',
-                    backgroundColor: '#2E2E2E',
-                    color: "red"
-                }}
-                ref={refProgress}
-                value={value}
-                max={max}
-            ></progress>
+            <Line
+                percent={!value ? 0 : (value / max) * 100}
+                width="100%"
+                height="5px"
+                strokeLinecap="square"
+                trailColor="#2E2E2E"
+                strokeColor={'purple'}
+            />
         </>
     );
 }
