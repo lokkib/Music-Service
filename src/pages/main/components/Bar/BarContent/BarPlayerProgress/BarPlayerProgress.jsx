@@ -1,26 +1,13 @@
+
 import { StyledBarPlayerProgress } from './StyledBarPlayerProgress';
-import Duration from '../BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/Duration';
+import ProgressLine from '../BarPlayerBlock/BarPlayerPlayer/ProgressLine';
 
-import ThemeContext from '../../../../../../themes';
-import { useContext } from 'react';
-
-function BarPlayerProgress() {
-  
-
-    const {theme3} = useContext(ThemeContext);
-
-
+function BarPlayerProgress({ duration, currentTime }) {
     return (
         <>
-        
-        <StyledBarPlayerProgress style={theme3}>
-                <Duration
-                    currentTime={sessionStorage.getItem('currentTime')}
-                    duration={sessionStorage.getItem('duration') || false}
-                />
+            <StyledBarPlayerProgress>
+                <ProgressLine value={currentTime} max={duration} />
             </StyledBarPlayerProgress>
-
-           
         </>
     );
 }
