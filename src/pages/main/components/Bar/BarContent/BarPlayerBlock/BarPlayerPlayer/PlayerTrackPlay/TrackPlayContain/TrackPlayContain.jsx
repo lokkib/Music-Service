@@ -1,8 +1,12 @@
 import TrackPlayContainIcon from './TrackPLayContainIcon';
 import { useState, useEffect } from 'react';
 import * as S from './StyledTrackPlayContain';
+import { useContext } from 'react';
+import ThemeContext from '../../../../../../../../../themes';
 
 function TrackPlayContain() {
+    const { themeMode } = useContext(ThemeContext);
+
     const skeletons = {
         SkeletonTrack: '../img/Skeleton-track.png',
         SkeletonDescription: '../img/Skeleton-description-track.png',
@@ -26,7 +30,7 @@ function TrackPlayContain() {
 
     return (
         <S.TrackPlayContain>
-            <S.TrackPlayImage>
+            <S.TrackPlayImage style={themeMode.trackTitle}>
                 {img || (
                     <TrackPlayContainIcon
                         className="track-play__svg"
@@ -35,10 +39,14 @@ function TrackPlayContain() {
                 )}
             </S.TrackPlayImage>
             <S.TrackPlayAuthor>
-                <S.TrackPlayAuthorLink>{img2 || '#'}</S.TrackPlayAuthorLink>
+                <S.TrackPlayAuthorLink style={themeMode.main}>
+                    {img2 || '#'}
+                </S.TrackPlayAuthorLink>
             </S.TrackPlayAuthor>
             <S.TrackPlayAlbum>
-                <S.TrackPlayAlbumLink>{img2 || '#'}</S.TrackPlayAlbumLink>
+                <S.TrackPlayAlbumLink style={themeMode.main}>
+                    {img2 || '#'}
+                </S.TrackPlayAlbumLink>
             </S.TrackPlayAlbum>
         </S.TrackPlayContain>
     );

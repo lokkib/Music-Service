@@ -38,7 +38,6 @@ function BarPlayer({ getValues }) {
     });
 
     return (
-      
         <StyledBarPlayer>
             <Audio ref={refPlayer} />
             <PlayerControls

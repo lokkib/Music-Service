@@ -1,4 +1,8 @@
+import { useContext } from 'react';
+import ThemeContext from '../../../../../../../../themes';
+
 function BarVolumeIcon({ className, alt }) {
+    const { themeMode } = useContext(ThemeContext);
     return (
         <svg
             width="14"
@@ -22,6 +26,7 @@ function BarVolumeIcon({ className, alt }) {
                 mask="url(#path-1-inside-1_2985_507)"
             />
             <path
+                style={themeMode.trackIconsStroke}
                 d="M11 13C12.1046 13 13 11.2091 13 9C13 6.79086 12.1046 5 11 5"
                 stroke="white"
             />

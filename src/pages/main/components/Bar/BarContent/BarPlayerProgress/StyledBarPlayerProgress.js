@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledBarPlayerProgress = styled.div`
     width: 100%;
     height: 5px;
-    background: #2e2e2e;
+    background-color: #2e2e2e;
     display: flex;
     justify-content: flex-start;
     align-items: center;

@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import * as S from './StyledCentralBlockFilter';
+import { useContext } from 'react';
+import ThemeContext from '../../../../../../themes';
 
 function CentralBlockFilter() {
+    const { themeMode } = useContext(ThemeContext);
     const [searchPerformer, setSearchPerfomer] = useState(false);
     const [searchGenre, setSearchGenre] = useState(false);
     const [searchYear, setSearchYear] = useState(false);
@@ -59,21 +62,30 @@ function CentralBlockFilter() {
         <S.CentralBlockFilter>
             <S.FilterTitle>Искать по:</S.FilterTitle>
             <div>
-                <S.FilterButton onClick={showSearchResult}>
+                <S.FilterButton
+                    style={themeMode.border}
+                    onClick={showSearchResult}
+                >
                     исполнителю
                 </S.FilterButton>
 
                 {searchImages.perfomer}
             </div>
             <div>
-                <S.FilterButton onClick={showSearchResult2}>
+                <S.FilterButton
+                    style={themeMode.border}
+                    onClick={showSearchResult2}
+                >
                     году выпуска
                 </S.FilterButton>
 
                 {searchImages.genre}
             </div>
             <div>
-                <S.FilterButton onClick={showSearchResult3}>
+                <S.FilterButton
+                    style={themeMode.border}
+                    onClick={showSearchResult3}
+                >
                     жанру
                 </S.FilterButton>
 

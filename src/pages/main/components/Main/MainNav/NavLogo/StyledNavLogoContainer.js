@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledNavLogo = styled.div`
+export const StyledNavLogoContainer = styled.div`
     width: 113.33px;
     height: 43px;
     padding: 13px 0 13px 0;
