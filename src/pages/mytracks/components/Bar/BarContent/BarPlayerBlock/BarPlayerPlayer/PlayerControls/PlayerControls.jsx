@@ -5,21 +5,21 @@ function PlayerControls() {
     return (
         <S.PlayerControls>
             <S.PlayerBtnPrev>
-                <Styled.PlayerControlIconPrev alt="prev" />
+                <Styled.IconPrev alt="prev" />
             </S.PlayerBtnPrev>
             <S.PlayerBtnPlay>
-                <Styled.PlayerControlIconPlay alt="play" />
+                <Styled.IconPlay alt="play" />
             </S.PlayerBtnPlay>
             <S.PlayerBtnNext>
-                <Styled.PlayerControlIconNext alt="next" />
+                <Styled.IconNext alt="next" />
             </S.PlayerBtnNext>
 
             <S.PlayerBtnRepeat>
-                <Styled.PlayerControlIconRepeat alt="repeat" />
+                <Styled.IconRepeat alt="repeat" />
             </S.PlayerBtnRepeat>
 
             <S.PlayerBtnShuffle>
-                <Styled.PlayerControlIconShuffle alt="shuffle" />
+                <Styled.IconShuffle alt="shuffle" />
             </S.PlayerBtnShuffle>
         </S.PlayerControls>
     );

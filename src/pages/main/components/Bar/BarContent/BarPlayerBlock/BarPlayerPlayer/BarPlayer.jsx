@@ -44,6 +44,7 @@ function BarPlayer({ getValues }) {
                 setCurrentTime={setCurrentTime}
                 setisPlaying={setisPlaying}
                 setDuration={setDuration}
+                isPlaying={isPlaying}
                 refPlayer={refPlayer}
                 duration={duration}
                 currentTime={currentTime}

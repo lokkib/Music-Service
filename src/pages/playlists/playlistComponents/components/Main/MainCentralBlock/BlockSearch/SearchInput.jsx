@@ -7,7 +7,7 @@ function SearchInput({ type = 'search', name = 'search' }) {
     return (
         <StyledSearchInput
             style={themeMode.main}
-            g={themeMode === themes.darkTheme ? 'dark' : 'light'}
+            placeholderColor={themeMode === themes.darkTheme ? 'dark' : 'light'}
             placeholder="Поиск"
             type={type}
             name={name}
