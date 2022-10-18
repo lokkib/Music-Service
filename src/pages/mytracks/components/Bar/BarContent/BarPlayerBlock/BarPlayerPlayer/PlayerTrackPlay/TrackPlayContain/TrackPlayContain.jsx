@@ -1,6 +1,7 @@
-import TrackPlayContainIcon from './TrackPLayContainIcon';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import * as S from './StyledTrackPlayContain';
+import TrackPlayContainIcon from './TrackPLayContainIcon';
 
 function TrackPlayContain() {
     const skeletons = {

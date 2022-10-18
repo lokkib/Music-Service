@@ -1,5 +1,5 @@
-import { StyledBarPlayerProgress } from './StyledBarPlayerProgress';
 import ProgressLine from './ProgressLine';
+import { StyledBarPlayerProgress } from './StyledBarPlayerProgress';
 
 function BarPlayerProgress({ duration, currentTime }) {
     return (

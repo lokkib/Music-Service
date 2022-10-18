@@ -1,6 +1,6 @@
-import SidebarItem from './SidebarItem/SidebarItem';
+import { useEffect, useState } from 'react';
 
-import { useState, useEffect } from 'react';
+import SidebarItem from './SidebarItem/SidebarItem';
 import * as S from './StyledSidebarContent';
 
 function SidebarBlock() {

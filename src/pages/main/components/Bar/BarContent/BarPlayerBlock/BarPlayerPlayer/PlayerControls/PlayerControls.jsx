@@ -1,5 +1,15 @@
-import * as S from './StyledPlayerControls';
-import * as Styled from './PlayerControlsIcons/StyledPlayerControlIcons';
+import { PlayerBtnNext } from './PlayerControlsButtons/PlayerBtnNext';
+import { PlayerBtnPlay } from './PlayerControlsButtons/PlayerBtnPlay';
+import { PlayerBtnPrev } from './PlayerControlsButtons/PlayerBtnPrev';
+import { PlayerBtnRepeat } from './PlayerControlsButtons/PlayerBtnRepeat';
+import { PlayerBtnShuffle } from './PlayerControlsButtons/PlayerBtnShuffle';
+import { PlayerControlsContainer } from './PlayerControlsButtons/PlayerControlsContainer';
+import { IconNext } from './PlayerControlsIcons/IconNext';
+import { IconPlay } from './PlayerControlsIcons/IconPlay';
+import { IconPrev } from './PlayerControlsIcons/IconPrev';
+import { IconRepeat } from './PlayerControlsIcons/IconRepeat';
+import { IconShuffle } from './PlayerControlsIcons/IconShuffle';
+import { IconStop } from './PlayerControlsIcons/IconStop';
 
 function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
     function changeIsPlaying(isPlaying) {
@@ -12,33 +22,29 @@ function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
     }
 
     return (
-        <S.PlayerControls style={{ alignItems: 'center' }}>
-            <S.PlayerBtnPrev>
-                <Styled.IconPrev alt="prev" />
-            </S.PlayerBtnPrev>
-            <S.PlayerBtnPlay
+        <PlayerControlsContainer style={{ alignItems: 'center' }}>
+            <PlayerBtnPrev>
+                <IconPrev alt="prev" />
+            </PlayerBtnPrev>
+            <PlayerBtnPlay
                 onClick={() => {
                     changeIsPlaying(isPlaying);
                 }}
             >
-                {isPlaying ? (
-                    <Styled.IconStop alt="stop" />
-                ) : (
-                    <Styled.IconPlay alt="play" />
-                )}
-            </S.PlayerBtnPlay>
-            <S.PlayerBtnNext>
-                <Styled.IconNext alt="next" />
-            </S.PlayerBtnNext>
+                {isPlaying ? <IconStop alt="stop" /> : <IconPlay alt="play" />}
+            </PlayerBtnPlay>
+            <PlayerBtnNext>
+                <IconNext alt="next" />
+            </PlayerBtnNext>
 
-            <S.PlayerBtnRepeat>
-                <Styled.IconRepeat alt="repeat" />
-            </S.PlayerBtnRepeat>
+            <PlayerBtnRepeat>
+                <IconRepeat alt="repeat" />
+            </PlayerBtnRepeat>
 
-            <S.PlayerBtnShuffle>
-                <Styled.IconShuffle alt="shuffle" />
-            </S.PlayerBtnShuffle>
-        </S.PlayerControls>
+            <PlayerBtnShuffle>
+                <IconShuffle alt="shuffle" />
+            </PlayerBtnShuffle>
+        </PlayerControlsContainer>
     );
 }
 

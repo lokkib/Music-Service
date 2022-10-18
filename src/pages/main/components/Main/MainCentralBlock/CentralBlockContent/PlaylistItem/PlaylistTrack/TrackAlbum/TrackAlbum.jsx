@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import * as S from './StyledTrackAlbum';
+
+import { TrackAlbumLink } from './TrackAlbumComponents/TrackAlbumLink';
+import { TrackAlbumBlock } from './TrackAlbumComponents/TrackAuthorBlock';
 
 function TrackAlbum() {
     const [img, setImg] = useState(
@@ -14,9 +16,9 @@ function TrackAlbum() {
     }, []);
 
     return (
-        <S.TrackAlbum>
-            <S.TrackAlbumLink>{img || '#'}</S.TrackAlbumLink>
-        </S.TrackAlbum>
+        <TrackAlbumBlock>
+            <TrackAlbumLink>{img || '#'}</TrackAlbumLink>
+        </TrackAlbumBlock>
     );
 }
 

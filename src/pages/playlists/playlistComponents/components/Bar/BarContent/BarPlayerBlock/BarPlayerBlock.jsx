@@ -1,6 +1,5 @@
+import BarVolume from '../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarVolumeBlock/BarVolume';
 import BarPlayerPlayer from './BarPlayerPlayer/BarPlayerPlayer';
-import BarVolume from './BarVolumeBlock/BarVolume';
-
 import { StyledBarPlayerBlock } from './StyledBarPlayerBlock';
 
 function BarPlayerBlock({ getValues }) {

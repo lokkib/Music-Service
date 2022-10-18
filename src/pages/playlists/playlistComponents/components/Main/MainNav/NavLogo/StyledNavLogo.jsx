@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import { useContext } from 'react';
+import styled from 'styled-components';
+
 import ThemeContext from '../../../../../../../themes';
 
 const Icon = styled.svg.attrs({

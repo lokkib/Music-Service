@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import * as S from './StyledCentralBlockFilter';
 import { useContext } from 'react';
+
 import ThemeContext from '../../../../../../themes';
+import { FilterButton } from './CentralBlockFilterComponents/FilterButton';
+import { FilterContainer } from './CentralBlockFilterComponents/FilterContainer';
+import { FilterTitle } from './CentralBlockFilterComponents/FilterTitle';
 
 function CentralBlockFilter() {
     const { themeMode } = useContext(ThemeContext);
@@ -59,39 +62,39 @@ function CentralBlockFilter() {
     }
 
     return (
-        <S.CentralBlockFilter>
-            <S.FilterTitle>Искать по:</S.FilterTitle>
+        <FilterContainer>
+            <FilterTitle>Искать по:</FilterTitle>
             <div>
-                <S.FilterButton
+                <FilterButton
                     style={themeMode.border}
                     onClick={showSearchResult}
                 >
                     исполнителю
-                </S.FilterButton>
+                </FilterButton>
 
                 {searchImages.perfomer}
             </div>
             <div>
-                <S.FilterButton
+                <FilterButton
                     style={themeMode.border}
                     onClick={showSearchResult2}
                 >
                     году выпуска
-                </S.FilterButton>
+                </FilterButton>
 
                 {searchImages.genre}
             </div>
             <div>
-                <S.FilterButton
+                <FilterButton
                     style={themeMode.border}
                     onClick={showSearchResult3}
                 >
                     жанру
-                </S.FilterButton>
+                </FilterButton>
 
                 {searchImages.year}
             </div>
-        </S.CentralBlockFilter>
+        </FilterContainer>
     );
 }
 

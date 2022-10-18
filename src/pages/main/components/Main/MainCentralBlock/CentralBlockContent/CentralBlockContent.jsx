@@ -1,24 +1,27 @@
+import { ContentPlaylist } from './CentralBlockContentComponents/ContentPlayList';
+import { ContentTitle } from './CentralBlockContentComponents/ContentTitle';
+import { PlaylistTitleAlbum } from './CentralBlockContentComponents/PlaylistTitleAlbum';
+import { PlaylistTitleAuthor } from './CentralBlockContentComponents/PlaylistTitleAuthor';
+import { PlaylistTitleTrack } from './CentralBlockContentComponents/PlaylistTitleTrack';
 import PlaylistItem from './PlaylistItem/PlaylistItem';
-
 import PlaylistTitleTimeIcon from './PlaylistTitleTimeIcon';
-import * as S from './StyledCentralBlockContent';
 
 function CentralBlockContent() {
     return (
         <>
-            <S.ContentTitle>
-                <S.PlaylistTitleTrack>Трек</S.PlaylistTitleTrack>
+            <ContentTitle>
+                <PlaylistTitleTrack>Трек</PlaylistTitleTrack>
 
-                <S.PlaylistTitleAuthor>Исполнитель</S.PlaylistTitleAuthor>
+                <PlaylistTitleAuthor>Исполнитель</PlaylistTitleAuthor>
 
-                <S.PlaylistTitleAlbum>Альбом</S.PlaylistTitleAlbum>
+                <PlaylistTitleAlbum>Альбом</PlaylistTitleAlbum>
 
                 <div>
                     <PlaylistTitleTimeIcon></PlaylistTitleTimeIcon>
                 </div>
-            </S.ContentTitle>
+            </ContentTitle>
 
-            <S.ContentPlaylist>
+            <ContentPlaylist>
                 <PlaylistItem />
                 <PlaylistItem />
                 <PlaylistItem />
@@ -30,7 +33,7 @@ function CentralBlockContent() {
                 <PlaylistItem />
                 <PlaylistItem />
                 <PlaylistItem />
-            </S.ContentPlaylist>
+            </ContentPlaylist>
         </>
     );
 }

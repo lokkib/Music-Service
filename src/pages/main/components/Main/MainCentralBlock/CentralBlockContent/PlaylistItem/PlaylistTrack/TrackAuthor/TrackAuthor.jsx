@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
-import * as S from './StyledTrackAuthor';
+import { useEffect, useState } from 'react';
 import { useContext } from 'react';
+
 import ThemeContext from '../../../../../../../../../themes';
+import { TrackAuthorBlock } from './TrackAuthorComponents/TrackAuthorBlock';
+import { TrackAuthorLink } from './TrackAuthorComponents/TrackAuthorLink';
 
 function TrackAuthor() {
     const { themeMode } = useContext(ThemeContext);
@@ -17,11 +19,11 @@ function TrackAuthor() {
     }, []);
 
     return (
-        <S.TrackAuthor>
-            <S.TrackAuthorLink style={themeMode.main}>
+        <TrackAuthorBlock>
+            <TrackAuthorLink style={themeMode.main}>
                 {img || '#'}
-            </S.TrackAuthorLink>
-        </S.TrackAuthor>
+            </TrackAuthorLink>
+        </TrackAuthorBlock>
     );
 }
 

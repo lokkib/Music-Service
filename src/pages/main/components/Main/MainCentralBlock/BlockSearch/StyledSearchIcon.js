@@ -1,14 +1,15 @@
-import styled from 'styled-components';
-import ThemeContext from '../../../../../../themes';
 import { useContext } from 'react';
+import styled from 'styled-components';
 
-const Icon = styled.svg.attrs({
+import ThemeContext from '../../../../../../themes';
+
+const SvgSearch = styled.svg.attrs({
     xmlns: 'http://www.w3.org/2000/svg',
-})``;
-
-const Svg = styled(Icon)`
-    width: 17px;
-    height: 17px;
+    width: '17px',
+    height: '17px',
+    fill: 'none',
+    viewBox: '0 0 17 18',
+})`
     margin-right: 5px;
     stroke: #ffffff;
     fill: transparent;
@@ -18,7 +19,7 @@ export function StyledSearchIcon() {
     const { themeMode } = useContext(ThemeContext);
 
     return (
-        <Svg fill="none" viewBox="0 0 17 18">
+        <SvgSearch>
             <path
                 style={themeMode.main}
                 d="M11.9276 12.7748L15.37 17.0644"
@@ -33,6 +34,6 @@ export function StyledSearchIcon() {
                 transform="rotate(-38.7469 8.48533 8.48526)"
                 stroke="white"
             />
-        </Svg>
+        </SvgSearch>
     );
 }

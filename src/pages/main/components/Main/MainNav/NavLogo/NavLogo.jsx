@@ -1,6 +1,5 @@
-import { StyledNavLogoContainer } from './StyledNavLogoContainer';
-
 import { StyledNavLogo } from './StyledNavLogo';
+import { StyledNavLogoContainer } from './StyledNavLogoContainer';
 
 function NavLogo() {
     return (

@@ -1,22 +1,26 @@
+import { BarVolumeContainer } from './BarVolumeComponents/BarVolume';
+import { VolumeContent } from './BarVolumeComponents/VolumeContent';
+import { VolumeImage } from './BarVolumeComponents/VolumeImage';
+import { VolumeProgressBtn } from './BarVolumeComponents/VolumeProgressBtn';
+import { VolumeProgressLine } from './BarVolumeComponents/VolumeProgressLine';
 import BarVolumeIcon from './BarVolumeIcon';
-import * as S from './StyledBarVolume';
 
 function BarVolume() {
     return (
-        <S.BarVolume>
-            <S.VolumeContent>
-                <S.VolumeImage>
+        <BarVolumeContainer>
+            <VolumeContent>
+                <VolumeImage>
                     <BarVolumeIcon
                         className="volume__svg"
                         alt="volume"
                     ></BarVolumeIcon>
-                </S.VolumeImage>
+                </VolumeImage>
 
-                <S.VolumeProgressBtn>
-                    <S.VolumeProgressLine />
-                </S.VolumeProgressBtn>
-            </S.VolumeContent>
-        </S.BarVolume>
+                <VolumeProgressBtn>
+                    <VolumeProgressLine />
+                </VolumeProgressBtn>
+            </VolumeContent>
+        </BarVolumeContainer>
     );
 }
 

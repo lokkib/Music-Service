@@ -1,24 +1,27 @@
+import { ContentPlaylist } from '../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/CentralBlockContentComponents/ContentPlayList';
+import { ContentTitle } from '../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/CentralBlockContentComponents/ContentTitle';
+import { PlaylistTitleAlbum } from '../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/CentralBlockContentComponents/PlaylistTitleAlbum';
+import { PlaylistTitleAuthor } from '../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/CentralBlockContentComponents/PlaylistTitleAuthor';
+import { PlaylistTitleTrack } from '../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/CentralBlockContentComponents/PlaylistTitleTrack';
 import PlaylistItem from './PlaylistItem/PlaylistItem';
-
 import PlaylistTitleTimeIcon from './PlaylistTitleTimeIcon';
-import * as S from './StyledCentralBlockContent';
 
 function CentralBlockContent() {
     return (
         <>
-            <S.ContentTitle>
-                <S.PlaylistTitleTrack>Трек</S.PlaylistTitleTrack>
+            <ContentTitle>
+                <PlaylistTitleTrack>Трек</PlaylistTitleTrack>
 
-                <S.PlaylistTitleAuthor>Исполнитель</S.PlaylistTitleAuthor>
+                <PlaylistTitleAuthor>Исполнитель</PlaylistTitleAuthor>
 
-                <S.PlaylistTitleAlbum>Альбом</S.PlaylistTitleAlbum>
+                <PlaylistTitleAlbum>Альбом</PlaylistTitleAlbum>
 
                 <div>
                     <PlaylistTitleTimeIcon></PlaylistTitleTimeIcon>
                 </div>
-            </S.ContentTitle>
+            </ContentTitle>
 
-            <S.ContentPlaylist>
+            <ContentPlaylist>
                 <PlaylistItem />
                 <PlaylistItem />
                 <PlaylistItem />
@@ -30,7 +33,7 @@ function CentralBlockContent() {
                 <PlaylistItem />
                 <PlaylistItem />
                 <PlaylistItem />
-            </S.ContentPlaylist>
+            </ContentPlaylist>
         </>
     );
 }

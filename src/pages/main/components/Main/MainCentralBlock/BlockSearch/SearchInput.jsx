@@ -1,6 +1,7 @@
-import { StyledSearchInput } from './StyledSearchInput';
 import { useContext } from 'react';
+
 import ThemeContext, { themes } from '../../../../../../themes';
+import { StyledSearchInput } from './StyledSearchInput';
 
 function SearchInput({ type = 'search', name = 'search' }) {
     const { themeMode } = useContext(ThemeContext);

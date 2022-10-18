@@ -1,5 +1,4 @@
 import MenuItem from './MenuList/MenuItem';
-
 import { StyledNavMenu } from './StyledNavMenu';
 
 function NavMenu() {

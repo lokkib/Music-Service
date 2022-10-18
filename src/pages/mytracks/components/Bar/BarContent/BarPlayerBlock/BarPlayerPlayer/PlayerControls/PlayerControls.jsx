@@ -1,5 +1,5 @@
-import * as S from './StyledPlayerControls';
 import * as Styled from './PlayerControlsIcons/StyledPlayerControlIcons';
+import * as S from './StyledPlayerControls';
 
 function PlayerControls() {
     return (

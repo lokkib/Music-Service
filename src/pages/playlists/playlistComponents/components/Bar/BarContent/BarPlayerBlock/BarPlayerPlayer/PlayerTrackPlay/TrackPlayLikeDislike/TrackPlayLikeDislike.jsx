@@ -1,15 +1,16 @@
+import { PlayIconDislike } from '../../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayLikeDislike/TrackPlayLikeDislikeIcons/StyledPlayIconDislike';
+import { PlayIconLike } from '../../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayLikeDislike/TrackPlayLikeDislikeIcons/StyledPlayIconLike';
 import * as S from './StyledTrackPlayLikeDislike';
-import * as Styled from './TrackPlayLikeDislikeIcons/StyledPlayIcons';
 
 function TrackPlayLikeDislike() {
     return (
         <S.TrackPlayLikeDislike>
             <S.TrackPlayLike>
-                <Styled.PlayIconLike alt="like" />
+                <PlayIconLike alt="like" />
             </S.TrackPlayLike>
 
             <S.TrackPlayDislike>
-                <Styled.PlayIconDislike alt="dislike" />
+                <PlayIconDislike alt="dislike" />
             </S.TrackPlayDislike>
         </S.TrackPlayLikeDislike>
     );

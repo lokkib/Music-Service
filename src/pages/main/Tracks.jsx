@@ -1,7 +1,8 @@
-import Main from './components/Main/Main';
-import Bar from './components/Bar/Bar';
-import ThemeContext, { themes } from '../../themes';
 import { useState } from 'react';
+
+import ThemeContext, { themes } from '../../themes';
+import Bar from './components/Bar/Bar';
+import Main from './components/Main/Main';
 
 const Tracks = () => {
     const [themeMode, setThemeMode] = useState(themes.darkTheme);

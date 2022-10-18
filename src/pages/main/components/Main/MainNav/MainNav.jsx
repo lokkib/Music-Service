@@ -1,11 +1,11 @@
-import NavLogo from './NavLogo/NavLogo';
-import NavBurger from './NavBurger/NavBurger';
-import NavMenu from './NavMenu/NavMenu';
-
 import { useState } from 'react';
-import { StyledMainNav } from './StyledMainNav';
 import { useContext } from 'react';
+
 import ThemeContext from '../../../../../themes';
+import NavBurger from './NavBurger/NavBurger';
+import NavLogo from './NavLogo/NavLogo';
+import NavMenu from './NavMenu/NavMenu';
+import { StyledMainNav } from './StyledMainNav';
 
 function MainNav() {
     const [menu, setMenu] = useState(false);

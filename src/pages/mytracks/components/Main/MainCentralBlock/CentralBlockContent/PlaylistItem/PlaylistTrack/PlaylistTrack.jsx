@@ -1,9 +1,8 @@
-import TrackTitle from './TrackTitle/TrackTitle';
-import TrackAuthor from './TrackAuthor/TrackAuthor';
-import TrackAlbum from './TrackAlbum/TrackAlbum';
-import TrackTime from './TrackTime/TrackTme';
-
 import { StyledPlaylistTrack } from './StyledPlaylistTrack';
+import TrackAlbum from './TrackAlbum/TrackAlbum';
+import TrackAuthor from './TrackAuthor/TrackAuthor';
+import TrackTime from './TrackTime/TrackTme';
+import TrackTitle from './TrackTitle/TrackTitle';
 
 function PlaylistTrack() {
     return (

@@ -1,7 +1,7 @@
-import * as S from '../login/StyledInputs';
 import StyledBlock from '../login/Styledblock';
 import { SecondButtonSignUp } from '../login/StyledButtons';
 import Img from '../login/StyledImg';
+import * as S from '../login/StyledInputs';
 
 const SignUp = () => {
     return (

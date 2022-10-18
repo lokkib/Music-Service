@@ -1,6 +1,7 @@
 import { Line } from 'rc-progress';
-import ThemeContext from '../../../../../../../themes';
 import { useContext } from 'react';
+
+import ThemeContext from '../../../../../../../themes';
 
 function ProgressLine({ max, value }) {
     const { themeMode } = useContext(ThemeContext);

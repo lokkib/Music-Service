@@ -1,5 +1,4 @@
 import SidebarPersonal from './SidebarPersonal/SidebarPersonal';
-
 import { StyledMainSideBar } from './StyledMainSideBar';
 
 function MainSidebar() {

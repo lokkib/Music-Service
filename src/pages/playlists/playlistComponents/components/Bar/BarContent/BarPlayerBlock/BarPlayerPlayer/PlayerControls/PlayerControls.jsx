@@ -1,5 +1,15 @@
-import * as S from './StyledPlayerControls';
-import * as Styled from './PlayerControlsIcons/StyledPlayerControlIcons';
+import { PlayerBtnNext } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsButtons/PlayerBtnNext';
+import { PlayerBtnPlay } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsButtons/PlayerBtnPlay';
+import { PlayerBtnPrev } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsButtons/PlayerBtnPrev';
+import { PlayerBtnRepeat } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsButtons/PlayerBtnRepeat';
+import { PlayerBtnShuffle } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsButtons/PlayerBtnShuffle';
+import { PlayerControlsContainer } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsButtons/PlayerControlsContainer';
+import { IconNext } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/IconNext';
+import { IconPlay } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/IconPlay';
+import { IconPrev } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/IconPrev';
+import { IconRepeat } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/IconRepeat';
+import { IconShuffle } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/IconShuffle';
+import { IconStop } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/IconStop';
 
 function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
     function changeIsPlaying(isPlaying) {
@@ -12,33 +22,29 @@ function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
     }
 
     return (
-        <S.PlayerControls style={{ alignItems: 'center' }}>
-            <S.PlayerBtnPrev>
-                <Styled.IconPrev alt="prev" />
-            </S.PlayerBtnPrev>
-            <S.PlayerBtnPlay
+        <PlayerControlsContainer style={{ alignItems: 'center' }}>
+            <PlayerBtnPrev>
+                <IconPrev alt="prev" />
+            </PlayerBtnPrev>
+            <PlayerBtnPlay
                 onClick={() => {
                     changeIsPlaying(isPlaying);
                 }}
             >
-                {isPlaying ? (
-                    <Styled.IconStop alt="stop" />
-                ) : (
-                    <Styled.IconPlay alt="play" />
-                )}
-            </S.PlayerBtnPlay>
-            <S.PlayerBtnNext>
-                <Styled.IconNext alt="next" />
-            </S.PlayerBtnNext>
+                {isPlaying ? <IconStop alt="stop" /> : <IconPlay alt="play" />}
+            </PlayerBtnPlay>
+            <PlayerBtnNext>
+                <IconNext alt="next" />
+            </PlayerBtnNext>
 
-            <S.PlayerBtnRepeat>
-                <Styled.IconRepeat alt="repeat" />
-            </S.PlayerBtnRepeat>
+            <PlayerBtnRepeat>
+                <IconRepeat alt="repeat" />
+            </PlayerBtnRepeat>
 
-            <S.PlayerBtnShuffle>
-                <Styled.IconShuffle alt="shuffle" />
-            </S.PlayerBtnShuffle>
-        </S.PlayerControls>
+            <PlayerBtnShuffle>
+                <IconShuffle alt="shuffle" />
+            </PlayerBtnShuffle>
+        </PlayerControlsContainer>
     );
 }
 

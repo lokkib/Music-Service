@@ -1,8 +1,8 @@
-import BarContent from './BarContent/BarContent';
-
-import { StyledBar } from './StyledBar';
 import { useContext } from 'react';
+
 import ThemeContext from '../../../../themes';
+import BarContent from './BarContent/BarContent';
+import { StyledBar } from './StyledBar';
 
 function Bar() {
     const { themeMode } = useContext(ThemeContext);
