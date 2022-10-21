@@ -2,30 +2,21 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 
 import ThemeContext from '../../../../../../../../../themes';
+import { Svg } from './SvgIconSample';
 
-const SvgRepeat = styled.svg.attrs({
-    xmlns: 'http://www.w3.org/2000/svg',
-    fill: 'none',
-    viewBox: '0 0 20 18',
-    width: '18px',
-    height: '12px',
-})`
-    stroke: #696969;
-    &:active {
-        fill: transparent;
-        stroke: #ffffff;
-        cursor: pointer;
-    }
-    &:hover {
-        fill: transparent;
-        stroke: #acacac;
-        cursor: pointer;
-    }
-`;
+const SvgRepeat = styled(Svg)``;
+
 export function IconRepeat({ alt }) {
     const { themeMode } = useContext(ThemeContext);
     return (
-        <SvgRepeat alt={alt}>
+        <SvgRepeat
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 18"
+            width="18px"
+            height="12px"
+            alt={alt}
+        >
             <path
                 style={themeMode.trackIconsFill2}
                 d="M10 3L5 0.113249V5.88675L10 3ZM7 14.5C3.96243 14.5 1.5 12.0376 1.5 9H0.5C0.5 12.5899 3.41015 15.5 7 15.5V14.5ZM1.5 9C1.5 5.96243 3.96243 3.5 7 3.5V2.5C3.41015 2.5 0.5 5.41015 0.5 9H1.5Z"

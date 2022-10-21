@@ -2,29 +2,21 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 
 import ThemeContext from '../../../../../../../../../../themes';
+import { Svg } from './LikeDislikeIconSample';
 
-const SvgDisLike = styled.svg.attrs({
-    xmlns: 'http://www.w3.org/2000/svg',
-    fill: 'none',
-    viewBox: '0 0 16 15',
-    width: '14.34px',
-    height: '13px',
-})`
-    &:active {
-        fill: #696969;
-        stroke: #ffffff;
-        cursor: pointer;
-    }
-    &: hover {
-        stroke: #acacac;
-        cursor: pointer;
-    }
-`;
+const SvgDisLike = styled(Svg)``;
 
 export function PlayIconDislike({ alt }) {
     const { themeMode } = useContext(ThemeContext);
     return (
-        <SvgDisLike alt={alt}>
+        <SvgDisLike
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 16 15"
+            width="14.34px"
+            height="13px"
+            alt={alt}
+        >
             <path
                 style={themeMode.trackIconsStroke2}
                 d="M1 1L15 13.5"

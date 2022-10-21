@@ -1,22 +1,18 @@
 import { useContext } from 'react';
-import styled from 'styled-components';
 
 import ThemeContext from '../../../../../../themes';
-
-const Icon = styled.svg.attrs({
-    xmlns: 'http://www.w3.org/2000/svg',
-})``;
-
-const Svg = styled(Icon)`
-    width: 114px;
-    height: 18px;
-`;
 
 export function StyledNavLogo() {
     const { themeMode } = useContext(ThemeContext);
 
     return (
-        <Svg fill="none" viewBox="0 0 114 18">
+        <svg
+            width="114px"
+            height="18px"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 114 18"
+        >
             <path
                 d="M3.19264 17.414C1.36821 18.4678 0.0576172 17.5896 0.0576172 16.0275C0.0576172 14.3647 0.0576172 9.37523 0.0576172 9.37523C0.0576172 9.37523 0.0576172 4.38579 0.0576172 2.72291C0.0576172 1.16086 1.3674 0.28267 3.19264 1.3365C6.03415 2.97742 14.5579 7.90181 14.5579 7.90181C15.6912 8.55639 15.6912 10.1932 14.5579 10.8478C14.5579 10.8486 6.03415 15.773 3.19264 17.414Z"
                 fill="#00C1FF"
@@ -94,6 +90,6 @@ export function StyledNavLogo() {
                     />
                 </filter>
             </defs>
-        </Svg>
+        </svg>
     );
 }

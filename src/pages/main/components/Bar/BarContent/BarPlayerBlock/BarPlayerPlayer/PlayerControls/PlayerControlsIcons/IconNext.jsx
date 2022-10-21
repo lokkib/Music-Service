@@ -2,31 +2,22 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 
 import ThemeContext from '../../../../../../../../../themes';
+import { Svg } from './SvgIconSample';
 
-const SvgNext = styled.svg.attrs({
-    xmlns: 'http://www.w3.org/2000/svg',
-    width: '15px',
-    height: '14px',
-    fill: 'none',
-    viewBox: '0 0 16 14',
-})`
-    &:active {
-        fill: transparent;
-        stroke: #ffffff;
-        cursor: pointer;
-    }
-    &:hover {
-        fill: transparent;
-        stroke: #acacac;
-        cursor: pointer;
-    }
-`;
+const SvgNext = styled(Svg)``;
 
 export function IconNext({ alt }) {
     const { themeMode } = useContext(ThemeContext);
 
     return (
-        <SvgNext alt={alt}>
+        <SvgNext
+            xmlns="http://www.w3.org/2000/svg"
+            width="15px"
+            height="14px"
+            fill="none"
+            viewBox="0 0 16 14"
+            alt={alt}
+        >
             <path
                 style={themeMode.trackIconsStroke}
                 d="M15 2V12.5"

@@ -2,8 +2,13 @@ import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 
 import ThemeContext from '../../../../../../../../../themes';
-import * as S from './StyledTrackPlayContain';
-import TrackPlayContainIcon from './TrackPLayContainIcon';
+import { TrackPlayAlbum } from './TrackPlayContainComponents/TrackPlayAlbum';
+import { TrackPlayAlbumLink } from './TrackPlayContainComponents/TrackPlayAlbumLink';
+import { TrackPlayAuthor } from './TrackPlayContainComponents/TrackPlayAuthor';
+import { TrackPlayAuthorLink } from './TrackPlayContainComponents/TrackPlayAuthorLink';
+import { TrackPlayContainBlock } from './TrackPlayContainComponents/TrackPlayContainBlock';
+import { TrackPlayContainIcon } from './TrackPlayContainComponents/TrackPlayContainIcon';
+import { TrackPlayImage } from './TrackPlayContainComponents/TrackPlayImage';
 
 function TrackPlayContain() {
     const { themeMode } = useContext(ThemeContext);
@@ -30,26 +35,26 @@ function TrackPlayContain() {
     }, []);
 
     return (
-        <S.TrackPlayContain>
-            <S.TrackPlayImage style={themeMode.trackTitle}>
+        <TrackPlayContainBlock>
+            <TrackPlayImage style={themeMode.trackTitle}>
                 {img || (
                     <TrackPlayContainIcon
                         className="track-play__svg"
                         alt="music"
                     />
                 )}
-            </S.TrackPlayImage>
-            <S.TrackPlayAuthor>
-                <S.TrackPlayAuthorLink style={themeMode.main}>
+            </TrackPlayImage>
+            <TrackPlayAuthor>
+                <TrackPlayAuthorLink style={themeMode.main}>
                     {img2 || '#'}
-                </S.TrackPlayAuthorLink>
-            </S.TrackPlayAuthor>
-            <S.TrackPlayAlbum>
-                <S.TrackPlayAlbumLink style={themeMode.main}>
+                </TrackPlayAuthorLink>
+            </TrackPlayAuthor>
+            <TrackPlayAlbum>
+                <TrackPlayAlbumLink style={themeMode.main}>
                     {img2 || '#'}
-                </S.TrackPlayAlbumLink>
-            </S.TrackPlayAlbum>
-        </S.TrackPlayContain>
+                </TrackPlayAlbumLink>
+            </TrackPlayAlbum>
+        </TrackPlayContainBlock>
     );
 }
 

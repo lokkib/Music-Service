@@ -22,7 +22,7 @@ function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
     }
 
     return (
-        <PlayerControlsContainer style={{ alignItems: 'center' }}>
+        <PlayerControlsContainer>
             <PlayerBtnPrev>
                 <IconPrev alt="prev" />
             </PlayerBtnPrev>
