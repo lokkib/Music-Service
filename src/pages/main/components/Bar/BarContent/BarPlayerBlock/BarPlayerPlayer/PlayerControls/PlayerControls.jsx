@@ -1,51 +1,50 @@
-import * as S from './StyledPlayerControls';
-import * as Styled from './PlayerControlsIcons/StyledPlayerControlIcons';
-import { useState } from 'react';
+import { PlayerBtnNext } from './PlayerControlsButtons/PlayerBtnNext';
+import { PlayerBtnPlay } from './PlayerControlsButtons/PlayerBtnPlay';
+import { PlayerBtnPrev } from './PlayerControlsButtons/PlayerBtnPrev';
+import { PlayerBtnRepeat } from './PlayerControlsButtons/PlayerBtnRepeat';
+import { PlayerBtnShuffle } from './PlayerControlsButtons/PlayerBtnShuffle';
+import { PlayerControlsContainer } from './PlayerControlsButtons/PlayerControlsContainer';
+import { IconNext } from './PlayerControlsIcons/IconNext';
+import { IconPlay } from './PlayerControlsIcons/IconPlay';
+import { IconPrev } from './PlayerControlsIcons/IconPrev';
+import { IconRepeat } from './PlayerControlsIcons/IconRepeat';
+import { IconShuffle } from './PlayerControlsIcons/IconShuffle';
+import { IconStop } from './PlayerControlsIcons/IconStop';
 
-function PlayerControls({ refPlayer, setisPlaying }) {
-    const [icon, setIcons] = useState(false);
-
-    let elem;
-
-    if (icon) {
-        elem = <Styled.PlayerControlIconStop alt="stop" />;
-    }
-
-    function changeIsPlaying(icon) {
-        if (icon) {
+function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
+    function changeIsPlaying(isPlaying) {
+        setisPlaying(!isPlaying);
+        if (isPlaying) {
             refPlayer.current.pause();
-            setisPlaying(true);
         } else {
             refPlayer.current.play();
-            setisPlaying(false);
         }
     }
 
     return (
-        <S.PlayerControls style={{ alignItems: 'center' }}>
-            <S.PlayerBtnPrev>
-                <Styled.PlayerControlIconPrev alt="prev" />
-            </S.PlayerBtnPrev>
-            <S.PlayerBtnPlay
+        <PlayerControlsContainer>
+            <PlayerBtnPrev>
+                <IconPrev alt="prev" />
+            </PlayerBtnPrev>
+            <PlayerBtnPlay
                 onClick={() => {
-                    setIcons(!icon);
-                    changeIsPlaying(icon);
+                    changeIsPlaying(isPlaying);
                 }}
             >
-                {elem || <Styled.PlayerControlIconPlay alt="play" />}
-            </S.PlayerBtnPlay>
-            <S.PlayerBtnNext>
-                <Styled.PlayerControlIconNext alt="next" />
-            </S.PlayerBtnNext>
+                {isPlaying ? <IconStop alt="stop" /> : <IconPlay alt="play" />}
+            </PlayerBtnPlay>
+            <PlayerBtnNext>
+                <IconNext alt="next" />
+            </PlayerBtnNext>
 
-            <S.PlayerBtnRepeat>
-                <Styled.PlayerControlIconRepeat alt="repeat" />
-            </S.PlayerBtnRepeat>
+            <PlayerBtnRepeat>
+                <IconRepeat alt="repeat" />
+            </PlayerBtnRepeat>
 
-            <S.PlayerBtnShuffle>
-                <Styled.PlayerControlIconShuffle alt="shuffle" />
-            </S.PlayerBtnShuffle>
-        </S.PlayerControls>
+            <PlayerBtnShuffle>
+                <IconShuffle alt="shuffle" />
+            </PlayerBtnShuffle>
+        </PlayerControlsContainer>
     );
 }
 

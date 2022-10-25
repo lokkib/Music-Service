@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import * as S from './StyledCentralBlockFilter';
+import { useContext } from 'react';
+
+import ThemeContext from '../../../../../../../themes';
+import { FilterButton } from '../../../../../../main/components/Main/MainCentralBlock/CentralBlockFilter/CentralBlockFilterComponents/FilterButton';
+import { FilterContainer } from '../../../../../../main/components/Main/MainCentralBlock/CentralBlockFilter/CentralBlockFilterComponents/FilterContainer';
+import { FilterTitle } from '../../../../../../main/components/Main/MainCentralBlock/CentralBlockFilter/CentralBlockFilterComponents/FilterTitle';
 
 function CentralBlockFilter() {
+    const { themeMode } = useContext(ThemeContext);
     const [searchPerformer, setSearchPerfomer] = useState(false);
     const [searchGenre, setSearchGenre] = useState(false);
     const [searchYear, setSearchYear] = useState(false);
@@ -56,30 +62,39 @@ function CentralBlockFilter() {
     }
 
     return (
-        <S.CentralBlockFilter>
-            <S.FilterTitle>Искать по:</S.FilterTitle>
+        <FilterContainer>
+            <FilterTitle>Искать по:</FilterTitle>
             <div>
-                <S.FilterButton onClick={showSearchResult}>
+                <FilterButton
+                    style={themeMode.border}
+                    onClick={showSearchResult}
+                >
                     исполнителю
-                </S.FilterButton>
+                </FilterButton>
 
                 {searchImages.perfomer}
             </div>
             <div>
-                <S.FilterButton onClick={showSearchResult2}>
+                <FilterButton
+                    style={themeMode.border}
+                    onClick={showSearchResult2}
+                >
                     году выпуска
-                </S.FilterButton>
+                </FilterButton>
 
                 {searchImages.genre}
             </div>
             <div>
-                <S.FilterButton onClick={showSearchResult3}>
+                <FilterButton
+                    style={themeMode.border}
+                    onClick={showSearchResult3}
+                >
                     жанру
-                </S.FilterButton>
+                </FilterButton>
 
                 {searchImages.year}
             </div>
-        </S.CentralBlockFilter>
+        </FilterContainer>
     );
 }
 

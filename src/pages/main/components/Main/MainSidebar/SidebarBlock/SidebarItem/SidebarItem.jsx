@@ -1,5 +1,6 @@
-import * as S from './StyledSidebarItem';
 import { Link } from 'react-router-dom';
+
+import * as S from './StyledSidebarItem';
 
 function SidebarItem({ alt, src, id }) {
     return (

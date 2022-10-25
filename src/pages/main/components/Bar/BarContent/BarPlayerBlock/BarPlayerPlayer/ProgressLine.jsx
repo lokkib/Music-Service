@@ -1,8 +1,10 @@
 import { Line } from 'rc-progress';
+import { useContext } from 'react';
+
+import ThemeContext from '../../../../../../../themes';
 
 function ProgressLine({ max, value }) {
- 
-
+    const { themeMode } = useContext(ThemeContext);
     return (
         <>
             <Line
@@ -10,7 +12,7 @@ function ProgressLine({ max, value }) {
                 width="100%"
                 height="5px"
                 strokeLinecap="square"
-                trailColor="#2E2E2E"
+                trailColor={themeMode.progress.trailColor}
                 strokeColor={'purple'}
             />
         </>

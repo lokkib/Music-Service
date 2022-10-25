@@ -1,6 +1,7 @@
-import { GlobalStyle } from './GlobalStyle';
-import { AppRoutes } from './Approutes';
 import { useState } from 'react';
+
+import { AppRoutes } from './Approutes';
+import { GlobalStyle } from './GlobalStyle';
 
 function App() {
     const [user, setUser] = useState(null);

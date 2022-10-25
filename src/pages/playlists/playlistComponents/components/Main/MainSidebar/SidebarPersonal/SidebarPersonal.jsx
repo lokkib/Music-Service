@@ -1,12 +1,14 @@
-import * as S from './StyledSideBar';
+import { SidebarAvatar } from '../../../../../../main/components/Main/MainSidebar/SidebarPersonal/SidebarPersonalComponents/SidebarAvatar';
+import { SidebarPersonalContainer } from '../../../../../../main/components/Main/MainSidebar/SidebarPersonal/SidebarPersonalComponents/SidebarPersonalContainer';
+import { SidebarPersonalName } from '../../../../../../main/components/Main/MainSidebar/SidebarPersonal/SidebarPersonalComponents/SidebarPersonalName';
 
 function SidebarPersonal() {
     return (
-        <S.SidebarPersonal>
-            <S.SidebarPersonalName>#</S.SidebarPersonalName>
+        <SidebarPersonalContainer>
+            <SidebarPersonalName>#</SidebarPersonalName>
 
-            <S.SidebarAvatar>#</S.SidebarAvatar>
-        </S.SidebarPersonal>
+            <SidebarAvatar>#</SidebarAvatar>
+        </SidebarPersonalContainer>
     );
 }
 

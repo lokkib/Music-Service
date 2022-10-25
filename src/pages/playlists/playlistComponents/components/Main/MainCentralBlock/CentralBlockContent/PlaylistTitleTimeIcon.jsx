@@ -1,4 +1,4 @@
-import { StyledPlaylistIcon } from './StyledPlaylistTimeIcon';
+import { StyledPlaylistIcon } from '../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/StyledPlaylistTimeIcon';
 
 function PlaylistTitleTimeIcon() {
     return <StyledPlaylistIcon />;

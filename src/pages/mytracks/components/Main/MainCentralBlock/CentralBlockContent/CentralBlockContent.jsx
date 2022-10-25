@@ -1,5 +1,4 @@
 import PlaylistItem from './PlaylistItem/PlaylistItem';
-
 import PlaylistTitleTimeIcon from './PlaylistTitleTimeIcon';
 import * as S from './StyledCentralBlockContent';
 

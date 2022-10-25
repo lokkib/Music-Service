@@ -1,17 +1,20 @@
-import * as S from './StyledTrackPlayLikeDislike';
-import * as Styled from './TrackPlayLikeDislikeIcons/StyledPlayIcons';
+import { TrackPlayDislikeContainer } from '../../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayLikeDislike/TrackPlayerLikeDislikeContainers/TrackPlayDislikeContainer';
+import { TrackPlayLikeDislikeContainer } from '../../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayLikeDislike/TrackPlayerLikeDislikeContainers/TrackPlayerLikeDislikeContainer';
+import { TrackPlayLikeContainer } from '../../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayLikeDislike/TrackPlayerLikeDislikeContainers/TrackPlayLikeContainer';
+import { PlayIconDislike } from '../../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayLikeDislike/TrackPlayLikeDislikeIcons/StyledPlayIconDislike';
+import { PlayIconLike } from '../../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayLikeDislike/TrackPlayLikeDislikeIcons/StyledPlayIconLike';
 
 function TrackPlayLikeDislike() {
     return (
-        <S.TrackPlayLikeDislike>
-            <S.TrackPlayLike>
-                <Styled.PlayIconLike alt="like" />
-            </S.TrackPlayLike>
+        <TrackPlayLikeDislikeContainer>
+            <TrackPlayLikeContainer>
+                <PlayIconLike alt="like" />
+            </TrackPlayLikeContainer>
 
-            <S.TrackPlayDislike>
-                <Styled.PlayIconDislike alt="dislike" />
-            </S.TrackPlayDislike>
-        </S.TrackPlayLikeDislike>
+            <TrackPlayDislikeContainer>
+                <PlayIconDislike alt="dislike" />
+            </TrackPlayDislikeContainer>
+        </TrackPlayLikeDislikeContainer>
     );
 }
 

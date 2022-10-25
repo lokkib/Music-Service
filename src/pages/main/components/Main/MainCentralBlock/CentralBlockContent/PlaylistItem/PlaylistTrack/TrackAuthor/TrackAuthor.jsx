@@ -1,7 +1,12 @@
-import { useState, useEffect } from 'react';
-import * as S from './StyledTrackAuthor';
+import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+
+import ThemeContext from '../../../../../../../../../themes';
+import { TrackAuthorBlock } from './TrackAuthorComponents/TrackAuthorBlock';
+import { TrackAuthorLink } from './TrackAuthorComponents/TrackAuthorLink';
 
 function TrackAuthor() {
+    const { themeMode } = useContext(ThemeContext);
     const [img, setImg] = useState(
         <img src="../img/Skeleton-track-author.png"></img>
     );
@@ -14,9 +19,11 @@ function TrackAuthor() {
     }, []);
 
     return (
-        <S.TrackAuthor>
-            <S.TrackAuthorLink>{img || '#'}</S.TrackAuthorLink>
-        </S.TrackAuthor>
+        <TrackAuthorBlock>
+            <TrackAuthorLink style={themeMode.main}>
+                {img || '#'}
+            </TrackAuthorLink>
+        </TrackAuthorBlock>
     );
 }
 

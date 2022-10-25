@@ -1,5 +1,4 @@
 import BarContent from './BarContent/BarContent';
-
 import { StyledBar } from './StyledBar';
 
 function Bar() {

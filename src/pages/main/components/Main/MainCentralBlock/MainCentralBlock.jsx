@@ -1,9 +1,8 @@
 import BlockSearch from './BlockSearch/BlockSearch';
-import CentralBlockFilter from './CentralBlockFilter/CentralBlockFilter';
 import CentralBlockContent from './CentralBlockContent/CentralBlockContent';
-
-import { StyledMainCentralBlock } from './StyledMainCentralBlock';
+import CentralBlockFilter from './CentralBlockFilter/CentralBlockFilter';
 import { StyledCBHeading } from './StyledCenterBlockHeading';
+import { StyledMainCentralBlock } from './StyledMainCentralBlock';
 
 function MainCentralBlock() {
     return (

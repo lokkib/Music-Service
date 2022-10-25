@@ -1,11 +1,11 @@
-import BlockSearch from './BlockSearch/BlockSearch';
-import CentralBlockFilter from './CentralBlockFilter/CentralBlockFilter';
-import CentralBlockContent from './CentralBlockContent/CentralBlockContent';
-
-import { StyledMainCentralBlock } from './StyledMainCentralBlock';
-import { StyledCBHeading } from './StyledCenterBlockHeading';
 import { useParams } from 'react-router-dom';
+
 import PLAYLISTS from '../../../../../../constants/playlists';
+import BlockSearch from './BlockSearch/BlockSearch';
+import CentralBlockContent from './CentralBlockContent/CentralBlockContent';
+import CentralBlockFilter from './CentralBlockFilter/CentralBlockFilter';
+import { StyledCBHeading } from './StyledCenterBlockHeading';
+import { StyledMainCentralBlock } from './StyledMainCentralBlock';
 
 function MainCentralBlock() {
     const params = useParams();

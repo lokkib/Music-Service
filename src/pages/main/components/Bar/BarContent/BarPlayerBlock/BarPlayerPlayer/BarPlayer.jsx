@@ -1,10 +1,11 @@
-import PlayerControls from './PlayerControls/PlayerControls';
-import PlayerTrackPlay from './PlayerTrackPlay/PlayerTrackPlay';
-import { StyledBarPlayer } from './StyledBarPlayer';
-import Audio from './PlayerControls/PlayerControlsIcons/Audio';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+
+import PlayerControls from './PlayerControls/PlayerControls';
+import Audio from './PlayerControls/PlayerControlsIcons/Audio';
+import PlayerTrackPlay from './PlayerTrackPlay/PlayerTrackPlay';
+import { StyledBarPlayer } from './StyledBarPlayer';
 
 function BarPlayer({ getValues }) {
     const refPlayer = useRef(null);
@@ -38,13 +39,13 @@ function BarPlayer({ getValues }) {
     });
 
     return (
-      
         <StyledBarPlayer>
             <Audio ref={refPlayer} />
             <PlayerControls
                 setCurrentTime={setCurrentTime}
                 setisPlaying={setisPlaying}
                 setDuration={setDuration}
+                isPlaying={isPlaying}
                 refPlayer={refPlayer}
                 duration={duration}
                 currentTime={currentTime}

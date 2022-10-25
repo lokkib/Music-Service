@@ -1,8 +1,9 @@
-import * as S from './StyledInputs';
-import * as Styled from './StyledButtons';
-import StyledBlock from './Styledblock';
 import { useNavigate } from 'react-router-dom';
+
+import StyledBlock from './Styledblock';
+import * as Styled from './StyledButtons';
 import Img from './StyledImg';
+import * as S from './StyledInputs';
 
 const SignIn = () => {
     const navigate = useNavigate();

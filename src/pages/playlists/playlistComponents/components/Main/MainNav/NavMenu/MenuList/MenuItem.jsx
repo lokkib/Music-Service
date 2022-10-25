@@ -1,10 +1,17 @@
-import * as S from './StyledMenuList';
+import { useContext } from 'react';
+
+import ThemeContext from '../../../../../../../../themes';
+import { StyledMenuItem } from '../../../../../../../main/components/Main/MainNav/NavMenu/MenuList/MenuListComponents/StyledMenuItem';
+import { StyledMenuLink } from '../../../../../../../main/components/Main/MainNav/NavMenu/MenuList/MenuListComponents/StyledMenuLink';
 
 function MenuItem({ content, http = 'http://' }) {
+    const { themeMode } = useContext(ThemeContext);
     return (
-        <S.MenuItem>
-            <S.MenuLink href={http}>{content}</S.MenuLink>
-        </S.MenuItem>
+        <StyledMenuItem>
+            <StyledMenuLink style={themeMode.main} href={http}>
+                {content}
+            </StyledMenuLink>
+        </StyledMenuItem>
     );
 }
 

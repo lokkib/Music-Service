@@ -1,17 +1,20 @@
-import * as S from './StyledTrackPlayLikeDislike';
-import * as Styled from './TrackPlayLikeDislikeIcons/StyledPlayIcons';
+import { TrackPlayDislikeContainer } from './TrackPlayerLikeDislikeContainers/TrackPlayDislikeContainer';
+import { TrackPlayLikeDislikeContainer } from './TrackPlayerLikeDislikeContainers/TrackPlayerLikeDislikeContainer';
+import { TrackPlayLikeContainer } from './TrackPlayerLikeDislikeContainers/TrackPlayLikeContainer';
+import { PlayIconDislike } from './TrackPlayLikeDislikeIcons/StyledPlayIconDislike';
+import { PlayIconLike } from './TrackPlayLikeDislikeIcons/StyledPlayIconLike';
 
 function TrackPlayLikeDislike() {
     return (
-        <S.TrackPlayLikeDislike>
-            <S.TrackPlayLike>
-                <Styled.PlayIconLike alt="like" />
-            </S.TrackPlayLike>
+        <TrackPlayLikeDislikeContainer>
+            <TrackPlayLikeContainer>
+                <PlayIconLike alt="like" />
+            </TrackPlayLikeContainer>
 
-            <S.TrackPlayDislike>
-                <Styled.PlayIconDislike alt="dislike" />
-            </S.TrackPlayDislike>
-        </S.TrackPlayLikeDislike>
+            <TrackPlayDislikeContainer>
+                <PlayIconDislike alt="dislike" />
+            </TrackPlayDislikeContainer>
+        </TrackPlayLikeDislikeContainer>
     );
 }
 

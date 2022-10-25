@@ -1,12 +1,16 @@
-import NavLogo from './NavLogo/NavLogo';
-import NavBurger from './NavBurger/NavBurger';
-import NavMenu from './NavMenu/NavMenu';
-
 import { useState } from 'react';
+import { useContext } from 'react';
+
+import ThemeContext from '../../../../../../themes';
+import NavBurger from './NavBurger/NavBurger';
+import NavLogo from './NavLogo/NavLogo';
+import NavMenu from './NavMenu/NavMenu';
 import { StyledMainNav } from './StyledMainNav';
 
 function MainNav() {
     const [menu, setMenu] = useState(false);
+
+    const { themeMode } = useContext(ThemeContext);
 
     function onClick() {
         setMenu(!menu);
@@ -19,7 +23,7 @@ function MainNav() {
     }
 
     return (
-        <StyledMainNav>
+        <StyledMainNav style={themeMode.main}>
             <NavLogo />
             <NavBurger handleClick={onClick} />
             {elem}

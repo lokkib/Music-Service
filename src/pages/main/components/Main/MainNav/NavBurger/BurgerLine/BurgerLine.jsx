@@ -1,7 +1,11 @@
+import { useContext } from 'react';
+
+import ThemeContext from '../../../../../../../themes';
 import { StyledBurgerLine } from './StyledBurgerLine';
 
 function BurgerLine() {
-    return <StyledBurgerLine />;
+    const { themeMode } = useContext(ThemeContext);
+    return <StyledBurgerLine style={themeMode.burgerLine} />;
 }
 
 export default BurgerLine;

@@ -1,5 +1,4 @@
 import PlaylistTrack from './PlaylistTrack/PlaylistTrack';
-
 import { StyledPlaylistItem } from './StyledPlaylistItem';
 
 function PlaylistItem() {

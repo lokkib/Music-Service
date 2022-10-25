@@ -1,5 +1,5 @@
-import BarPlayerProgress from './BarPlayerProgress/BarPlayerProgress';
 import BarPlayerBlock from './BarPlayerBlock/BarPlayerBlock';
+import BarPlayerProgress from './BarPlayerProgress/BarPlayerProgress';
 
 function BarContent() {
     return (

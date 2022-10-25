@@ -1,10 +1,11 @@
 import { StyledNavLogo } from './StyledNavLogo';
+import { StyledNavLogoContainer } from './StyledNavLogoContainer';
 
 function NavLogo() {
     return (
-        <StyledNavLogo>
-            <img className="logo__image" src="../img/logo.png" alt="logo"></img>
-        </StyledNavLogo>
+        <StyledNavLogoContainer>
+            <StyledNavLogo />
+        </StyledNavLogoContainer>
     );
 }
 

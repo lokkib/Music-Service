@@ -1,7 +1,7 @@
-import BarPlayerProgress from './BarPlayerProgress/BarPlayerProgress';
-import BarPlayerBlock from './BarPlayerBlock/BarPlayerBlock';
 import { useState } from 'react';
 
+import BarPlayerBlock from './BarPlayerBlock/BarPlayerBlock';
+import BarPlayerProgress from './BarPlayerProgress/BarPlayerProgress';
 
 function BarContent() {
     const [duration, setDuration] = useState(0);

@@ -1,8 +1,7 @@
-import TrackTitle from './TrackTitle/TrackTitle';
-import TrackAuthor from './TrackAuthor/TrackAuthor';
-import TrackAlbum from './TrackAlbum/TrackAlbum';
-import TrackTime from './TrackTime/TrackTme';
-
+import TrackAlbum from '../../../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/PlaylistItem/PlaylistTrack/TrackAlbum/TrackAlbum';
+import TrackAuthor from '../../../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/PlaylistItem/PlaylistTrack/TrackAuthor/TrackAuthor';
+import TrackTime from '../../../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/PlaylistItem/PlaylistTrack/TrackTime/TrackTime';
+import TrackTitle from '../../../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/PlaylistItem/PlaylistTrack/TrackTitle/TrackTitle';
 import { StyledPlaylistTrack } from './StyledPlaylistTrack';
 
 function PlaylistTrack() {

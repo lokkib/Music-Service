@@ -1,6 +1,6 @@
+import { StyledPlayerTrackPlay } from './StyledPlayerTrackPlay';
 import TrackPlayContain from './TrackPlayContain/TrackPlayContain';
 import TrackPlayLikeDislike from './TrackPlayLikeDislike/TrackPlayLikeDislike';
-import { StyledPlayerTrackPlay } from './StyledPlayerTrackPlay';
 
 function PlayerTrackPlay() {
     return (

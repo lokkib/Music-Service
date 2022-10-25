@@ -1,5 +1,4 @@
 import BurgerLine from './BurgerLine/BurgerLine';
-
 import { StyledNavBurger } from './StyledNavBurger';
 
 function NavBurger({ handleClick }) {

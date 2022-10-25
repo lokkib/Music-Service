@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
-import * as S from './StyledTrackTitle';
+import { useContext } from 'react';
+
+import ThemeContext from '../../../../../../../../../themes';
+import { TrackPlayContainIcon } from './TrackTitleComponents/TrackPlayContainIcon';
+import { TrackTitleBlock } from './TrackTitleComponents/TrackTitleBlock';
+import { TrackTitleImage } from './TrackTitleComponents/TrackTitleImage';
+import { TrackTitleLink } from './TrackTitleComponents/TrackTitleLink';
+import { TrackTitleSpan } from './TrackTitleComponents/TrackTitleSpan';
 
 function TrackTitle() {
+    const { themeMode } = useContext(ThemeContext);
     const [img, setImg] = useState(<img src="../img/Skeleton-track.png"></img>);
 
     const [img2, setImg2] = useState(
@@ -17,18 +25,18 @@ function TrackTitle() {
     }, []);
 
     return (
-        <S.TrackTitle>
-            <S.TrackTitleImage>
-                {img || <S.TrackPlayContainIcon />}
-            </S.TrackTitleImage>
+        <TrackTitleBlock>
+            <TrackTitleImage style={themeMode.trackTitle}>
+                {img || <TrackPlayContainIcon />}
+            </TrackTitleImage>
 
             <div className="track__title-text">
-                <S.TrackTitleLink>
+                <TrackTitleLink style={themeMode.main}>
                     {img2 || '#'}
-                    <S.TrackTitleSpan />
-                </S.TrackTitleLink>
+                    <TrackTitleSpan />
+                </TrackTitleLink>
             </div>
-        </S.TrackTitle>
+        </TrackTitleBlock>
     );
 }
 
