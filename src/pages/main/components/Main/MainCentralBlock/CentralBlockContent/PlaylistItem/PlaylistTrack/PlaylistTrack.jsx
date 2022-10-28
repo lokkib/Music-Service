@@ -4,13 +4,17 @@ import TrackAuthor from './TrackAuthor/TrackAuthor';
 import TrackTime from './TrackTime/TrackTime';
 import TrackTitle from './TrackTitle/TrackTitle';
 
-function PlaylistTrack() {
+function PlaylistTrack({src, duration, album, author, name}) {
+
+
+
     return (
         <StyledPlaylistTrack>
-            <TrackTitle />
-            <TrackAuthor />
-            <TrackAlbum />
-            <TrackTime />
+    
+            <TrackTitle src={src} name={name} />
+            <TrackAuthor author={author} />
+            <TrackAlbum album={album} />
+            <TrackTime duration={duration} />
         </StyledPlaylistTrack>
     );
 }

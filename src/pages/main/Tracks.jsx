@@ -6,13 +6,14 @@ import Main from './components/Main/Main';
 
 const Tracks = () => {
     const [themeMode, setThemeMode] = useState(themes.darkTheme);
+    const [visibilityBar, setVisibility] = useState(themes.barVisibility.hidden);
+
 
     return (
-        <ThemeContext.Provider value={{ themeMode, setThemeMode }}>
+        <ThemeContext.Provider value={{ themeMode, setThemeMode, visibilityBar, setVisibility }}>
             <div className="container">
                 <Main />
                 <Bar />
-                <footer className="footer"></footer>
             </div>
         </ThemeContext.Provider>
     );

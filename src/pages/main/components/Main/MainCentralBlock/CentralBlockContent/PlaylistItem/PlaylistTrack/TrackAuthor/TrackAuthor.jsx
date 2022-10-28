@@ -1,27 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useContext } from 'react';
 
+import { useContext } from 'react';
+// import { useSelector } from 'react-redux';
 import ThemeContext from '../../../../../../../../../themes';
 import { TrackAuthorBlock } from './TrackAuthorComponents/TrackAuthorBlock';
 import { TrackAuthorLink } from './TrackAuthorComponents/TrackAuthorLink';
 
-function TrackAuthor() {
+function TrackAuthor({author}) {
     const { themeMode } = useContext(ThemeContext);
-    const [img, setImg] = useState(
-        <img src="../img/Skeleton-track-author.png"></img>
-    );
+    // const skeleton = useSelector(state => state.skeleton.skeleton)
+        
+{/* <img src="../img/Skeleton-track-author.png"></img> */}
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setImg(false);
-        }, 2000);
-        return () => clearTimeout(timer);
-    }, []);
+
 
     return (
         <TrackAuthorBlock>
             <TrackAuthorLink style={themeMode.main}>
-                {img || '#'}
+                {author}
             </TrackAuthorLink>
         </TrackAuthorBlock>
     );

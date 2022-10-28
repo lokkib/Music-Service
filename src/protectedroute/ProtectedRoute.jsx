@@ -1,10 +1,10 @@
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ children, redirectPath = '/', isAllowed }) => {
-    if (!isAllowed) {
-        return <Navigate to={redirectPath} replace={true} />;
-    }
-    return children;
-};
+// const ProtectedRoute = ({ children, redirectPath = '/', isAllowed }) => {
+//     if (!isAllowed) {
+//         return <Navigate to={redirectPath} replace={true} />;
+//     }
+//     return children;
+// };
 
-export default ProtectedRoute;
+// export default ProtectedRoute;

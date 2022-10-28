@@ -1,12 +1,22 @@
 import { createContext } from 'react';
 
 export const themes = {
+    barVisibility: {
+        hidden: {
+            display: 'none',
+        },
+        visible: {
+            display: 'block',
+        },
+    },
+
     lightTheme: {
         bar: {
             color: 'black',
             backgroundColor: '#ffffff',
             stroke: 'black',
         },
+
         main: {
             color: 'black',
             backgroundColor: '#ffffff',
@@ -46,6 +56,9 @@ export const themes = {
             color: '#ffffff',
             backgroundColor: '#181818',
             stroke: '#ffffff',
+        },
+        barHidden: {
+            display: 'none',
         },
         main: {
             color: '#ffffff',

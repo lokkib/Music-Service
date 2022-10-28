@@ -5,6 +5,10 @@ import ThemeContext from '../../../../../../themes';
 import { FilterButton } from './CentralBlockFilterComponents/FilterButton';
 import { FilterContainer } from './CentralBlockFilterComponents/FilterContainer';
 import { FilterTitle } from './CentralBlockFilterComponents/FilterTitle';
+import SearchYearBlock from './CentralBlockFilterComponents/SearchYearBlock/SearchYearBlock';
+import SearchPerformerBlock from './CentralBlockFilterComponents/SearchPerformerBlock/SearchPerformerBlock';
+import SearchGenreBlock from './CentralBlockFilterComponents/SearchGenreBlock/SearchGenreBlock';
+
 
 function CentralBlockFilter() {
     const { themeMode } = useContext(ThemeContext);
@@ -12,36 +16,8 @@ function CentralBlockFilter() {
     const [searchGenre, setSearchGenre] = useState(false);
     const [searchYear, setSearchYear] = useState(false);
 
-    const searchImages = {};
-    if (searchPerformer) {
-        searchImages.perfomer = (
-            <img
-                style={{ position: 'absolute', zIndex: 1 }}
-                src="../img/perfomer.png"
-                alt="perfomer"
-            ></img>
-        );
-    }
-
-    if (searchGenre) {
-        searchImages.genre = (
-            <img
-                style={{ position: 'absolute', zIndex: 1 }}
-                src="../img/genre.png"
-                alt="genre"
-            ></img>
-        );
-    }
-
-    if (searchYear) {
-        searchImages.year = (
-            <img
-                style={{ position: 'absolute', zIndex: 1 }}
-                src="../img/year.png"
-                alt="year"
-            ></img>
-        );
-    }
+    
+   
 
     function showSearchResult() {
         setSearchPerfomer(!searchPerformer);
@@ -50,19 +26,20 @@ function CentralBlockFilter() {
     }
 
     function showSearchResult2() {
-        setSearchGenre(!searchGenre);
+        setSearchGenre(false);
         setSearchPerfomer(false);
-        setSearchYear(false);
+        setSearchYear(!searchYear);
     }
 
     function showSearchResult3() {
-        setSearchYear(!searchYear);
+        setSearchYear(false);
         setSearchPerfomer(false);
-        setSearchGenre(false);
+        setSearchGenre(!searchGenre);
     }
 
     return (
-        <FilterContainer>
+        <>
+<FilterContainer>
             <FilterTitle>Искать по:</FilterTitle>
             <div>
                 <FilterButton
@@ -72,7 +49,7 @@ function CentralBlockFilter() {
                     исполнителю
                 </FilterButton>
 
-                {searchImages.perfomer}
+                {searchPerformer ? <SearchPerformerBlock /> : ''}
             </div>
             <div>
                 <FilterButton
@@ -81,8 +58,8 @@ function CentralBlockFilter() {
                 >
                     году выпуска
                 </FilterButton>
-
-                {searchImages.genre}
+                {searchYear ? <SearchYearBlock /> : ''}
+             
             </div>
             <div>
                 <FilterButton
@@ -92,9 +69,13 @@ function CentralBlockFilter() {
                     жанру
                 </FilterButton>
 
-                {searchImages.year}
+                {searchGenre ?  <SearchGenreBlock /> : ''}
             </div>
+           
         </FilterContainer>
+     
+        </>
+        
     );
 }
 

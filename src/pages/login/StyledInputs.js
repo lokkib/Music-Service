@@ -10,4 +10,11 @@ export const Input = styled.input`
     border-top: none;
     border-right: none;
     border-left: none;
-`;
+    &::placeholder {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 24px;
+    }
+`
+;

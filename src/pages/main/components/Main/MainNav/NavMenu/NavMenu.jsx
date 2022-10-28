@@ -11,6 +11,7 @@ function NavMenu() {
     const [theme, setTheme] = useState(false);
 
     const { themeMode, setThemeMode } = useContext(ThemeContext);
+  
 
     function changeThemeIcon() {
         setTheme(!theme);
@@ -26,7 +27,7 @@ function NavMenu() {
         <StyledNavMenu>
             <MenuItem content="Главное" />
             <MenuItem content="Мой плейлист" />
-            <MenuItem content="Войти" />
+            <MenuItem content="Выйти" />
             {!theme ? (
                 <NightThemeIcon changeThemeIcon={changeThemeIcon} />
             ) : (

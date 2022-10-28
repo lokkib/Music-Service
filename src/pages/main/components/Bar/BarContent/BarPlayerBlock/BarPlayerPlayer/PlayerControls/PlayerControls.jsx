@@ -10,12 +10,20 @@ import { IconPrev } from './PlayerControlsIcons/IconPrev';
 import { IconRepeat } from './PlayerControlsIcons/IconRepeat';
 import { IconShuffle } from './PlayerControlsIcons/IconShuffle';
 import { IconStop } from './PlayerControlsIcons/IconStop';
+import { useSelector } from 'react-redux';
 
 function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
+    
+    const playingPlayer = useSelector(state => state.playing.isPlaying)
+    console.log(playingPlayer)
+
     function changeIsPlaying(isPlaying) {
         setisPlaying(!isPlaying);
         if (isPlaying) {
             refPlayer.current.pause();
+         } 
+        else if (playingPlayer === true) {
+            refPlayer.current.play();
         } else {
             refPlayer.current.play();
         }
