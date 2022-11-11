@@ -28,6 +28,9 @@ function BarPlayerPlayer({ getValues }) {
         setInterval(() => {
             if (currentTime !== 0 && !refPlayer.current.paused) {
                 setCurrentTime(refPlayer.current.currentTime.toFixed(0));
+            }
+            if (!refPlayer.current) {
+                setCurrentTime(0);
             } else {
                 setCurrentTime(refPlayer.current.currentTime.toFixed(0));
             }

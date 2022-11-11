@@ -10,8 +10,17 @@ import { IconPrev } from '../../../../../../../../main/components/Bar/BarContent
 import { IconRepeat } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/IconRepeat';
 import { IconShuffle } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/IconShuffle';
 import { IconStop } from '../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerControls/PlayerControlsIcons/IconStop';
+import { useDispatch } from 'react-redux';
+import { playingNextTrack } from '../../../../../../../../../redux/playingNextPreviousTracks/orderOfPlayingSlice';
+import { playingPreviousTrack } from '../../../../../../../../../redux/playingNextPreviousTracks/orderOfPlayingSlice';
+import { shuffleTracks } from '../../../../../../../../../redux/playingNextPreviousTracks/orderOfPlayingSlice';
+import { useState } from 'react';
+import { repeatTrack } from '../../../../../../../../../redux/playingNextPreviousTracks/orderOfPlayingSlice';
 
 function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
+    const [shuffledButton, setShuffledButton] = useState(false)
+    const [repeatButton, setRepeatButton] = useState(false)
+    const dispatch = useDispatch()
     function changeIsPlaying(isPlaying) {
         setisPlaying(!isPlaying);
         if (isPlaying) {
@@ -21,9 +30,27 @@ function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
         }
     }
 
+    function playNextTrack() {
+        dispatch(playingNextTrack(true))
+    }
+
+    function playPreviousTrack() {
+        dispatch(playingPreviousTrack(true))
+    }
+
+    function shuffle() {
+        setShuffledButton(!shuffledButton)
+        dispatch(shuffleTracks(!shuffledButton))
+    }
+
+    function repeat() {
+        setRepeatButton(!repeatButton)
+        dispatch(repeatTrack(!repeatButton))
+    }
+
     return (
         <PlayerControlsContainer>
-            <PlayerBtnPrev>
+            <PlayerBtnPrev onClick={playNextTrack}>
                 <IconPrev alt="prev" />
             </PlayerBtnPrev>
             <PlayerBtnPlay
@@ -33,15 +60,15 @@ function PlayerControls({ refPlayer, setisPlaying, isPlaying }) {
             >
                 {isPlaying ? <IconStop alt="stop" /> : <IconPlay alt="play" />}
             </PlayerBtnPlay>
-            <PlayerBtnNext>
+            <PlayerBtnNext onClick={playPreviousTrack}>
                 <IconNext alt="next" />
             </PlayerBtnNext>
 
-            <PlayerBtnRepeat>
+            <PlayerBtnRepeat onClick={repeat}>
                 <IconRepeat alt="repeat" />
             </PlayerBtnRepeat>
 
-            <PlayerBtnShuffle>
+            <PlayerBtnShuffle onClick={shuffle}>
                 <IconShuffle alt="shuffle" />
             </PlayerBtnShuffle>
         </PlayerControlsContainer>

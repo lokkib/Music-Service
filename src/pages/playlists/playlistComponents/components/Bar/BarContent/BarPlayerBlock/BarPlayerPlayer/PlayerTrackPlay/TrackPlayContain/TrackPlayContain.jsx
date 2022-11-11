@@ -9,49 +9,32 @@ import { TrackPlayAuthorLink } from '../../../../../../../../../main/components/
 import { TrackPlayContainBlock } from '../../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayContain/TrackPlayContainComponents/TrackPlayContainBlock';
 import { TrackPlayImage } from '../../../../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/PlayerTrackPlay/TrackPlayContain/TrackPlayContainComponents/TrackPlayImage';
 import { TrackPlayContainIcon } from '../../../../../../../../../main/components/Main/MainCentralBlock/CentralBlockContent/PlaylistItem/PlaylistTrack/TrackTitle/TrackTitleComponents/TrackPlayContainIcon';
+import { useSelector } from 'react-redux';
 
 function TrackPlayContain() {
     const { themeMode } = useContext(ThemeContext);
+    const authorTrackName = useSelector(state => state.playing.authorTrackName)
+    
 
-    const skeletons = {
-        SkeletonTrack: '../img/Skeleton-track.png',
-        SkeletonDescription: '../img/Skeleton-description-track.png',
-    };
-
-    const [img, setImg] = useState(
-        <img src={`${skeletons.SkeletonTrack}`}></img>
-    );
-
-    const [img2, setImg2] = useState(
-        <img src={`${skeletons.SkeletonDescription}`}></img>
-    );
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setImg(false);
-            setImg2(false);
-        }, 2000);
-        return () => clearTimeout(timer);
-    }, []);
 
     return (
         <TrackPlayContainBlock>
             <TrackPlayImage style={themeMode.trackTitle}>
-                {img || (
+                { 
                     <TrackPlayContainIcon
                         className="track-play__svg"
                         alt="music"
                     />
-                )}
+                }
             </TrackPlayImage>
             <TrackPlayAuthor>
                 <TrackPlayAuthorLink style={themeMode.main}>
-                    {img2 || '#'}
+                    {!authorTrackName.author? '' : authorTrackName.author}
                 </TrackPlayAuthorLink>
             </TrackPlayAuthor>
             <TrackPlayAlbum>
                 <TrackPlayAlbumLink style={themeMode.main}>
-                    {img2 || '#'}
+                {!authorTrackName.album? '' : authorTrackName.album}
                 </TrackPlayAlbumLink>
             </TrackPlayAlbum>
         </TrackPlayContainBlock>

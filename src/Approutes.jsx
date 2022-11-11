@@ -6,21 +6,13 @@ import Tracks from './pages/main/Tracks';
 import MyTracks from './pages/mytracks/MyTracks';
 import Playlist from './pages/playlists/playlistComponents/Playlist';
 import SignUp from './pages/registration/SignUp';
-import ProtectedRoute from './protectedroute/ProtectedRoute';
 
-export const AppRoutes = ({ user }) => {
+export const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route
-                path="/main"
-                element={
-                    <ProtectedRoute isAllowed={Boolean(user)}>
-                        <Tracks />
-                    </ProtectedRoute>
-                }
-            />
+            <Route path="/main" element={<Tracks />} />
             <Route path="/mytracks" element={<MyTracks />} />
             <Route path="/playlist/:id" element={<Playlist />} />
             <Route path="*" element={<Error />} />

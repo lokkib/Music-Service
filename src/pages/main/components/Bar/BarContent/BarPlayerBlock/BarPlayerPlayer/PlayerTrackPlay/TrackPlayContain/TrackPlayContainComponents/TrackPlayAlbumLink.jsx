@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const TrackPlayAlbumLink = styled.a.attrs({
-    href: 'http',
+export const TrackPlayAlbumLink = styled.div.attrs({
+    
 })`
     font-style: normal;
     font-weight: 400;

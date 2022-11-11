@@ -6,9 +6,9 @@ import { StyledBar } from './StyledBar';
 
 function Bar() {
     const { themeMode } = useContext(ThemeContext);
-
+    const { visibilityBar } = useContext(ThemeContext);
     return (
-        <StyledBar style={themeMode.bar}>
+        <StyledBar style={{ ...themeMode.bar, ...visibilityBar }}>
             <BarContent />
         </StyledBar>
     );

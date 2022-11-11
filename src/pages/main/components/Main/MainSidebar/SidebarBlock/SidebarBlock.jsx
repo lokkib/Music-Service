@@ -1,20 +1,16 @@
 import { useEffect, useState } from 'react';
-
+import { useSelector } from 'react-redux';
 import SidebarItem from './SidebarItem/SidebarItem';
 import * as S from './StyledSidebarContent';
 
 function SidebarBlock() {
-    const [musicSelections, setMusicSelections] = useState(
+    const [musicSelections, ,] = useState(
         '../img/Skeleton-selection.png'
     );
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setMusicSelections(false);
-        }, 2000);
+    const allTracksData = useSelector(state => state.storeTracks.allTracks)
 
-        return () => clearTimeout(timer);
-    }, []);
+
 
     const img = {
         playlist: '../img/playlist01.png',
@@ -28,17 +24,17 @@ function SidebarBlock() {
                 <SidebarItem
                     id="1"
                     alt="days playlist"
-                    src={musicSelections || img.playlist}
+                    src={!allTracksData ? musicSelections : img.playlist}
                 />
                 <SidebarItem
                     id="2"
                     alt="hits playlist"
-                    src={musicSelections || img.hits}
+                    src={!allTracksData ? musicSelections : img.hits}
                 />
                 <SidebarItem
                     id="3"
                     alt="indi playlist"
-                    src={musicSelections || img.indi}
+                    src={!allTracksData ? musicSelections : img.indi}
                 />
             </S.SidebarList>
         </S.SidebarBlock>

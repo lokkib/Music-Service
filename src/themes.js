@@ -1,12 +1,22 @@
 import { createContext } from 'react';
 
 export const themes = {
+    barVisibility: {
+        hidden: {
+            display: 'none',
+        },
+        visible: {
+            display: 'block',
+        },
+    },
+
     lightTheme: {
         bar: {
             color: 'black',
             backgroundColor: '#ffffff',
             stroke: 'black',
         },
+
         main: {
             color: 'black',
             backgroundColor: '#ffffff',
@@ -47,6 +57,9 @@ export const themes = {
             backgroundColor: '#181818',
             stroke: '#ffffff',
         },
+        barHidden: {
+            display: 'none',
+        },
         main: {
             color: '#ffffff',
             backgroundColor: '#181818',
@@ -72,14 +85,26 @@ export const themes = {
         },
         trackIconsFill2: {
             fill: '#696969',
+         
         },
         border: {
             border: '1px solid #ffffff',
         },
         logo: {
-            currentColor: 'white',
+            currentColor: '#ffffff',
         },
     },
+
+    filteringChosenPerformerGenreColor: {
+        chosen: {
+            color: '#b672ff',
+        },
+
+        notChosen: {
+            color: '#ffffff',
+        },
+    },
+
 };
 
 const ThemeContext = createContext();

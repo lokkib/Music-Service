@@ -1,38 +1,41 @@
-import { useEffect, useState } from 'react';
 import { useContext } from 'react';
-
-import ThemeContext from '../../../../../../../../../themes';
+import { setAuthorTrack } from '../../../../../../../../../redux/playTrack/playTrackSlice';
+import ThemeContext, { themes } from '../../../../../../../../../themes';
 import { TrackPlayContainIcon } from './TrackTitleComponents/TrackPlayContainIcon';
 import { TrackTitleBlock } from './TrackTitleComponents/TrackTitleBlock';
 import { TrackTitleImage } from './TrackTitleComponents/TrackTitleImage';
 import { TrackTitleLink } from './TrackTitleComponents/TrackTitleLink';
 import { TrackTitleSpan } from './TrackTitleComponents/TrackTitleSpan';
 
-function TrackTitle() {
+import { useDispatch } from 'react-redux';
+import { setPlay } from '../../../../../../../../../redux/playTrack/playTrackSlice';
+
+function TrackTitle({ name, src, author, album }) {
     const { themeMode } = useContext(ThemeContext);
-    const [img, setImg] = useState(<img src="../img/Skeleton-track.png"></img>);
+    const { setVisibility } = useContext(ThemeContext);
 
-    const [img2, setImg2] = useState(
-        <img src="../img/Skeleton-track-title.png"></img>
-    );
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setImg(false);
-            setImg2(false);
-        }, 2000);
-        return () => clearTimeout(timer);
-    }, []);
+    const playTrack = () => {
+        setVisibility(themes.barVisibility.visible);
+        dispatch(setPlay([true, src]));
+        dispatch(setAuthorTrack([album, author]))
+    };
 
     return (
         <TrackTitleBlock>
             <TrackTitleImage style={themeMode.trackTitle}>
-                {img || <TrackPlayContainIcon />}
+                {<TrackPlayContainIcon />}
             </TrackTitleImage>
 
             <div className="track__title-text">
-                <TrackTitleLink style={themeMode.main}>
-                    {img2 || '#'}
+                <TrackTitleLink
+                    onClick={() => {
+                        playTrack();
+                    }}
+                    style={themeMode.main}
+                >
+                    {name}
                     <TrackTitleSpan />
                 </TrackTitleLink>
             </div>

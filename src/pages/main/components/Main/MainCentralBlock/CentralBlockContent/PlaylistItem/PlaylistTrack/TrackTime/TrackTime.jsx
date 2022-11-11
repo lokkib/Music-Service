@@ -1,12 +1,14 @@
 import { TrackTimeIcon } from './TrackTimeComponents/TrackTimeIcon';
 import { TrackTimeText } from './TrackTimeComponents/TrackTimeText';
 
-function TrackTime() {
+// import { useSelector } from 'react-redux';
+
+function TrackTime({ duration }) {
     return (
         <div className="track__time">
             <TrackTimeIcon />
 
-            <TrackTimeText>#</TrackTimeText>
+            <TrackTimeText>{(duration / 60).toFixed(2)}</TrackTimeText>
         </div>
     );
 }

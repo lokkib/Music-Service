@@ -7,6 +7,10 @@ const SvgSearch = styled.svg`
     margin-right: 5px;
     stroke: #ffffff;
     fill: transparent;
+
+    &:hover{
+        cursor: pointer
+    }
 `;
 
 export function StyledSearchIcon() {
