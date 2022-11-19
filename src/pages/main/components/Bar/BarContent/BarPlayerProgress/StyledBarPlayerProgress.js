@@ -7,4 +7,7 @@ export const StyledBarPlayerProgress = styled.div`
     justify-content: flex-start;
     align-items: center;
     font-size: 10px;
+    &:hover {
+        cursor: pointer;
+    }
 `;

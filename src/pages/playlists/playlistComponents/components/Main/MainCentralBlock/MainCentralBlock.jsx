@@ -1,9 +1,8 @@
 import { useParams } from 'react-router-dom';
 
 import PLAYLISTS from '../../../../../../constants/playlists';
-import BlockSearch from './BlockSearch/BlockSearch';
+import BlockSearch from '../../../../../main/components/Main/MainCentralBlock/BlockSearch/BlockSearch';
 import CentralBlockContent from './CentralBlockContent/CentralBlockContent';
-import CentralBlockFilter from './CentralBlockFilter/CentralBlockFilter';
 import { StyledCBHeading } from './StyledCenterBlockHeading';
 import { StyledMainCentralBlock } from './StyledMainCentralBlock';
 
@@ -19,7 +18,6 @@ function MainCentralBlock() {
             <BlockSearch />
             <StyledCBHeading>{playlist.naming}</StyledCBHeading>
 
-            <CentralBlockFilter />
             <CentralBlockContent />
         </StyledMainCentralBlock>
     );

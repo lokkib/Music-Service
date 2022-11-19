@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import ThemeContext from '../../../../../../../../../themes';
 import { TrackPlayAlbum } from './TrackPlayContainComponents/TrackPlayAlbum';
@@ -13,45 +13,26 @@ import { TrackPlayImage } from './TrackPlayContainComponents/TrackPlayImage';
 function TrackPlayContain() {
     const { themeMode } = useContext(ThemeContext);
 
-    const skeletons = {
-        SkeletonTrack: '../img/Skeleton-track.png',
-        SkeletonDescription: '../img/Skeleton-description-track.png',
-    };
-
-    const [img, setImg] = useState(
-        <img src={`${skeletons.SkeletonTrack}`}></img>
-    );
-
-    const [img2, setImg2] = useState(
-        <img src={`${skeletons.SkeletonDescription}`}></img>
-    );
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setImg(false);
-            setImg2(false);
-        }, 2000);
-        return () => clearTimeout(timer);
-    }, []);
+    const trackData = useSelector((state) => state.playing.dataOfTrack);
 
     return (
         <TrackPlayContainBlock>
             <TrackPlayImage style={themeMode.trackTitle}>
-                {img || (
+                {
                     <TrackPlayContainIcon
                         className="track-play__svg"
                         alt="music"
                     />
-                )}
+                }
             </TrackPlayImage>
             <TrackPlayAuthor>
                 <TrackPlayAuthorLink style={themeMode.main}>
-                    {img2 || '#'}
+                    {!trackData.author ? '' : trackData.author}
                 </TrackPlayAuthorLink>
             </TrackPlayAuthor>
             <TrackPlayAlbum>
                 <TrackPlayAlbumLink style={themeMode.main}>
-                    {img2 || '#'}
+                    {!trackData.album ? '' : trackData.album}
                 </TrackPlayAlbumLink>
             </TrackPlayAlbum>
         </TrackPlayContainBlock>

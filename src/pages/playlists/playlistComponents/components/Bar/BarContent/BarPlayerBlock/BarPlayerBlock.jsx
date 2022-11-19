@@ -1,11 +1,11 @@
+import BarPlayer from '../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarPlayerPlayer/BarPlayer';
 import BarVolume from '../../../../../../main/components/Bar/BarContent/BarPlayerBlock/BarVolumeBlock/BarVolume';
-import BarPlayerPlayer from './BarPlayerPlayer/BarPlayerPlayer';
 import { StyledBarPlayerBlock } from './StyledBarPlayerBlock';
 
-function BarPlayerBlock({ getValues }) {
+function BarPlayerBlock() {
     return (
         <StyledBarPlayerBlock>
-            <BarPlayerPlayer getValues={getValues} />
+            <BarPlayer />
             <BarVolume />
         </StyledBarPlayerBlock>
     );

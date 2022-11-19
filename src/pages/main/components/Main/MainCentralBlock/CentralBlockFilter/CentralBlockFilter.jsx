@@ -5,43 +5,15 @@ import ThemeContext from '../../../../../../themes';
 import { FilterButton } from './CentralBlockFilterComponents/FilterButton';
 import { FilterContainer } from './CentralBlockFilterComponents/FilterContainer';
 import { FilterTitle } from './CentralBlockFilterComponents/FilterTitle';
+import SearchGenreBlock from './CentralBlockFilterComponents/SearchGenreBlock/SearchGenreBlock';
+import SearchPerformerBlock from './CentralBlockFilterComponents/SearchPerformerBlock/SearchPerformerBlock';
+import SearchYearBlock from './CentralBlockFilterComponents/SearchYearBlock/SearchYearBlock';
 
 function CentralBlockFilter() {
     const { themeMode } = useContext(ThemeContext);
     const [searchPerformer, setSearchPerfomer] = useState(false);
     const [searchGenre, setSearchGenre] = useState(false);
     const [searchYear, setSearchYear] = useState(false);
-
-    const searchImages = {};
-    if (searchPerformer) {
-        searchImages.perfomer = (
-            <img
-                style={{ position: 'absolute', zIndex: 1 }}
-                src="../img/perfomer.png"
-                alt="perfomer"
-            ></img>
-        );
-    }
-
-    if (searchGenre) {
-        searchImages.genre = (
-            <img
-                style={{ position: 'absolute', zIndex: 1 }}
-                src="../img/genre.png"
-                alt="genre"
-            ></img>
-        );
-    }
-
-    if (searchYear) {
-        searchImages.year = (
-            <img
-                style={{ position: 'absolute', zIndex: 1 }}
-                src="../img/year.png"
-                alt="year"
-            ></img>
-        );
-    }
 
     function showSearchResult() {
         setSearchPerfomer(!searchPerformer);
@@ -50,51 +22,52 @@ function CentralBlockFilter() {
     }
 
     function showSearchResult2() {
-        setSearchGenre(!searchGenre);
+        setSearchGenre(false);
         setSearchPerfomer(false);
-        setSearchYear(false);
+        setSearchYear(!searchYear);
     }
 
     function showSearchResult3() {
-        setSearchYear(!searchYear);
+        setSearchYear(false);
         setSearchPerfomer(false);
-        setSearchGenre(false);
+        setSearchGenre(!searchGenre);
     }
 
     return (
-        <FilterContainer>
-            <FilterTitle>Искать по:</FilterTitle>
-            <div>
-                <FilterButton
-                    style={themeMode.border}
-                    onClick={showSearchResult}
-                >
-                    исполнителю
-                </FilterButton>
+        <>
+            <FilterContainer>
+                <FilterTitle>Искать по:</FilterTitle>
+                <div>
+                    <FilterButton
+                        style={themeMode.border}
+                        onClick={showSearchResult}
+                    >
+                        исполнителю
+                    </FilterButton>
 
-                {searchImages.perfomer}
-            </div>
-            <div>
-                <FilterButton
-                    style={themeMode.border}
-                    onClick={showSearchResult2}
-                >
-                    году выпуска
-                </FilterButton>
+                    {searchPerformer ? <SearchPerformerBlock /> : ''}
+                </div>
+                <div>
+                    <FilterButton
+                        style={themeMode.border}
+                        onClick={showSearchResult2}
+                    >
+                        году выпуска
+                    </FilterButton>
+                    {searchYear ? <SearchYearBlock /> : ''}
+                </div>
+                <div>
+                    <FilterButton
+                        style={themeMode.border}
+                        onClick={showSearchResult3}
+                    >
+                        жанру
+                    </FilterButton>
 
-                {searchImages.genre}
-            </div>
-            <div>
-                <FilterButton
-                    style={themeMode.border}
-                    onClick={showSearchResult3}
-                >
-                    жанру
-                </FilterButton>
-
-                {searchImages.year}
-            </div>
-        </FilterContainer>
+                    {searchGenre ? <SearchGenreBlock /> : ''}
+                </div>
+            </FilterContainer>
+        </>
     );
 }
 

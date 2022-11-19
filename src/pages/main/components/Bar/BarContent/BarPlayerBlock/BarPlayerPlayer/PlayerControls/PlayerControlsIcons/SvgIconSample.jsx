@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const Svg = styled.svg`
     &:active {
-        fill: transparent;
-        stroke: #ffffff;
+        fill: #696969;
+        stroke: #696969;
         cursor: pointer;
     }
     &:hover {
-        fill: transparent;
-        stroke: #acacac;
+        fill: #696969;
+        stroke: #696969;
         cursor: pointer;
     }
 `;

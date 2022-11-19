@@ -1,23 +1,10 @@
-import { useEffect, useState } from 'react';
-
 import { TrackAlbumLink } from './TrackAlbumComponents/TrackAlbumLink';
 import { TrackAlbumBlock } from './TrackAlbumComponents/TrackAuthorBlock';
 
-function TrackAlbum() {
-    const [img, setImg] = useState(
-        <img src="../img/Skeleton-track-album.png"></img>
-    );
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setImg(false);
-        }, 2000);
-        return () => clearTimeout(timer);
-    }, []);
-
+function TrackAlbum({ album }) {
     return (
         <TrackAlbumBlock>
-            <TrackAlbumLink>{img || '#'}</TrackAlbumLink>
+            <TrackAlbumLink>{album}</TrackAlbumLink>
         </TrackAlbumBlock>
     );
 }

@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const StyledSearchInput = styled.input`
+export const StyledSearchInput = styled.input.attrs((props) => ({
+    onClick: props.clearPlaceholder,
+    ref: props.ref,
+}))`
     flex-grow: 100;
     background-color: transparent;
     border: none;

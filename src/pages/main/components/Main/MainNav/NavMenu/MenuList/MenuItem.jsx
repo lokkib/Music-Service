@@ -1,17 +1,18 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import ThemeContext from '../../../../../../../themes';
 import { StyledMenuItem } from './MenuListComponents/StyledMenuItem';
-import { StyledMenuLink } from './MenuListComponents/StyledMenuLink';
 
-function MenuItem({ content, http = 'http://' }) {
+function MenuItem({ navigation, content }) {
     const { themeMode } = useContext(ThemeContext);
 
     return (
         <StyledMenuItem>
-            <StyledMenuLink style={themeMode.main} href={http}>
+            <Link style={{ ...themeMode.main }} to={navigation}>
                 {content}
-            </StyledMenuLink>
+            </Link>
+            {}
         </StyledMenuItem>
     );
 }
