@@ -1,11 +1,10 @@
 import ProgressLine from '../BarPlayerBlock/BarPlayerPlayer/ProgressLine';
 import { StyledBarPlayerProgress } from './StyledBarPlayerProgress';
-
-function BarPlayerProgress({ duration, currentTime }) {
+function BarPlayerProgress() {
     return (
         <>
             <StyledBarPlayerProgress>
-                <ProgressLine value={currentTime} max={duration} />
+                <ProgressLine />
             </StyledBarPlayerProgress>
         </>
     );

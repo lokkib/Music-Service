@@ -1,14 +1,15 @@
-import MainCentralBlock from './MainCentralBlock/MainCentralBlock';
-import MainNav from './MainNav/MainNav';
-import MainSidebar from './MainSidebar/MainSidebar';
-import { StyledMain } from './StyledMain';
+import { useContext } from 'react';
 
+import ThemeContext from '../../../../themes';
+import MainNav from '../../../playlists/playlistComponents/components/Main/MainNav/MainNav';
+import MainCentralBlock from './MainCentralBlock/MainCentralBlock';
+import { StyledMain } from './StyledMain';
 function Main() {
+    const { themeMode } = useContext(ThemeContext);
     return (
-        <StyledMain>
+        <StyledMain style={themeMode.main}>
             <MainNav />
             <MainCentralBlock />
-            <MainSidebar />
         </StyledMain>
     );
 }

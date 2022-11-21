@@ -242,7 +242,6 @@ body {
     height: 100vh;
     margin: 0 auto;
     position: relative;
-    background-color: #181818;
+    background-color: ${(props) => (props.theme ? '#181818' : '#ffffff')}
 }
-
 `;

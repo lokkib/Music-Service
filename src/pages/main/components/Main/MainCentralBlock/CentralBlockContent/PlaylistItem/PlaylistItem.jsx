@@ -1,10 +1,28 @@
 import PlaylistTrack from './PlaylistTrack/PlaylistTrack';
 import { StyledPlaylistItem } from './StyledPlaylistItem';
 
-function PlaylistItem() {
+function PlaylistItem({
+    track,
+    id,
+    index,
+    name,
+    album,
+    author,
+    duration,
+    src,
+}) {
     return (
         <StyledPlaylistItem>
-            <PlaylistTrack />
+            <PlaylistTrack
+                track={track}
+                id={id}
+                index={index}
+                src={src}
+                duration={duration}
+                album={album}
+                author={author}
+                name={name}
+            />
         </StyledPlaylistItem>
     );
 }

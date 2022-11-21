@@ -4,6 +4,15 @@ const SvgTrackTime = styled.svg`
     margin-right: 17px;
     fill: transparent;
     stroke: #696969;
+    &:active {
+        fill: #696969;
+        stroke: #ffffff;
+        cursor: pointer;
+    }
+    &: hover {
+        stroke: #acacac;
+        cursor: pointer;
+    }
 `;
 
 export const TrackTimeIcon = () => (
