@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+##  Музыкальный сервис, аналогичный “Яндекс.Музыке”. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Запуск проекта
 
-## Available Scripts
+***1) npm i***
 
-In the project directory, you can run:
+***2) npm run start***
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Сборка проекта
 
-### `npm test`
+npm run build
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### О проекте
 
-### `npm run eject`
+Проект состоит из двух частей: фронтенд и бэкенд. API предоставлен учебным заведением.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+В ходе работы над проектом были использованы следующие технологии:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Дизайн-макет Figma
+* Библиотека React
+* Стейт менеджер Redux в связке с Toolkit и RTK Query
+* Библиотека react-router-dom для роутинга между страницами
+* Eslint и Prettier для формаирования и линтинга кода
+* Библиотека cookies-next 
+* Стилизация компонентов выполнена с помощью Styled Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Learn More
+### Функционал проекта
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* вход и регистрация пользователя, возможность разлогиниться
+* витрина с доступными треками
+* пользователь может осуществлять поиск по объявлениям с помощью строки поиска товара, просматривать профили продавцов и объявления о продаже товаров
+* встроенный в приложение плеер (прослушивание музыки, постановка на паузу и снятие с нее, перемотка, повтор трека, shuffle плейлиста)
+* возможность добавления трека в избранное
+* список плейлистов пользователя 
