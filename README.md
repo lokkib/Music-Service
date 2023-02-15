@@ -27,7 +27,7 @@ npm run build
 * Библиотека React
 * Стейт менеджер Redux в связке с Toolkit и RTK Query
 * Библиотека react-router-dom для роутинга между страницами
-* Eslint и Prettier для формаирования и линтинга кода
+* Eslint и Prettier для форматирования и линтинга кода
 * Библиотека cookies-next 
 * Стилизация компонентов выполнена с помощью Styled Components
 
