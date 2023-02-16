@@ -10,6 +10,7 @@ import orderTracksPlayingReducer from './playingNextPreviousTracks/orderOfPlayin
 import playingReducer from './playTrack/playTrackSlice';
 import VolumeSlice from './SettingProgressPlayer/progressPlayerSlice';
 import storingTracksReducer from './storeAllTracks/storingAllTracksSlice';
+
 export const store = configureStore({
     reducer: {
         [getAuthTracksApi.reducerPath]: getAuthTracksApi.reducer,

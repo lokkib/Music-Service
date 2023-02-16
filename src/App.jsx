@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 
-import { AppRoutes } from './Approutes';
 import { GlobalStyle } from './GlobalStyle';
+import { AppRoutes } from './routes/Approutes';
 
-function App() {
+const App = () => {
     const theme = useSelector((state) => state.theme.darkTheme);
 
     return (
@@ -13,6 +13,6 @@ function App() {
             <AppRoutes />
         </>
     );
-}
+};
 
 export default App;

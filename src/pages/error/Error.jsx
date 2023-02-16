@@ -1,5 +1,3 @@
-const Error = () => {
-    return <div>Такой страницы не существует.</div>;
-};
+const Error = () => <div>Такой страницы не существует.</div>;
 
 export default Error;
