@@ -1,0 +1,139 @@
+import { useState, useContext, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useGetPlaylistQuery } from '../../../../../redux/AuthorizationGetTracks/tracksApi';
+import { getPlaylist } from '../../../../../redux/getPlaylistTracks/getPlaylistTracksSlice';
+import { changeTheme } from '../../../../../redux/lightDarkTheme/lightDarkThemeSlice';
+import { holdRenderedTracks } from '../../../../../redux/storeAllTracks/storingAllTracksSlice';
+import ThemeContext from '../../../../../themes';
+import { ContentTitleBlock } from '../../../../../components/ContentTitleBlock/ContentTitleBlock';
+import { PlaylistTitleAlbum } from '../../../../../components/ContentTitleBlock/PlaylistTitleAlbum';
+import { PlaylistTitleAuthor } from '../../../../../components/ContentTitleBlock/PlayistTitleAuthor';
+import { PlaylistTitleTrack } from '../../../../../components/ContentTitleBlock/PlayListTitleTrack';
+import { Pages } from '../../../../../components/PagesBlock/Pages';
+import { PagesBlock } from '../../../../../components/PagesBlock/PagesBlock';
+import { PagesHeading } from '../../../../../components/PagesBlock/PagesHeading';
+import PlaylistItemSkeleton from '../../../../Main/MainContent/MainCentralBlock/CentralBlockContent/PlaylistItemSkeleton/PlaylistItemSkeleton';
+import PlaylistItem from '../../../../../components/PlayListItem/PlayListItem';
+import PlaylistTitleTimeIcon from '../../../../../components/ContentTitleBlock/PlaylistTitleTimeIcon';
+import { ContentPlaylist } from '../../../../../components/ContentPlaylist/ContentPlaylist';
+
+const CentralBlockContent = () => {
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const { data } = useGetPlaylistQuery(id);
+
+    const playlistTracksData = useSelector((state) => state.getPlaylist[0]);
+    const dispatch = useDispatch();
+
+    const chosenTracksbyName = useSelector((state) => state.getPlaylist[1]);
+
+    const sortedTracks = useSelector(
+        (state) => state.orderOfTracksPlaying.shuffleTracks.sortedRenderedTracks
+    );
+
+    const renderedTracks = useSelector(
+        (state) => state.storeTracks.renderedTracks
+    );
+
+    useEffect(() => {
+        if (data) {
+            dispatch(getPlaylist([...data.items]));
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (playlistTracksData.length) {
+            dispatch(holdRenderedTracks(data.items));
+        }
+    }, [playlistTracksData]);
+
+    useEffect(() => {
+        if (sortedTracks.length) {
+            dispatch(holdRenderedTracks(sortedTracks));
+        }
+    }, [sortedTracks]);
+
+    const [page, setPage] = useState(1);
+    const { themeMode } = useContext(ThemeContext);
+
+    useEffect(() => {
+        if (navigate) {
+            dispatch(holdRenderedTracks(playlistTracksData));
+            dispatch(changeTheme(true));
+        }
+    }, [navigate]);
+
+    useEffect(() => {
+        if (chosenTracksbyName.length) {
+            dispatch(holdRenderedTracks(chosenTracksbyName));
+        }
+    }, [chosenTracksbyName]);
+
+    if (!playlistTracksData.length) {
+        const array = [1, 2, 3, 4, 5, 6, 7, 8];
+
+        return array.map((element) => <PlaylistItemSkeleton key={element} />);
+    }
+
+    return (
+        <>
+            <ContentTitleBlock>
+                <PlaylistTitleTrack>Трек</PlaylistTitleTrack>
+
+                <PlaylistTitleAuthor>Исполнитель</PlaylistTitleAuthor>
+
+                <PlaylistTitleAlbum>Альбом</PlaylistTitleAlbum>
+
+                <PlaylistTitleTimeIcon />
+            </ContentTitleBlock>
+
+            <ContentPlaylist>
+                {page === 1
+                    ? renderedTracks
+                          .slice(0, 8)
+                          .map((track, index) => (
+                              <PlaylistItem
+                                  track={track}
+                                  index={index}
+                                  duration={track.duration_in_seconds}
+                                  album={track.album}
+                                  author={track.author}
+                                  name={track.name}
+                                  key={track.id}
+                                  id={track.id}
+                                  src={track.track_file}
+                              />
+                          ))
+                    : ''}
+
+                {page === 2
+                    ? renderedTracks
+                          .slice(8, 16)
+                          .map((track, index) => (
+                              <PlaylistItem
+                                  track={track}
+                                  index={index}
+                                  duration={track.duration_in_seconds}
+                                  album={track.album}
+                                  author={track.author}
+                                  name={track.name}
+                                  key={track.id}
+                                  id={track.id}
+                                  src={track.track_file}
+                              />
+                          ))
+                    : ''}
+                <PagesBlock>
+                    <PagesHeading style={themeMode.main}>
+                        Страницы:
+                    </PagesHeading>
+                    <Pages onClick={() => setPage(1)}>1</Pages>
+                    <Pages onClick={() => setPage(2)}>2</Pages>
+                </PagesBlock>
+            </ContentPlaylist>
+        </>
+    );
+};
+
+export default CentralBlockContent;

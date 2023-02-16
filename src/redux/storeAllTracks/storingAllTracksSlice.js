@@ -32,11 +32,9 @@ const storingAllTracks = createSlice({
             state.finalAuth2 = state.toggledAuthorTracksArray.filter(
                 (el) => el[1].chosen === true
             );
-            state.finalAuthorTracksData = state.allTracks.filter((el) => {
-                return state.finalAuth2.some((element) => {
-                    return element[0] === el.author;
-                });
-            });
+            state.finalAuthorTracksData = state.allTracks.filter((el) =>
+                state.finalAuth2.some((element) => element[0] === el.author)
+            );
         },
 
         toggleChoseGenre(state, action) {
@@ -58,9 +56,9 @@ const storingAllTracks = createSlice({
             state.allTracksChosen = action.payload;
         },
         filteringTracksName(state, action) {
-            state.filteredTracksbyName = state.allTracks.filter((el) => {
-                return el.name.includes(action.payload);
-            });
+            state.filteredTracksbyName = state.allTracks.filter((el) =>
+                el.name.includes(action.payload)
+            );
         },
         holdRenderedTracks(state, action) {
             state.renderedTracks = action.payload;
@@ -73,9 +71,9 @@ const storingAllTracks = createSlice({
             state.myTracks = action.payload;
         },
         filteringMyTracks(state, action) {
-            state.myTracksFiltered = state.myTracks.filter((el) => {
-                return el.name.includes(action.payload);
-            });
+            state.myTracksFiltered = state.myTracks.filter((el) =>
+                el.name.includes(action.payload)
+            );
         },
     },
 });

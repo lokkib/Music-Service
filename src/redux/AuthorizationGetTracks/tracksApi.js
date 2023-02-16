@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getCookie } from 'cookies-next';
+
 export const getAuthTracksApi = createApi({
     reducerPath: 'TracksApi',
     tagTypes: ['Tracks'],
