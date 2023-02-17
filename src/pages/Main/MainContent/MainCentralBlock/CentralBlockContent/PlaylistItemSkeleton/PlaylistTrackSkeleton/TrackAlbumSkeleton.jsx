@@ -4,7 +4,7 @@ import { TrackAlbumBlock } from '../../../../../../../components/PlayListItem/Pl
 const TrackAlbumSkeleton = () => (
     <TrackAlbumBlock>
         <TrackAlbumLink>
-            <img src="../img/Skeleton-track-album.png" />
+            <img alt="skeleton" src="../img/Skeleton-track-album.png" />
         </TrackAlbumLink>
     </TrackAlbumBlock>
 );

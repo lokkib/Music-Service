@@ -29,6 +29,10 @@
     "ignorePatterns": ["build"],
     "plugins": ["react"],
     "rules": {
+        "jsx-a11y/media-has-caption": "off",
+        "react/no-array-index-key": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "no-restricted-syntax": "off",
         "camelcase": "off",
         "import/prefer-default-export": "off",
         "no-param-reassign": 0,

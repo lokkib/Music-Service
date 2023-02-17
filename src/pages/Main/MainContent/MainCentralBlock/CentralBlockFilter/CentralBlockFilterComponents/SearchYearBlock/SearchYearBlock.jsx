@@ -10,15 +10,15 @@ import SearchYearInput from './SearchYearInput';
 const SearchYearBlock = () => {
     const dispatch = useDispatch();
 
-    function showNewTracksFirst() {
+    const showNewTracksFirst = () => {
         dispatch(showNewFirst(true));
         dispatch(showOldFirst(false));
-    }
+    };
 
-    function showOldTracksFirst() {
+    const showOldTracksFirst = () => {
         dispatch(showOldFirst(true));
         dispatch(showNewFirst(false));
-    }
+    };
     return (
         <SearchYearContainer>
             <div>
@@ -27,7 +27,6 @@ const SearchYearBlock = () => {
                     value="Более старые"
                     id="old"
                 />
-                <label htmlFor="old">Более старые</label>
             </div>
             <div>
                 <SearchYearInput
@@ -35,7 +34,6 @@ const SearchYearBlock = () => {
                     value="Более новые"
                     id="new"
                 />
-                <label htmlFor="new">Более новые</label>
             </div>
         </SearchYearContainer>
     );

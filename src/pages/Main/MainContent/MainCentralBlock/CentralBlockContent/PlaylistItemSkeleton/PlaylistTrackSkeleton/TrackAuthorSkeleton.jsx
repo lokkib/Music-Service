@@ -4,7 +4,7 @@ import { TrackAuthorLink } from '../../../../../../../components/PlayListItem/Pl
 const TrackAuthorSkeleton = () => (
     <TrackAuthorBlock>
         <TrackAuthorLink>
-            <img src="../img/Skeleton-track-author.png" />
+            <img alt="skeleton" src="../img/Skeleton-track-author.png" />
         </TrackAuthorLink>
     </TrackAuthorBlock>
 );

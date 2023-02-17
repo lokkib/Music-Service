@@ -14,23 +14,23 @@ const CentralBlockFilter = () => {
     const [searchGenre, setSearchGenre] = useState(false);
     const [searchYear, setSearchYear] = useState(false);
 
-    function showSearchResult() {
+    const showSearchResult = () => {
         setSearchPerfomer(!searchPerformer);
         setSearchGenre(false);
         setSearchYear(false);
-    }
+    };
 
-    function showSearchResult2() {
+    const showSearchResult2 = () => {
         setSearchGenre(false);
         setSearchPerfomer(false);
         setSearchYear(!searchYear);
-    }
+    };
 
-    function showSearchResult3() {
+    const showSearchResult3 = () => {
         setSearchYear(false);
         setSearchPerfomer(false);
         setSearchGenre(!searchGenre);
-    }
+    };
 
     return (
         <FilterContainer>
