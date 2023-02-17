@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import { GlobalContext } from './@types/themes/GlobalContext';
 
 export const themes = {
     barVisibility: {
@@ -105,6 +106,6 @@ export const themes = {
     },
 };
 
-const ThemeContext = createContext();
+const ThemeContext = createContext<GlobalContext>(themes);
 
 export default ThemeContext;

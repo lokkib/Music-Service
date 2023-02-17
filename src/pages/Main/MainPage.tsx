@@ -11,6 +11,11 @@ import { setPlay, setPlay2 } from '../../redux/playTrack/playTrackSlice';
 import ThemeContext, { themes } from '../../themes';
 import MainContent from './MainContent/MainContent';
 
+type MyToken = {
+    name: string;
+    exp: number;
+};
+
 const MainPage = () => {
     const [themeMode, setThemeMode] = useState(themes.darkTheme);
 
@@ -25,17 +30,17 @@ const MainPage = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (navigate) {
-            dispatch(setPlay(false));
-            dispatch(setPlay2(true));
-        }
-    }, [navigate]);
-    // fef
+    // useEffect(() => {
+    //     if (navigate) {
+    //         dispatch(setPlay(false));
+    //         dispatch(setPlay2(true));
+    //     }
+    // }, [navigate]);
+    // // fef
     useEffect(() => {
         const timer = setInterval(() => {
             const token = getCookie('access');
-            const decodedToken = jwt_decode(token);
+            const decodedToken = jwt_decode<MyToken>(token as string);
             const dateNow = new Date();
             if (decodedToken.exp * 1000 < dateNow.getTime()) {
                 dispatch(checkToken(false));

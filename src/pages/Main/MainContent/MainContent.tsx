@@ -5,6 +5,7 @@ import ThemeContext from '../../../themes';
 import MainCentralBlock from './MainCentralBlock/MainCentralBlock';
 import MainSidebar from './MainSidebar/MainSidebar';
 import { StyledMainWrapper } from './StyledMainWrapper';
+import { GlobalContext } from '../../../@types/themes/GlobalContext';
 
 const MainContent = () => {
     const { themeMode } = useContext(ThemeContext);
