@@ -58,7 +58,7 @@ const SignInPage = () => {
         navigate('/signup');
     };
 
-    const clearInput = (v) => {
+    const clearInput = (v: string) => {
         const str = 'Это поле не может быть пустым.';
         if (v === str) {
             setPassword('');

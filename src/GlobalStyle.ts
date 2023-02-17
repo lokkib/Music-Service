@@ -242,6 +242,7 @@ body {
     height: 100vh;
     margin: 0 auto;
     position: relative;
-    background-color: ${(props) => (props.theme ? '#181818' : '#ffffff')}
+    background-color: ${(props: { theme: boolean }) =>
+        props.theme ? '#181818' : '#ffffff'}
 }
 `;

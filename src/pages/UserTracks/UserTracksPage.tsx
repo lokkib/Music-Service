@@ -16,6 +16,7 @@ const MyTracks = () => {
     const [visibilityBar, setVisibility] = useState(
         themes.barVisibility.hidden
     );
+    console.log(themeMode);
     const dispatch = useDispatch();
     const [gettingNewToken] = useRefreshTokenMutation();
     const navigate = useNavigate();
@@ -56,15 +57,15 @@ const MyTracks = () => {
     }, []);
 
     return (
-        <ThemeContext.Provider
-            value={{
-                themeMode,
-                setThemeMode,
-                visibilityBar,
-                setVisibility,
-            }}
-        >
-            <div className="container">
+        <div className="container">
+            <ThemeContext.Provider
+                value={{
+                    themeMode,
+                    setThemeMode,
+                    visibilityBar,
+                    setVisibility,
+                }}
+            >
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -74,8 +75,8 @@ const MyTracks = () => {
                     <MainContent />
                     <Bar />
                 </motion.div>
-            </div>
-        </ThemeContext.Provider>
+            </ThemeContext.Provider>
+        </div>
     );
 };
 

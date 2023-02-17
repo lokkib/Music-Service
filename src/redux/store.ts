@@ -28,3 +28,5 @@ export const store = configureStore({
     middleware: (getDefaultMiddleWare) =>
         getDefaultMiddleWare().concat(getAuthTracksApi.middleware),
 });
+
+export type RootState = ReturnType<typeof store.getState>;

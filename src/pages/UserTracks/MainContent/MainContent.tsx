@@ -7,6 +7,7 @@ import { StyledMainWrapper } from './StyledMainWrapper';
 
 const MainContent = () => {
     const { themeMode } = useContext(ThemeContext);
+    console.log(themeMode);
     return (
         <StyledMainWrapper style={themeMode.main}>
             <Navigation />
