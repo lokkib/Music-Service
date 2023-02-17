@@ -56,10 +56,10 @@ const SearchGenreBlock = () => {
         e.target.style.color = chosingGenrePerformerColor.color;
     }
 
-    function chooseAllTracks() {
+    const chooseAllTracks = () => {
         setChosenAllGenres(!chosenAllTracks);
         dispatch(allTracksChosen(chosenAllTracks));
-    }
+    };
 
     const hasScroll = allTracks.length > 1;
 
@@ -113,7 +113,14 @@ const SearchGenreBlock = () => {
                         changeColor(e);
                     }}
                 >
-                    <div onClick={chooseAllTracks}>Все жанры</div>
+                    <div
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={chooseAllTracks}
+                        onClick={chooseAllTracks}
+                    >
+                        Все жанры
+                    </div>
                 </SearchGenreItem>
             </div>
         </SearchPerformerGenreContainer>

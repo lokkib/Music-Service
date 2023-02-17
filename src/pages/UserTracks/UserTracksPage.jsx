@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 import { useRefreshTokenMutation } from '../../redux/AuthorizationGetTracks/tracksApi';
 import { checkToken } from '../../redux/checkingToken/checkingTokenSlice';
 import { setPlay, setPlay2 } from '../../redux/playTrack/playTrackSlice';
@@ -65,8 +65,15 @@ const MyTracks = () => {
             }}
         >
             <div className="container">
-                <MainContent />
-                <Bar />
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    <MainContent />
+                    <Bar />
+                </motion.div>
             </div>
         </ThemeContext.Provider>
     );

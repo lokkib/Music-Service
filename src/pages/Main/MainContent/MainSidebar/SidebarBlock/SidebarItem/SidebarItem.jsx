@@ -17,7 +17,12 @@ const SidebarItem = ({ alt, src, id }) => {
     return (
         <S.SidebarItem>
             <Link to={`/playlist/${id}`}>
-                <img onClick={handleClickPlaylist} alt={alt} src={src} />
+                <img
+                    onKeyDown={handleClickPlaylist}
+                    onClick={handleClickPlaylist}
+                    alt={alt}
+                    src={src}
+                />
             </Link>
         </S.SidebarItem>
     );
