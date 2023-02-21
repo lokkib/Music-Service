@@ -1,36 +1,41 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { playingNextTrack } from '../../../../../redux/playingNextPreviousTracks/orderOfPlayingSlice';
+import { playingNextTrack } from '../../../../../redux/slices/orderOfPlayingSlice';
 import {
     setPlay,
     setPlay2,
     setDataOfTrack,
     setSrcOfTrack,
-} from '../../../../../redux/playTrack/playTrackSlice';
-import { setProgressLine2 } from '../../../../../redux/SettingProgressPlayer/progressPlayerSlice';
-import { setPlayingRenderedTracks } from '../../../../../redux/storeAllTracks/storingAllTracksSlice';
+} from '../../../../../redux/slices/playTrackSlice';
+import { setProgressLine2 } from '../../../../../redux/slices/progressPlayerSlice';
+import { setPlayingRenderedTracks } from '../../../../../redux/slices/storingAllTracksSlice';
 import PlayerControls from './PlayerControls/PlayerControls';
 import Audio from './PlayerControls/PlayerControlsIcons/Audio';
 import PlayerTrackPlay from './PlayerTrackPlay/PlayerTrackPlay';
 import { StyledBarPlayer } from './StyledBarPlayer';
+import { RootState } from '../../../../../redux/store';
 
 const BarPlayer = () => {
     const dispatch = useDispatch();
     const refPlayer = useRef(null);
-    const volume = useSelector((state) => state.volume.volume);
+    const volume = useSelector((state: RootState) => state.volume.volume);
     const [duration, setDuration] = useState(0);
     const [currentTime, ,] = useState(0);
     const [isPlaying, setisPlaying] = useState(false);
-    const playingStatus = useSelector((state) => state.playing.isPlaying);
-    const playingStatus2 = useSelector((state) => state.playing.isPlaying2);
+    const playingStatus = useSelector(
+        (state: RootState) => state.playing.isPlaying
+    );
+    const playingStatus2 = useSelector(
+        (state: RootState) => state.playing.isPlaying2
+    );
     const numberOfTrackPlaying = useSelector(
-        (state) => state.storeTracks.trackIsPlayed.trackIsPlayed
+        (state: RootState) => state.storeTracks.trackIsPlayed
     );
     const renderedTracks = useSelector(
-        (state) => state.storeTracks.renderedTracks
+        (state: RootState) => state.storeTracks.renderedTracks
     );
-    const repeatedTrack = (state) =>
+    const repeatedTrack = (state: RootState) =>
         state.orderOfTracksPlaying.repeatTracks.isButtonPressed;
     useEffect(() => {
         if (refPlayer.current) {

@@ -2,23 +2,24 @@ import { useEffect, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PlaylistTitleAlbum } from '../../../../../components/ContentTitleBlock/PlaylistTitleAlbum';
-import { useGetFavouriteTracksQuery } from '../../../../../redux/AuthorizationGetTracks/tracksApi';
-import { changeTheme } from '../../../../../redux/lightDarkTheme/lightDarkThemeSlice';
+import { useGetFavouriteTracksQuery } from '../../../../../redux/api/tracksApi';
+import { changeTheme } from '../../../../../redux/slices/lightDarkThemeSlice';
 import {
     holdRenderedTracks,
     setMyTracks,
-} from '../../../../../redux/storeAllTracks/storingAllTracksSlice';
+} from '../../../../../redux/slices/storingAllTracksSlice';
 import ThemeContext from '../../../../../themes';
 import { Pages } from '../../../../../components/PagesBlock/Pages';
 import { PagesBlock } from '../../../../../components/PagesBlock/PagesBlock';
 import { PagesHeading } from '../../../../../components/PagesBlock/PagesHeading';
 import PlaylistItem from '../../../../../components/PlayListItem/PlayListItem';
-import PlaylistItemSkeleton from '../../../../Main/MainContent/MainCentralBlock/CentralBlockContent/PlaylistItemSkeleton/PlaylistItemSkeleton';
+import PlaylistItemSkeleton from '../../../../../components/PlaylistItemSkeleton/PlaylistItemSkeleton';
 import PlaylistTitleTimeIcon from './PlaylistTitleTimeIcon';
 import { ContentTitleBlock } from '../../../../../components/ContentTitleBlock/ContentTitleBlock';
 import { PlaylistTitleAuthor } from '../../../../../components/ContentTitleBlock/PlayistTitleAuthor';
 import { PlaylistTitleTrack } from '../../../../../components/ContentTitleBlock/PlayListTitleTrack';
 import { ContentPlaylist } from '../../../../../components/ContentPlaylist/ContentPlaylist';
+import { RootState } from '../../../../../redux/store';
 
 const CentralBlockContent = () => {
     const navigate = useNavigate();
@@ -27,15 +28,16 @@ const CentralBlockContent = () => {
     const { themeMode } = useContext(ThemeContext);
     const dispatch = useDispatch();
     const sortedTracks = useSelector(
-        (state) => state.orderOfTracksPlaying.shuffleTracks.sortedRenderedTracks
+        (state: RootState) =>
+            state.orderOfTracksPlaying.shuffleTracks.sortedRenderedTracks
     );
 
     const chosenTracksbyName = useSelector(
-        (state) => state.storeTracks.myTracksFiltered
+        (state: RootState) => state.storeTracks.myTracksFiltered
     );
 
     const renderedTracks = useSelector(
-        (state) => state.storeTracks.renderedTracks
+        (state: RootState) => state.storeTracks.renderedTracks
     );
     useEffect(() => {
         if (data) {

@@ -1,15 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { getAuthTracksApi } from './AuthorizationGetTracks/tracksApi';
-import checkingToken from './checkingToken/checkingTokenSlice';
-import filteredChosenAuthors from './filterTracks/filterTrackAuthorSlice';
-import filterReducer from './filterTracks/filterTrackYearSlice';
-import getPlaylists from './getPlaylistTracks/getPlaylistTracksSlice';
-import changingThemeReducer from './lightDarkTheme/lightDarkThemeSlice';
-import orderTracksPlayingReducer from './playingNextPreviousTracks/orderOfPlayingSlice';
-import playingReducer from './playTrack/playTrackSlice';
-import VolumeSlice from './SettingProgressPlayer/progressPlayerSlice';
-import storingTracksReducer from './storeAllTracks/storingAllTracksSlice';
+import { getAuthTracksApi } from './api/tracksApi';
+import checkingToken from './slices/checkingTokenSlice';
+import filteredChosenAuthors from './slices/filterTracks/filterTrackAuthorSlice';
+import filterReducer from './slices/filterTracks/filterTrackYearSlice';
+import getPlaylists from './slices/getPlaylistTracksSlice';
+import changingThemeReducer from './slices/lightDarkThemeSlice';
+import orderTracksPlayingReducer from './slices/orderOfPlayingSlice';
+import playingReducer from './slices/playTrackSlice';
+import VolumeSlice from './slices/progressPlayerSlice';
+import storingTracksReducer from './slices/storingAllTracksSlice';
 
 export const store = configureStore({
     reducer: {

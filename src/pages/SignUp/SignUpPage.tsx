@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { SecondButtonSignUp } from '../../components/Button/ButtonSignUp';
 import { Input } from '../../components/Input/Input';
 import Logo from '../../components/Logo/Logo';
-import { useSignupMutation } from '../../redux/AuthorizationGetTracks/tracksApi';
-import StyledBlock from '../SignIn/Styledblock';
+import { useSignupMutation } from '../../redux/api/tracksApi';
+import StyledBlock from '../SignIn/StyledBlock';
 
 const SignUpPage = () => {
     const [placeholderLogin, setPlaceholderLogin] = useState('Логин');
@@ -48,6 +48,7 @@ const SignUpPage = () => {
             })
             .then((response) => {
                 if (response) {
+                    sessionStorage.setItem('Auth', 'true');
                     navigate('/');
                 }
             });

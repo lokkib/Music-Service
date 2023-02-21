@@ -2,11 +2,11 @@ import { useState, useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useGetAllTracksQuery } from '../../../../../redux/AuthorizationGetTracks/tracksApi';
+import { useGetAllTracksQuery } from '../../../../../redux/api/tracksApi';
 import {
     storeAllTracks,
     holdRenderedTracks,
-} from '../../../../../redux/storeAllTracks/storingAllTracksSlice';
+} from '../../../../../redux/slices/storingAllTracksSlice';
 import ThemeContext from '../../../../../themes';
 import { ContentPlaylist } from '../../../../../components/ContentPlaylist/ContentPlaylist';
 import { ContentTitleBlock } from '../../../../../components/ContentTitleBlock/ContentTitleBlock';
@@ -17,7 +17,7 @@ import { Pages } from '../../../../../components/PagesBlock/Pages';
 import { PagesBlock } from '../../../../../components/PagesBlock/PagesBlock';
 import { PagesHeading } from '../../../../../components/PagesBlock/PagesHeading';
 import PlaylistItem from '../../../../../components/PlayListItem/PlayListItem';
-import PlaylistItemSkeleton from './PlaylistItemSkeleton/PlaylistItemSkeleton';
+import PlaylistItemSkeleton from '../../../../../components/PlaylistItemSkeleton/PlaylistItemSkeleton';
 import PlaylistTitleTimeIcon from '../../../../../components/ContentTitleBlock/PlaylistTitleTimeIcon';
 
 const CentralBlockContent = () => {
@@ -98,7 +98,7 @@ const CentralBlockContent = () => {
     }, [oldTracksFirstClicked, newTracksFirstClicked]);
 
     useEffect(() => {
-        if (data && chosenAuthorTracks) {
+        if (data && chosenAuthorTracks.length) {
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(chosenAuthorTracks);
             setFinalChosenTracksGenreData(false);
@@ -185,7 +185,13 @@ const CentralBlockContent = () => {
     if (isLoading) {
         const array = [1, 2, 3, 4, 5, 6, 7, 8];
 
-        return array.map((el) => <PlaylistItemSkeleton key={el} />);
+        return (
+            <>
+                {array.map((el) => (
+                    <PlaylistItemSkeleton key={el} />
+                ))}
+            </>
+        );
     }
     return (
         <>

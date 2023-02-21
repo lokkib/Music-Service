@@ -1,4 +1,4 @@
-const TrackPlayContainIcon = ({ className, alt }) => (
+const TrackPlayContainIcon = ({ className }) => (
     <svg
         width="20"
         height="19"
@@ -6,7 +6,6 @@ const TrackPlayContainIcon = ({ className, alt }) => (
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={className}
-        alt={alt}
     >
         <path d="M8 16V1.9697L19 1V13" stroke="#4E4E4E" />
         <ellipse cx="4.5" cy="16" rx="3.5" ry="2" stroke="#4E4E4E" />

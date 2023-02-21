@@ -6,7 +6,7 @@ import { Svg } from './LikeDislikeIconSample';
 
 const SvgDisLike = styled(Svg)``;
 
-export const PlayIconDislike = ({ alt }) => {
+export const PlayIconDislike = () => {
     const { themeMode } = useContext(ThemeContext);
     return (
         <SvgDisLike
@@ -15,7 +15,6 @@ export const PlayIconDislike = ({ alt }) => {
             viewBox="0 0 16 15"
             width="14.34px"
             height="13px"
-            alt={alt}
         >
             <path
                 style={themeMode.trackIconsStroke2}

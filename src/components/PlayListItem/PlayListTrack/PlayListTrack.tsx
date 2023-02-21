@@ -3,6 +3,7 @@ import TrackAlbum from './TrackAlbum/TrackAlbum';
 import TrackAuthor from './TrackAuthor/TrackAuthor';
 import TrackTime from './TrackTime/TrackTime';
 import TrackTitle from './TrackTitle/TrackTitle';
+import { PlaylistItemProps } from '../../../@types/props/PlayListItemProps';
 
 const PlaylistTrack = ({
     track,
@@ -13,7 +14,7 @@ const PlaylistTrack = ({
     album,
     author,
     name,
-}) => (
+}: PlaylistItemProps) => (
     <StyledPlayListTrack>
         <TrackTitle
             track={track}

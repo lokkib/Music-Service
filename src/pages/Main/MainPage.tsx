@@ -1,82 +1,28 @@
-import { getCookie, setCookie } from 'cookies-next';
-import jwt_decode from 'jwt-decode';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 import { motion } from 'framer-motion';
 import Bar from '../../components/Bar/Bar';
-import { useRefreshTokenMutation } from '../../redux/AuthorizationGetTracks/tracksApi';
-import { checkToken } from '../../redux/checkingToken/checkingTokenSlice';
-import { setPlay, setPlay2 } from '../../redux/playTrack/playTrackSlice';
+
 import ThemeContext, { themes } from '../../themes';
 import MainContent from './MainContent/MainContent';
-
-type MyToken = {
-    name: string;
-    exp: number;
-};
 
 const MainPage = () => {
     const [themeMode, setThemeMode] = useState(themes.darkTheme);
 
-    const dispatch = useDispatch();
     const [visibilityBar, setVisibility] = useState(
         themes.barVisibility.hidden
     );
-    const [chosingGenrePerformerColor, setGenrePerformerColor] = useState(
-        themes.filteringChosenPerformerGenreColor.notChosen
-    );
-    const [gettingNewToken] = useRefreshTokenMutation();
-
-    const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (navigate) {
-    //         dispatch(setPlay(false));
-    //         dispatch(setPlay2(true));
-    //     }
-    // }, [navigate]);
-    // // fef
-    useEffect(() => {
-        const timer = setInterval(() => {
-            const token = getCookie('access');
-            const decodedToken = jwt_decode<MyToken>(token as string);
-            const dateNow = new Date();
-            if (decodedToken.exp * 1000 < dateNow.getTime()) {
-                dispatch(checkToken(false));
-                const getNewToken = async () => {
-                    await gettingNewToken({
-                        refresh: getCookie('refresh'),
-                    })
-                        .unwrap()
-                        .then((response) => {
-                            setCookie('access', response.access);
-
-                            dispatch(checkToken(true));
-                        })
-                        .catch((error) => {
-                            throw new Error(error);
-                        });
-                };
-                getNewToken();
-            }
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, []);
 
     return (
-        <ThemeContext.Provider
-            value={{
-                themeMode,
-                setThemeMode,
-                visibilityBar,
-                setVisibility,
-                chosingGenrePerformerColor,
-                setGenrePerformerColor,
-            }}
-        >
-            <div className="container">
+        <div className="container">
+            <ThemeContext.Provider
+                value={{
+                    themeMode,
+                    setThemeMode,
+                    visibilityBar,
+                    setVisibility,
+                }}
+            >
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -86,8 +32,8 @@ const MainPage = () => {
                     <MainContent />
                     <Bar />
                 </motion.div>
-            </div>
-        </ThemeContext.Provider>
+            </ThemeContext.Provider>
+        </div>
     );
 };
 

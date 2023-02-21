@@ -3,17 +3,18 @@ import { useSelector } from 'react-redux';
 import {
     useAddTracktoFavouriteMutation,
     useDeleteTrackFromFavouriteMutation,
-} from '../../../../../../../redux/AuthorizationGetTracks/tracksApi';
+} from '../../../../../../../redux/api/tracksApi';
 import { TrackPlayDislikeContainer } from './TrackPlayerLikeDislikeContainers/TrackPlayDislikeContainer';
 import { TrackPlayLikeDislikeContainer } from './TrackPlayerLikeDislikeContainers/TrackPlayerLikeDislikeContainer';
 import { TrackPlayLikeContainer } from './TrackPlayerLikeDislikeContainers/TrackPlayLikeContainer';
 import { PlayIconDislike } from './TrackPlayLikeDislikeIcons/StyledPlayIconDislike';
 import { PlayIconLike } from './TrackPlayLikeDislikeIcons/StyledPlayIconLike';
+import { RootState } from '../../../../../../../redux/store';
 
 const TrackPlayLikeDislike = () => {
     const [addingFavourite] = useAddTracktoFavouriteMutation();
 
-    const id = useSelector((state) => state.playing.dataOfTrack.id);
+    const id = useSelector((state: RootState) => state.playing.dataOfTrack.id);
     const [deleteFromFavourite] = useDeleteTrackFromFavouriteMutation();
 
     const addTrackToFavourite = async () => {
@@ -41,11 +42,11 @@ const TrackPlayLikeDislike = () => {
     return (
         <TrackPlayLikeDislikeContainer>
             <TrackPlayLikeContainer onClick={addTrackToFavourite}>
-                <PlayIconLike alt="like" />
+                <PlayIconLike />
             </TrackPlayLikeContainer>
 
             <TrackPlayDislikeContainer onClick={deleteTrackFromFavourite}>
-                <PlayIconDislike alt="dislike" />
+                <PlayIconDislike />
             </TrackPlayDislikeContainer>
         </TrackPlayLikeDislikeContainer>
     );

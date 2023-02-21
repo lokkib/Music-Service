@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 
-import NavMenu from '../NavMenu/NavMenu';
+import NavMenu from './NavMenu/NavMenu';
 import ThemeContext from '../../themes';
 import NavBurger from './NavBurger/NavBurger';
 import NavLogoContainer from './NavLogoContainer/NavLogoContainer';
@@ -11,7 +11,7 @@ const Navigation = () => {
 
     const { themeMode } = useContext(ThemeContext);
 
-    const onClick = () => {
+    const showMenuOnClick = () => {
         setMenu(!menu);
     };
 
@@ -24,7 +24,7 @@ const Navigation = () => {
     return (
         <StyledNavigation style={themeMode.main}>
             <NavLogoContainer />
-            <NavBurger handleClick={onClick} />
+            <NavBurger showMenuOnClick={showMenuOnClick} />
             {elem}
         </StyledNavigation>
     );

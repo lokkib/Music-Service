@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +19,6 @@ export const GlobalStyle = createGlobalStyle`
 a,
 a:visited {
     text-decoration: none;
-    font-family: 'StratosSkyeng', sans-serif;
     cursor: pointer;
 }
 
@@ -33,26 +36,18 @@ ul li {
 // ========== fonts ========
 @font-face {
     font-family: 'Stratos';
-    src: url('Stratos-Black.woff2') format('woff2'),
-        url('Stratos-Black.woff') format('woff');
+    src: url(${'Stratos-Black.woff2'}) format('woff2'),
+    url(${'Stratos-Black.woff'}) format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'Stratos';
-    src: url('Stratos-Black.woff2') format('woff2'),
-        url('Stratos-Black.woff') format('woff');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
 
 @font-face {
     font-family: 'Stratos';
-    src: url('Stratos-Bold.woff2') format('woff2'),
-        url('Stratos-Bold.woff') format('woff');
+    src: url(${'Stratos-Bold.woff2'}) format('woff2'),
+        url(${'Stratos-Bold.woff'}) format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -213,8 +208,8 @@ ul li {
 
 @font-face {
     font-family: 'Stratos SemiLight';
-    src: url('Stratos-SemiLightItalic.woff2') format('woff2'),
-        url('Stratos-SemiLightItalic.woff') format('woff');
+    src: url(${'../fonts/Stratos-SemiLightItalic.woff2'}) format('woff2'),
+        url(${'../fonts/Stratos-SemiLightItalic.woff'}) format('woff');
     font-weight: 300;
     font-style: italic;
     font-display: swap;
