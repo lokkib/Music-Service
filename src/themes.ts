@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { GlobalContext } from './@types/themes/GlobalContext';
+import { DarkTheme, BarVisibility } from './@types/themes/GlobalContext';
 
 export const themes = {
     barVisibility: {
@@ -17,7 +17,9 @@ export const themes = {
             backgroundColor: '#ffffff',
             stroke: 'black',
         },
-
+        barHidden: {
+            display: 'none',
+        },
         main: {
             color: 'black',
             backgroundColor: '#ffffff',
@@ -106,6 +108,15 @@ export const themes = {
     },
 };
 
-const ThemeContext = createContext<GlobalContext>(themes);
+const ThemeContext = createContext({
+    themeMode: themes.darkTheme,
+    setThemeMode: (themeMode: DarkTheme) => {
+        //changing theme
+    },
+    visibilityBar: themes.barVisibility.hidden,
+    setVisibility: (visibilityBar: BarVisibility) => {
+        //changing player visibility
+    },
+});
 
 export default ThemeContext;

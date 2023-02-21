@@ -18,14 +18,13 @@ npm run build
 
 В ходе работы над проектом были использованы следующие технологии:
 
-* Дизайн-макет Figma
-* Библиотека React
-* Стейт менеджер Redux в связке с Toolkit и RTK Query
-* Библиотека react-router-dom для роутинга между страницами
-* Eslint и Prettier для форматирования и линтинга кода
-* Библиотека cookies-next 
-* Стилизация компонентов выполнена с помощью Styled Components
-
+-   Дизайн-макет Figma
+-   Библиотека React
+-   Стейт менеджер Redux в связке с Toolkit и RTK Query
+-   Библиотека react-router-dom для роутинга между страницами
+-   Eslint и Prettier для форматирования и линтинга кода
+-   Библиотека cookies-next
+-   Стилизация компонентов выполнена с помощью Styled Components
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -48,6 +48,8 @@
                 "tsx": "never"
             }
         ],
+        "no-return-assign": "off",
+        "spaced-comment": "off",
         "jsx-a11y/media-has-caption": "off",
         "react/no-array-index-key": "off",
         "jsx-a11y/no-noninteractive-element-interactions": "off",

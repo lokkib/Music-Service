@@ -1,11 +1,11 @@
 import { useContext, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { filteringPlaylistTracks } from '../../../redux/getPlaylistTracks/getPlaylistTracksSlice';
+import { filteringPlaylistTracks } from '../../../redux/slices/getPlaylistTracksSlice';
 import {
     filteringTracksName,
     filteringMyTracks,
-} from '../../../redux/storeAllTracks/storingAllTracksSlice';
+} from '../../../redux/slices/storingAllTracksSlice';
 import ThemeContext, { themes } from '../../../themes';
 import { StyledSearchInput } from './StyledSearchInput';
 
@@ -25,18 +25,22 @@ const SearchInput = ({ type = 'search', name = 'search' }) => {
     };
 
     const clearPlaceholder = () => {
-        inputRef.current.focus();
-        setPlaceholderText(undefined);
+        if (inputRef && inputRef.current) {
+            inputRef.current.focus();
+            setPlaceholderText('');
+        }
     };
 
     return (
         <StyledSearchInput
             ref={inputRef}
-            clearPlaceholder={clearPlaceholder}
-            style={themeMode.dark}
+            onFocus={clearPlaceholder}
+            style={themeMode.main}
             value={valueInput}
             onChange={handleInputValue}
-            placeholderColor={themeMode === themes.darkTheme ? 'dark' : 'light'}
+            placeholderColor={
+                themeMode === themes.darkTheme ? 'white' : 'black'
+            }
             placeholder={placeholderText}
             onBlur={() => setPlaceholderText('Поиск')}
             type={type}

@@ -6,7 +6,7 @@ import { Svg } from './LikeDislikeIconSample';
 
 const SvgLike = styled(Svg)``;
 
-export const PlayIconLike = ({ alt }) => {
+export const PlayIconLike = () => {
     const { themeMode } = useContext(ThemeContext);
     return (
         <SvgLike
@@ -15,7 +15,6 @@ export const PlayIconLike = ({ alt }) => {
             height="12px"
             fill="none"
             viewBox="0 0 16 15"
-            alt={alt}
         >
             <path
                 style={themeMode.trackIconsStroke2}

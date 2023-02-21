@@ -6,11 +6,8 @@ import { ButtonSignIn } from '../../components/Button/ButtonSignIn';
 import { ButtonSignUp } from '../../components/Button/ButtonSignUp';
 import { Input } from '../../components/Input/Input';
 import Logo from '../../components/Logo/Logo';
-import {
-    useLoginMutation,
-    useTokenMutation,
-} from '../../redux/AuthorizationGetTracks/tracksApi';
-import StyledBlock from './Styledblock';
+import { useLoginMutation, useTokenMutation } from '../../redux/api/tracksApi';
+import StyledBlock from './StyledBlock';
 
 const SignInPage = () => {
     const [email, setMail] = useState('');
@@ -50,6 +47,7 @@ const SignInPage = () => {
             .then((token) => {
                 setCookie('access', token.access);
                 setCookie('refresh', token.refresh);
+                sessionStorage.setItem('Auth', 'true');
             });
         navigate('/main');
     };

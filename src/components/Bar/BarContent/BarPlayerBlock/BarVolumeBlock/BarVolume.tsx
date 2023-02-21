@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setVolume } from '../../../../../redux/SettingProgressPlayer/progressPlayerSlice';
+import { setVolume } from '../../../../../redux/slices/progressPlayerSlice';
 import { BarVolumeContainer } from './BarVolumeComponents/BarVolume';
 import { VolumeContent } from './BarVolumeComponents/VolumeContent';
 import { VolumeImage } from './BarVolumeComponents/VolumeImage';

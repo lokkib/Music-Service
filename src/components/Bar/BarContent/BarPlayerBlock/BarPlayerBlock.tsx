@@ -2,9 +2,9 @@ import BarPlayerPlayer from './BarPlayerPlayer/BarPlayer';
 import BarVolume from './BarVolumeBlock/BarVolume';
 import { StyledBarPlayerBlock } from './StyledBarPlayerBlock';
 
-const BarPlayerBlock = ({ getValues }) => (
+const BarPlayerBlock = () => (
     <StyledBarPlayerBlock>
-        <BarPlayerPlayer getValues={getValues} />
+        <BarPlayerPlayer />
         <BarVolume />
     </StyledBarPlayerBlock>
 );

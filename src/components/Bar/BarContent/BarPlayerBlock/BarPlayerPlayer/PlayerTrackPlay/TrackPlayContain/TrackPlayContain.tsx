@@ -9,16 +9,19 @@ import { TrackPlayAuthorLink } from './TrackPlayContainComponents/TrackPlayAutho
 import { TrackPlayContainBlock } from './TrackPlayContainComponents/TrackPlayContainBlock';
 import { TrackPlayContainIcon } from './TrackPlayContainComponents/TrackPlayContainIcon';
 import { TrackPlayImage } from './TrackPlayContainComponents/TrackPlayImage';
+import { RootState } from '../../../../../../../redux/store';
 
 const TrackPlayContain = () => {
     const { themeMode } = useContext(ThemeContext);
 
-    const trackData = useSelector((state) => state.playing.dataOfTrack);
+    const trackData = useSelector(
+        (state: RootState) => state.playing.dataOfTrack
+    );
 
     return (
         <TrackPlayContainBlock>
             <TrackPlayImage style={themeMode.trackTitle}>
-                <TrackPlayContainIcon className="track-play__svg" alt="music" />
+                <TrackPlayContainIcon className="track-play__svg" />
             </TrackPlayImage>
             <TrackPlayAuthor>
                 <TrackPlayAuthorLink style={themeMode.main}>
