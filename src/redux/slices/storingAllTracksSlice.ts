@@ -1,113 +1,82 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Track } from '../../@types/slices/Track';
-import { ChosenAuthor } from '../../@types/slices/ChosenAuthor';
+
 import { AllTracksState } from '../../@types/slices/AllTracksState';
+import { Track } from '../../@types/slices/Track';
 
 const initialState: AllTracksState = {
     allTracks: [],
-    toggledAuthorTracks: [],
-    toggledGenreTracks: {},
-    allTracksChosen: false,
+    toggledAuthorTracks: [
+        {
+            performer: '',
+            chosen: false,
+        },
+    ],
+    finalGenreTracks: [],
     filteredTracksbyName: [],
     renderedTracks: [],
-    trackIsPlayed: {},
+    trackIsPlayed: 0,
     myTracks: [],
     myTracksFiltered: [],
     finalAuthorTracksData: [],
+    filterAuthorsValue: [],
+    filteredByAuthor: false,
+    filterGenreValue: [],
+    allGenresChosen: '',
 };
 
 const storingAllTracks = createSlice({
     name: 'storeAllTracks',
     initialState,
     reducers: {
-        storeAllTracks(state, action) {
+        storeAllTracks(state, action: PayloadAction<Track[]>) {
             state.allTracks = action.payload;
         },
-
-        toggleChoseAuthors(state, action: PayloadAction<Track[]>) {
-            const [track] = action.payload;
-
-            // console.log(chosenValue)
-
-            state.toggledAuthorTracks.push(track);
-            if (!state.toggledAuthorTracks.includes(track.author)) {
-                state.finalAuthorTracksData = state.toggledAuthorTracks;
-            } else {
-                state.finalAuthorTracksData = state.allTracks.filter(
-                    (element) => element.author !== track.author
-                );
-            }
-
-            // const unique = [];
-            // state.toggledAuthorTracks.forEach(() => {
-            //     if (!unique.includes(element)) {
-            //         unique.push(element);
-            //     }
-            // })
-
-            // if(state.toggledAuthorTracks.length === 1) {
-            //     state.finalAuthorTracksData = [...state.toggledAuthorTracks.map((el) => el.track)]
-            // }
-            // if(state.toggledAuthorTracks.length > 1) {
-            //     const check = state.toggledAuthorTracks.some(el => el.performer === action.payload.performer)
-            //     console.log(check)
-            //      if(!check) {
-            //          state.finalAuthorTracksData = [...state.toggledAuthorTracks.map((el) => el.track)]
-            //      }
-            //      else {
-            //          state.finalAuthorTracksData = state.toggledAuthorTracks.filter((el) => el.performer !== action.payload.performer).map((el) => el.track)
-            //      }
-            // }
-
-            //     for (const elem of  ar) {
-
-            //         if(elem.author !== action.payload.performer) {
-            //            ar.push(elem)
-            //         }
-            //        else {
-            //         console.log('повтор')
-            //         ar = state.toggledAuthorTracks.filter((el) => el.performer !== action.payload.performer).map((el) => el.track)
-            //        }
-            //    }
-
-            // console.log( state.toggledAuthorTracks)
-            // chosen: chosenValue,
-
-            // const filtered = state.toggledAuthorTracks.filter((el) => )
-
-            // state.toggledAuthorTracksArray = Object.entries(
-            //     state.toggledAuthorTracks
-            // );
-            // state.finalAuth2 = state.toggledAuthorTracksArray.filter(
-            //     (el) => el[1].chosen === true
-            // );
-            // state.finalAuthorTracksData = state.allTracks.filter((el) =>
-            //     state.finalAuth2.some((element) => element[0] === el.author)
-            // );
-        },
-
-        toggleChoseGenre(state, action) {
-            const [filteredData, chosenValue, typOfGenre] = action.payload;
-            state.toggledGenreTracks[typOfGenre] = {
-                content: filteredData,
-                chosen: chosenValue,
-            };
-
-            state.toggledGenreTracksArray = Object.entries(
-                state.toggledGenreTracks
+        addFilterByAuthor: (state, action: PayloadAction<string>) => {
+            state.filterAuthorsValue.push(action.payload);
+            state.filteredByAuthor = true;
+            state.finalAuthorTracksData = state.allTracks.filter((el) =>
+                state.filterAuthorsValue.some(
+                    (element) => element === el.author
+                )
             );
-
-            state.finaltoggledGenreTracksArray = state.toggledGenreTracksArray
-                .filter((el) => el[1].chosen === true)
-                .map((el) => el[1].content);
+            state.renderedTracks = state.finalAuthorTracksData;
         },
-        allTracksChosen(state, action) {
-            state.allTracksChosen = action.payload;
+        deleteAuthors: (state, action: PayloadAction<string>) => {
+            state.filterAuthorsValue = state.filterAuthorsValue.filter(
+                (author) => author !== action.payload
+            );
+            state.finalAuthorTracksData = state.allTracks.filter((el) =>
+                state.filterAuthorsValue.some(
+                    (element) => element === el.author
+                )
+            );
+            state.renderedTracks = state.finalAuthorTracksData;
+        },
+
+        addFilterByGenre: (state, action: PayloadAction<string>) => {
+            state.filterGenreValue.push(action.payload);
+            state.filteredByAuthor = true;
+            state.finalGenreTracks = state.allTracks.filter((el) =>
+                state.filterGenreValue.some((element) => element === el.genre)
+            );
+            state.renderedTracks = state.finalGenreTracks;
+        },
+        deleteGenres: (state, action: PayloadAction<string>) => {
+            state.filterGenreValue = state.filterGenreValue.filter(
+                (genre) => genre !== action.payload
+            );
+            state.finalGenreTracks = state.allTracks.filter((el) =>
+                state.filterGenreValue.some((element) => element === el.genre)
+            );
+            state.renderedTracks = state.finalGenreTracks;
+        },
+        choseAllGenres(state, action: PayloadAction<string>) {
+            state.allGenresChosen = action.payload;
         },
         filteringTracksName(state, action) {
             state.filteredTracksbyName = state.allTracks.filter((el) =>
-                el.name.includes(action.payload)
+                el.name.toLowerCase().startsWith(action.payload)
             );
         },
         holdRenderedTracks(state, action) {
@@ -115,14 +84,14 @@ const storingAllTracks = createSlice({
         },
         setPlayingRenderedTracks(state, action) {
             const index = action.payload;
-            state.trackIsPlayed.trackIsPlayed = index;
+            state.trackIsPlayed = index;
         },
         setMyTracks(state, action) {
             state.myTracks = action.payload;
         },
         filteringMyTracks(state, action) {
-            state.myTracksFiltered = state.myTracks.filter((el) =>
-                el.name.includes(action.payload)
+            state.myTracksFiltered = state.renderedTracks.filter((el) =>
+                el.name.toLowerCase().startsWith(action.payload)
             );
         },
     },
@@ -130,15 +99,16 @@ const storingAllTracks = createSlice({
 
 export const {
     storeAllTracks,
-    toggleChoseAuthors,
-    allTracksChosen,
-    toggleChoseGenre,
     filteringTracksName,
     holdRenderedTracks,
     setPlayingRenderedTracks,
-    addFavouriteTracks,
     setMyTracks,
     filteringMyTracks,
+    addFilterByAuthor,
+    deleteAuthors,
+    addFilterByGenre,
+    deleteGenres,
+    choseAllGenres,
 } = storingAllTracks.actions;
 
 export default storingAllTracks.reducer;

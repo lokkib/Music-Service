@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import { motion } from 'framer-motion';
 import Bar from '../../components/Bar/Bar';
-
+import { DarkTheme, BarVisibility } from '../../@types/themes/GlobalContext';
 import ThemeContext, { themes } from '../../themes';
 import MainContent from './MainContent/MainContent';
 
 const MainPage = () => {
-    const [themeMode, setThemeMode] = useState(themes.darkTheme);
+    const [themeMode, setThemeMode] = useState<DarkTheme>(themes.darkTheme);
 
-    const [visibilityBar, setVisibility] = useState(
+    const [visibilityBar, setVisibility] = useState<BarVisibility>(
         themes.barVisibility.hidden
     );
 

@@ -9,7 +9,7 @@ import { StyledCBHeading } from './StyledCenterBlockHeading';
 import { StyledMainCentralBlock } from './StyledMainCentralBlock';
 
 const MainCentralBlock = () => {
-    const { data } = useGetPlaylistQuery(1);
+    const { data } = useGetPlaylistQuery('1');
 
     const dispatch = useDispatch();
 

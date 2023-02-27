@@ -1,18 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ProgressPlayerState } from '../../@types/slices/ProgressPlayerState';
+
+const initialState: ProgressPlayerState = {
+    volume: 25,
+    progress: {
+        max: 0,
+        value: 0,
+    },
+    finalValue: 0,
+    audioEnded: {
+        audioEnded: false,
+    },
+};
 
 const progressPlayer = createSlice({
     name: 'progressPlayer',
-    initialState: {
-        volume: 25,
-        progress: {
-            max: false,
-            value: false,
-        },
-        finalValue: false,
-        audioEnded: {
-            audioEnded: false,
-        },
-    },
+    initialState,
     reducers: {
         setVolume(state, action) {
             state.volume = action.payload;

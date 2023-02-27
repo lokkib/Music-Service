@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import { useGetAllTracksQuery } from '../../../../../redux/api/tracksApi';
 import {
@@ -19,53 +18,96 @@ import { PagesHeading } from '../../../../../components/PagesBlock/PagesHeading'
 import PlaylistItem from '../../../../../components/PlayListItem/PlayListItem';
 import PlaylistItemSkeleton from '../../../../../components/PlaylistItemSkeleton/PlaylistItemSkeleton';
 import PlaylistTitleTimeIcon from '../../../../../components/ContentTitleBlock/PlaylistTitleTimeIcon';
+import { RootState } from '../../../../../redux/store';
+import { Track } from '../../../../../@types/slices/Track';
 
 const CentralBlockContent = () => {
-    const navigate = useNavigate();
+    const AuthorsChosen = useSelector(
+        (state: RootState) => state.storeTracks.filterAuthorsValue
+    );
+
+    const GenresChosen = useSelector(
+        (state: RootState) => state.storeTracks.filterGenreValue
+    );
 
     const chosenAuthorTracks = useSelector(
-        (state) => state.storeTracks.finalAuthorTracksData
+        (state: RootState) => state.storeTracks.finalAuthorTracksData
     );
 
     const chosenGenreTracks = useSelector(
-        (state) => state.storeTracks.finaltoggledGenreTracksArray
+        (state: RootState) => state.storeTracks.finalGenreTracks
+    );
+
+    const renderedTracks = useSelector(
+        (state: RootState) => state.storeTracks.renderedTracks
     );
 
     const sortedTracks = useSelector(
-        (state) => state.orderOfTracksPlaying.shuffleTracks.sortedRenderedTracks
+        (state: RootState) =>
+            state.orderOfTracksPlaying.shuffleTracks.sortedRenderedTracks
     );
     const chosenTracksbyName = useSelector(
-        (state) => state.storeTracks.filteredTracksbyName
+        (state: RootState) => state.storeTracks.filteredTracksbyName
     );
 
     const [finalChosenTracksGenreData, setFinalChosenTracksGenreData] =
-        useState(false);
+        useState<Track[] | boolean>(false);
     const [page, setPage] = useState(1);
 
-    const [sortedTracksData, setSortedTracks] = useState(false);
-    const [filteredTracksData, setFilteredTRacksData] = useState(false);
-    const [filteredTracksbyName, setFilteredTRacksName] = useState(false);
-    const [filteredTracksAuthorData, setFilteredAuthorTracks] = useState(false);
+    const [allTracks, setAllTracks] = useState<Track[] | undefined>(undefined);
+    const [sortedTracksData, setSortedTracks] = useState<Track[] | boolean>(
+        false
+    );
+    const [filteredTracksData, setFilteredTRacksData] = useState<
+        Track[] | boolean
+    >(false);
+    const [filteredTracksbyName, setFilteredTracksName] = useState<
+        Track[] | boolean
+    >(false);
+    const [filteredTracksAuthorData, setFilteredAuthorTracks] = useState<
+        Track[] | boolean
+    >(false);
     const { data, isLoading } = useGetAllTracksQuery();
     const { themeMode } = useContext(ThemeContext);
 
     const dispatch = useDispatch();
     const oldTracksFirstClicked = useSelector(
-        (state) => state.filterYear.filterTracks.oldTracksFirstClicked
+        (state: RootState) =>
+            state.filterYear.filterTracks.oldTracksFirstClicked
     );
     const newTracksFirstClicked = useSelector(
-        (state) => state.filterYear.filterTracks.newTracksFirstClicked
+        (state: RootState) =>
+            state.filterYear.filterTracks.newTracksFirstClicked
     );
-
-    const allTracksChosen = useSelector(
-        (state) => state.storeTracks.allTracksChosen
-    );
-
-    const allTracksData = useSelector((state) => state.storeTracks.allTracks);
 
     useEffect(() => {
-        dispatch(storeAllTracks(data));
-    }, [data, allTracksData]);
+        if (data && AuthorsChosen.includes('Все исполнители')) {
+            setAllTracks(data);
+            setFilteredTRacksData(false);
+            setFilteredAuthorTracks(false);
+            setFinalChosenTracksGenreData(false);
+            setFilteredTracksName(false);
+            setSortedTracks(false);
+        }
+    }, [AuthorsChosen, data]);
+
+    useEffect(() => {
+        if (data && GenresChosen.includes('Все жанры')) {
+            setAllTracks(data);
+            setFilteredTRacksData(false);
+            setFilteredAuthorTracks(false);
+            setFinalChosenTracksGenreData(false);
+            setFilteredTracksName(false);
+            setSortedTracks(false);
+        }
+    }, [GenresChosen, data]);
+
+    useEffect(() => {
+        if (data) {
+            dispatch(storeAllTracks(data));
+            setAllTracks(data);
+        }
+    }, [data, allTracks]);
 
     useEffect(() => {
         if (oldTracksFirstClicked && data) {
@@ -73,13 +115,14 @@ const CentralBlockContent = () => {
             setFilteredTRacksData(
                 data2.sort(
                     (a, b) =>
-                        new Date(a.release_date) - new Date(b.release_date)
+                        +new Date(a.release_date) - +new Date(b.release_date)
                 )
             );
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
-            setFilteredTRacksName(false);
+            setFilteredTracksName(false);
             setSortedTracks(false);
+            setAllTracks(undefined);
         }
 
         if (newTracksFirstClicked && data) {
@@ -87,13 +130,14 @@ const CentralBlockContent = () => {
             setFilteredTRacksData(
                 data2.sort(
                     (a, b) =>
-                        new Date(b.release_date) - new Date(a.release_date)
+                        +new Date(b.release_date) - +new Date(a.release_date)
                 )
             );
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
-            setFilteredTRacksName(false);
+            setFilteredTracksName(false);
             setSortedTracks(false);
+            setAllTracks(undefined);
         }
     }, [oldTracksFirstClicked, newTracksFirstClicked]);
 
@@ -102,31 +146,33 @@ const CentralBlockContent = () => {
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(chosenAuthorTracks);
             setFinalChosenTracksGenreData(false);
-            setFilteredTRacksName(false);
+            setFilteredTracksName(false);
             setSortedTracks(false);
         }
     }, [chosenAuthorTracks]);
 
     useEffect(() => {
-        if (data && allTracksChosen) {
+        if (data && allTracks && !chosenAuthorTracks) {
+            setAllTracks(data);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
-            setFilteredTRacksName(false);
+            setFilteredTracksName(false);
             setSortedTracks(false);
         }
-    }, [allTracksChosen]);
+    }, [allTracks, chosenAuthorTracks]);
 
     useEffect(() => {
         if (data && chosenGenreTracks) {
+            setAllTracks(undefined);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);
-            setFilteredTRacksName(false);
+            setFilteredTracksName(false);
             setSortedTracks(false);
 
-            const array = [];
+            const array: Track[] = [];
             for (const element of chosenGenreTracks) {
-                array.push(...element);
+                array.push(element);
             }
             setFinalChosenTracksGenreData(array);
         }
@@ -134,7 +180,8 @@ const CentralBlockContent = () => {
 
     useEffect(() => {
         if (data && chosenTracksbyName) {
-            setFilteredTRacksName(chosenTracksbyName);
+            setAllTracks(undefined);
+            setFilteredTracksName(chosenTracksbyName);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
@@ -144,23 +191,14 @@ const CentralBlockContent = () => {
 
     useEffect(() => {
         if (data && sortedTracks.length) {
-            setFilteredTRacksName(false);
+            setAllTracks(undefined);
+            setFilteredTracksName(false);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
             setSortedTracks(sortedTracks);
         }
     }, [sortedTracks]);
-
-    useEffect(() => {
-        if (navigate) {
-            setSortedTracks(false);
-            setFilteredTRacksName(false);
-            setFilteredTRacksData(false);
-            setFilteredAuthorTracks(false);
-            setFinalChosenTracksGenreData(false);
-        }
-    }, [navigate]);
 
     useEffect(() => {
         dispatch(
@@ -170,7 +208,7 @@ const CentralBlockContent = () => {
                     finalChosenTracksGenreData ||
                     filteredTracksAuthorData ||
                     filteredTracksData ||
-                    allTracksData
+                    allTracks
             )
         );
     }, [
@@ -178,7 +216,7 @@ const CentralBlockContent = () => {
         finalChosenTracksGenreData,
         filteredTracksData,
         filteredTracksAuthorData,
-        allTracksData,
+        allTracks,
         sortedTracksData,
     ]);
 
@@ -206,15 +244,8 @@ const CentralBlockContent = () => {
             </ContentTitleBlock>
 
             <ContentPlaylist>
-                {page === 1
-                    ? (
-                          sortedTracksData ||
-                          filteredTracksbyName ||
-                          finalChosenTracksGenreData ||
-                          filteredTracksData ||
-                          filteredTracksAuthorData ||
-                          data
-                      )
+                {page === 1 && renderedTracks && renderedTracks.length
+                    ? renderedTracks
                           .slice(0, 8)
                           .map((track, index) => (
                               <PlaylistItem
@@ -231,15 +262,8 @@ const CentralBlockContent = () => {
                           ))
                     : ''}
 
-                {page === 2
-                    ? (
-                          sortedTracksData ||
-                          filteredTracksbyName ||
-                          finalChosenTracksGenreData ||
-                          filteredTracksData ||
-                          filteredTracksData ||
-                          data
-                      )
+                {page === 2 && renderedTracks && renderedTracks.length
+                    ? renderedTracks
                           .slice(8, 16)
                           .map((track, index) => (
                               <PlaylistItem
@@ -256,15 +280,8 @@ const CentralBlockContent = () => {
                           ))
                     : ''}
 
-                {page === 3
-                    ? (
-                          sortedTracksData ||
-                          filteredTracksbyName ||
-                          finalChosenTracksGenreData ||
-                          filteredTracksData ||
-                          filteredTracksData ||
-                          data
-                      )
+                {page === 3 && renderedTracks && renderedTracks.length
+                    ? renderedTracks
                           .slice(16, 24)
                           .map((track, index) => (
                               <PlaylistItem
@@ -281,15 +298,8 @@ const CentralBlockContent = () => {
                           ))
                     : ''}
 
-                {page === 4
-                    ? (
-                          sortedTracksData ||
-                          filteredTracksbyName ||
-                          finalChosenTracksGenreData ||
-                          filteredTracksData ||
-                          filteredTracksData ||
-                          data
-                      )
+                {page === 4 && renderedTracks && renderedTracks.length
+                    ? renderedTracks
                           .slice(24, 29)
                           .map((track, index) => (
                               <PlaylistItem

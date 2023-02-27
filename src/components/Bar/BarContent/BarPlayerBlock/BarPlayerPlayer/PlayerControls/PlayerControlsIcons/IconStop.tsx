@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-
+import { IconAltProps } from '../../../../../../../@types/props/IconAltProps';
 import { Svg } from './SvgIconSample';
 
-const SvgPlayStop = styled(Svg)``;
+const SvgPlayStop = styled(Svg)<IconAltProps>``;
 
-export const IconStop = ({ alt }) => (
+export const IconStop = ({ alt }: IconAltProps) => (
     <SvgPlayStop
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

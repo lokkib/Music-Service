@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { filteringPlaylistTracks } from '../../../redux/slices/getPlaylistTracksSlice';
@@ -13,27 +13,22 @@ const SearchInput = ({ type = 'search', name = 'search' }) => {
     const { themeMode } = useContext(ThemeContext);
     const [valueInput, setValueInput] = useState('');
     const [placeholderText, setPlaceholderText] = useState('Поиск');
-    const inputRef = useRef(null);
 
     const dispatch = useDispatch();
 
-    const handleInputValue = (e) => {
+    const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValueInput(e.target.value);
-        dispatch(filteringTracksName(e.target.value));
+        dispatch(filteringTracksName(e.target.value.toLowerCase()));
         dispatch(filteringPlaylistTracks(e.target.value));
-        dispatch(filteringMyTracks(e.target.value));
+        dispatch(filteringMyTracks(e.target.value.toLowerCase()));
     };
 
     const clearPlaceholder = () => {
-        if (inputRef && inputRef.current) {
-            inputRef.current.focus();
-            setPlaceholderText('');
-        }
+        setPlaceholderText('');
     };
 
     return (
         <StyledSearchInput
-            ref={inputRef}
             onFocus={clearPlaceholder}
             style={themeMode.main}
             value={valueInput}

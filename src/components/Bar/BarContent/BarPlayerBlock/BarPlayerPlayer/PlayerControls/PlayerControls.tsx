@@ -26,53 +26,63 @@ import { IconPrev } from './PlayerControlsIcons/IconPrev';
 import { IconRepeat } from './PlayerControlsIcons/IconRepeat';
 import { IconShuffle } from './PlayerControlsIcons/IconShuffle';
 import { IconStop } from './PlayerControlsIcons/IconStop';
+import { RootState } from '../../../../../../redux/store';
+import { PlayerControlsPlayerProps } from '../../../../../../@types/props/PlayerControlsProps';
 
-const PlayerControls = ({ refPlayer }) => {
+const PlayerControls = ({ refPlayer }: PlayerControlsPlayerProps) => {
     const [repeatButton, setRepeatButton] = useState(false);
 
-    const playingPlayer = useSelector((state) => state.playing.isPlaying);
-    const playingPlayer2 = useSelector((state) => state.playing.isPlaying2);
+    const playingPlayer = useSelector(
+        (state: RootState) => state.playing.isPlaying
+    );
+    const playingPlayer2 = useSelector(
+        (state: RootState) => state.playing.isPlaying2
+    );
 
     const numberOfTrackPlaying = useSelector(
-        (state) => state.storeTracks.trackIsPlayed.trackIsPlayed
+        (state: RootState) => state.storeTracks.trackIsPlayed
     );
     const renderedTracks = useSelector(
-        (state) => state.storeTracks.renderedTracks
+        (state: RootState) => state.storeTracks.renderedTracks
     );
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (playingPlayer) {
+        if (playingPlayer && refPlayer.current) {
             const playing = refPlayer.current.play();
 
             if (playing !== undefined) {
                 playing
                     .then(() => {
-                        refPlayer.current.play();
+                        if (refPlayer.current) {
+                            refPlayer.current.play();
+                        }
                     })
-                    .catch((error) => {
+                    .catch((error: string | undefined) => {
                         throw new Error(error);
                     });
             }
-        } else {
+        } else if (refPlayer.current) {
             refPlayer.current.pause();
         }
     }, [playingPlayer, numberOfTrackPlaying]);
 
     useEffect(() => {
-        if (playingPlayer2) {
+        if (playingPlayer2 && refPlayer.current) {
             const playing = refPlayer.current.play();
 
             if (playing !== undefined) {
                 playing
                     .then(() => {
-                        refPlayer.current.play();
+                        if (refPlayer.current) {
+                            refPlayer.current.play();
+                        }
                     })
-                    .catch((error) => {
+                    .catch((error: string | undefined) => {
                         throw new Error(error);
                     });
             }
-        } else {
+        } else if (refPlayer.current) {
             refPlayer.current.pause();
         }
     }, [playingPlayer2]);
@@ -146,7 +156,7 @@ const PlayerControls = ({ refPlayer }) => {
             dispatch(setPlayingRenderedTracks(numberOfTrackPlaying - 1));
 
             const track = renderedTracks.filter(
-                (element, index) => index === numberOfTrackPlaying - 1
+                (_, index) => index === numberOfTrackPlaying - 1
             );
             dispatch(playingNextTrack(track));
             dispatch(setPlay(true));

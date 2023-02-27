@@ -6,7 +6,9 @@ import * as S from './StyledSidebarContent';
 import { RootState } from '../../../../../redux/store';
 
 const SidebarBlock = () => {
-    const [musicSelections, ,] = useState('../img/Skeleton-selection.png');
+    const [musicSelections, ,] = useState<string>(
+        '../img/Skeleton-selection.png'
+    );
 
     const allTracksData = useSelector(
         (state: RootState) => state.storeTracks.allTracks

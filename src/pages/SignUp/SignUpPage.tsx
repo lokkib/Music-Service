@@ -8,16 +8,17 @@ import { useSignupMutation } from '../../redux/api/tracksApi';
 import StyledBlock from '../SignIn/StyledBlock';
 
 const SignUpPage = () => {
-    const [placeholderLogin, setPlaceholderLogin] = useState('Логин');
-    const [placeholderMail, setPlaceholderMail] = useState('Почта');
-    const [placeholderPassword, setPlaceholderPassword] = useState('Пароль');
+    const [placeholderLogin, setPlaceholderLogin] = useState<string>('Логин');
+    const [placeholderMail, setPlaceholderMail] = useState<string>('Почта');
+    const [placeholderPassword, setPlaceholderPassword] =
+        useState<string>('Пароль');
     const [placeholderPasswordRepeat, setPlaceholderPasswordRepeat] =
-        useState('Повторите пароль');
+        useState<string>('Повторите пароль');
 
-    const [username, setLogin] = useState('');
-    const [mail, setMail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordRepeat, setPasswordRepeat] = useState('');
+    const [username, setLogin] = useState<string>('');
+    const [mail, setMail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [passwordRepeat, setPasswordRepeat] = useState<string>('');
     const navigate = useNavigate();
 
     const [signUp] = useSignupMutation();
@@ -110,7 +111,10 @@ const SignUpPage = () => {
                         setPlaceholderPasswordRepeat('Повторите пароль')
                     }
                 />
-                <SecondButtonSignUp onClick={handleSignUp}>
+                <SecondButtonSignUp
+                    onKeyDown={(e) => e.key === 'Enter' && handleSignUp}
+                    onClick={handleSignUp}
+                >
                     Зарегистрироваться
                 </SecondButtonSignUp>
             </StyledBlock>

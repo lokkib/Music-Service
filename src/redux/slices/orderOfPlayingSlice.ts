@@ -1,22 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { OrderOfTracksPlayingState } from '../../@types/slices/OrderOfTracksPlayingState';
+
+const initialState: OrderOfTracksPlayingState = {
+    playingNextTrack: {
+        chosenTrack: [],
+    },
+    playingPreviousTrack: {
+        chosenTrack: [],
+    },
+    shuffleTracks: {
+        isButtonPressed: false,
+        sortedRenderedTracks: [],
+    },
+    repeatTracks: {
+        isButtonPressed: false,
+    },
+};
 
 const settingOrderOfPlaying = createSlice({
     name: 'orderOfPlaying',
-    initialState: {
-        playingNextTrack: {
-            chosenTrack: [],
-        },
-        playingPreviousTrack: {
-            chosenTrack: [],
-        },
-        shuffleTracks: {
-            isButtonPressed: false,
-            sortedRenderedTracks: [],
-        },
-        repeatTracks: {
-            isButtonPressed: false,
-        },
-    },
+    initialState,
     reducers: {
         playingNextTrack(state, action) {
             state.playingNextTrack.chosenTrack = action.payload;

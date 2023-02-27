@@ -1,29 +1,27 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-    toggleChoseAuthors,
-    allTracksChosen,
+    deleteAuthors,
+    addFilterByAuthor,
 } from '../../../../../../../redux/slices/storingAllTracksSlice';
 import { RootState } from '../../../../../../../redux/store';
 import SearchPerformerGenreContainer from './SearchPerformerContainer';
 import SearchPerformerItem from './SearchPerformerItem';
 import { Track } from '../../../../../../../@types/slices/Track';
+import { SearchPerformerLabel } from './SearchPerformerLabel';
 
 const SearchPerformerBlock = () => {
-    const [isPerformerChosen, setChoice] = useState(false);
-    const [chosenAllTracks, setChosenAllAuthors] = useState(false);
     const allTracks = useSelector(
         (state: RootState) => state.storeTracks.allTracks
     );
-    const [selected, setSelected] = useState<number[]>([]);
-
+    const [selected, setSelected] = useState<string[]>([]);
+    const [selectedAll, setSelectedAll] = useState<string[]>([]);
     const dispatch = useDispatch();
 
-    function chooseAllTracks() {
-        setChosenAllAuthors(!chosenAllTracks);
-        dispatch(allTracksChosen(chosenAllTracks));
-    }
+    const AuthorsChosen = useSelector(
+        (state: RootState) => state.storeTracks.filterAuthorsValue
+    );
 
     const RemoveDuplicates = (array: Track[], key: string) =>
         array.reduce((arr: Track[], item: Track) => {
@@ -35,24 +33,34 @@ const SearchPerformerBlock = () => {
 
     const filteredAuthorsData = RemoveDuplicates(allTracks, 'author');
 
-    const wrapper = useRef(null);
-
-    function chooseAuthor(track: Track) {
-        setChoice(() => !isPerformerChosen);
-        dispatch(toggleChoseAuthors([track]));
-    }
-
-    function changeColorAuthor(id: number) {
-        if (selected.length && selected.includes(id)) {
-            setSelected(selected.filter((el) => el !== id));
+    function chooseAuthor(e: React.MouseEvent<HTMLInputElement>) {
+        if (!(e.target as HTMLInputElement).checked) {
+            dispatch(deleteAuthors((e.target as HTMLInputElement).value));
         } else {
-            selected.push(id);
-            setSelected(selected);
+            dispatch(addFilterByAuthor((e.target as HTMLInputElement).value));
         }
     }
 
+    function changeColorAuthor(value: string) {
+        selected.push(value);
+        setSelected(selected);
+
+        if (AuthorsChosen.includes(value)) {
+            setSelected(selected.filter((el) => el !== value));
+        }
+    }
+
+    const changeColorAllAuthors = (value: string) => {
+        selectedAll.push(value);
+        setSelectedAll(selectedAll);
+
+        if (AuthorsChosen.includes(value)) {
+            setSelectedAll(selectedAll.filter((el) => el !== value));
+        }
+    };
+
     return (
-        <SearchPerformerGenreContainer ref={wrapper}>
+        <SearchPerformerGenreContainer>
             <div
                 style={{
                     display: 'flex',
@@ -64,38 +72,46 @@ const SearchPerformerBlock = () => {
             >
                 {filteredAuthorsData.map((el: Track) =>
                     el.author !== '-' ? (
-                        <SearchPerformerItem
-                            onClick={() => {
-                                changeColorAuthor(el.id);
-                                chooseAuthor(el);
-                            }}
-                            key={el.id}
-                            active={
-                                selected.length && selected.includes(el.id)
-                                    ? '#b672ff'
-                                    : 'white'
-                            }
-                        >
-                            {el.author}
-                        </SearchPerformerItem>
+                        <div key={el.id}>
+                            <SearchPerformerLabel
+                                onClick={() => changeColorAuthor(el.author)}
+                                value={el.author}
+                                active={
+                                    selected.includes(el.author)
+                                        ? '#b672ff'
+                                        : 'white'
+                                }
+                            >
+                                {el.author}
+                                <SearchPerformerItem
+                                    value={el.author}
+                                    onClick={(e) => {
+                                        chooseAuthor(e);
+                                    }}
+                                    type="checkbox"
+                                />
+                            </SearchPerformerLabel>
+                        </div>
                     ) : (
                         ''
                     )
                 )}
-                <SearchPerformerItem
-                    key={30}
-                    active={
-                        selected.length && selected.includes(key)
-                            ? '#b672ff'
-                            : 'white'
-                    }
-                    onClick={() => {
-                        changeColorAuthor(key);
-                        chooseAllTracks();
-                    }}
-                >
-                    Все
-                </SearchPerformerItem>
+                <div>
+                    <SearchPerformerLabel
+                        active={selectedAll.length ? '#b672ff' : 'white'}
+                        onClick={() => changeColorAllAuthors('Все исполнители')}
+                        value="Все исполнители"
+                    >
+                        Все исполнители
+                        <SearchPerformerItem
+                            onClick={(e) => {
+                                chooseAuthor(e);
+                            }}
+                            value="Все исполнители"
+                            type="checkbox"
+                        />
+                    </SearchPerformerLabel>
+                </div>
             </div>
         </SearchPerformerGenreContainer>
     );

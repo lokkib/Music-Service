@@ -1,17 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { isPlayingState } from '../../@types/slices/IsPlayingState';
+import { Track } from '../../@types/slices/Track';
+
+const initialState: isPlayingState = {
+    isPlaying: false,
+    isPlaying2: true,
+    tracksPlayed: [],
+    dataOfTrack: {
+        author: '',
+        album: '',
+        id: '',
+    },
+    src: '',
+};
 
 const isPlayingSlice = createSlice({
     name: 'isPlaying',
-    initialState: {
-        isPlaying: false,
-        isPlaying2: true,
-        tracksPlayed: [],
-        dataOfTrack: {
-            author: '',
-            album: '',
-            id: '',
-        },
-    },
+    initialState,
     reducers: {
         setPlay(state, action) {
             state.isPlaying = action.payload;
@@ -19,7 +25,7 @@ const isPlayingSlice = createSlice({
         setPlay2(state, action) {
             state.isPlaying2 = action.payload;
         },
-        addTrackPlayed(state, action) {
+        addTrackPlayed(state, action: PayloadAction<Track>) {
             state.tracksPlayed.push(action.payload);
         },
         setSrcOfTrack(state, action) {

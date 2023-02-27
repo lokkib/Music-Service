@@ -1,70 +1,54 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-    toggleChoseGenre,
-    allTracksChosen,
+    deleteGenres,
+    addFilterByGenre,
 } from '../../../../../../../redux/slices/storingAllTracksSlice';
 import SearchPerformerGenreContainer from '../SearchPerformerBlock/SearchPerformerContainer';
 import SearchGenreItem from './SearchGenreItem';
 import { RootState } from '../../../../../../../redux/store';
-import { Track } from '../../../../../../../@types/slices/Track';
+import { SearchGenreLabel } from './SearchGenreLabel';
 
 const SearchGenreBlock = () => {
-    const [selected, setSelected] = useState<number[]>([]);
-    const [chosenAllTracks, setChosenAllGenres] = useState(false);
+    const [selected, setSelected] = useState<string[]>([]);
+    const [selectedAll, setSelectedAll] = useState<string[]>([]);
+    const dispatch = useDispatch();
 
-    const allTracks = useSelector(
-        (state: RootState) => state.storeTracks.allTracks
+    const genres = ['Классическая музыка', 'Рок музыка', 'Электронная музыка'];
+
+    const GenresChosen = useSelector(
+        (state: RootState) => state.storeTracks.filterGenreValue
     );
 
-    const dispatch = useDispatch();
-    const [genreChosen, setGenreChosen] = useState(false);
+    const changeColorAllGenres = (value: string) => {
+        selectedAll.push(value);
+        setSelectedAll(selectedAll);
 
-    const genres = [
-        'Классическая музыка',
-        'Рок музыка',
-        'Электронная музыка',
-        'Все жанры',
-    ];
-
-    const RemoveDuplicates = (array: Track[], key: string, value: string) => {
-        const filteredGenreData = array.filter(
-            (i) => i[key as keyof Track] === value
-        );
-        return filteredGenreData;
+        if (GenresChosen.includes(value)) {
+            setSelectedAll(selectedAll.filter((el) => el !== value));
+        }
     };
 
-    const filteredGenreClassicsData = RemoveDuplicates(
-        allTracks,
-        'genre',
-        'Классическая музыка'
-    );
-
-    function chooseGenre(filteredData: Track[]) {
-        const typeOfGene = filteredData[0].genre;
-        setGenreChosen(!genreChosen);
-        dispatch(toggleChoseGenre([filteredData, !genreChosen, typeOfGene]));
-    }
-
-    function changeColor(id: number) {
-        if (selected.length && selected.includes(id)) {
-            setSelected(selected.filter((el) => el !== id));
+    function chooseGenre(e: React.MouseEvent<HTMLInputElement>) {
+        if (!(e.target as HTMLInputElement).checked) {
+            dispatch(deleteGenres((e.target as HTMLInputElement).value));
         } else {
-            selected.push(id);
-            setSelected(selected);
+            dispatch(addFilterByGenre((e.target as HTMLInputElement).value));
         }
     }
 
-    const chooseAllTracks = () => {
-        setChosenAllGenres(!chosenAllTracks);
-        dispatch(allTracksChosen(chosenAllTracks));
-    };
+    function changeColorGenre(value: string) {
+        selected.push(value);
+        setSelected(selected);
 
-    const wrapper = useRef(null);
+        if (GenresChosen.includes(value)) {
+            setSelected(selected.filter((el) => el !== value));
+        }
+    }
 
     return (
-        <SearchPerformerGenreContainer ref={wrapper}>
+        <SearchPerformerGenreContainer>
             <div
                 style={{
                     display: 'flex',
@@ -75,20 +59,43 @@ const SearchGenreBlock = () => {
                 }}
             >
                 {genres.map((el, id) => (
-                    <SearchGenreItem
-                        active={
-                            selected.length && selected.includes(id)
-                                ? '#b672ff'
-                                : 'white'
-                        }
-                        onClick={() => {
-                            chooseGenre(filteredGenreClassicsData);
-                            changeColor(id);
-                        }}
-                    >
-                        {el}
-                    </SearchGenreItem>
+                    <div key={id}>
+                        <SearchGenreLabel
+                            value={el}
+                            active={
+                                selected.length && selected.includes(el)
+                                    ? '#b672ff'
+                                    : 'white'
+                            }
+                        >
+                            {el}
+                            <SearchGenreItem
+                                value={el}
+                                type="checkbox"
+                                onClick={(e) => {
+                                    chooseGenre(e);
+                                    changeColorGenre(el);
+                                }}
+                            />
+                        </SearchGenreLabel>
+                    </div>
                 ))}
+                <div>
+                    <SearchGenreLabel
+                        active={selectedAll.length ? '#b672ff' : 'white'}
+                        onClick={() => changeColorAllGenres('Все жанры')}
+                        value="Все жанры"
+                    >
+                        Все жанры
+                        <SearchGenreItem
+                            onClick={(e) => {
+                                chooseGenre(e);
+                            }}
+                            type="checkbox"
+                            value="Все жанры"
+                        />
+                    </SearchGenreLabel>
+                </div>
             </div>
         </SearchPerformerGenreContainer>
     );

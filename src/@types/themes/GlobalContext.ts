@@ -2,6 +2,10 @@ export type BarVisibility = {
     display: string;
 };
 
+export type IsAuthorChosen = {
+    color: string;
+};
+
 export type DarkTheme = {
     bar: {
         color: string;

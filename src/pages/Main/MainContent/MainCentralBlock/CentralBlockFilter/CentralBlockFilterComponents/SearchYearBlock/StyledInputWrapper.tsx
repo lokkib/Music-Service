@@ -5,4 +5,5 @@ export const StyledInputWrapper = styled.div`
     gap: 10px;
     align-items: center;
     cursor: pointer;
+    color: white;
 `;

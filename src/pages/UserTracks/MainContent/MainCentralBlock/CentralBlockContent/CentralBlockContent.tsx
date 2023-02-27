@@ -1,9 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { PlaylistTitleAlbum } from '../../../../../components/ContentTitleBlock/PlaylistTitleAlbum';
 import { useGetFavouriteTracksQuery } from '../../../../../redux/api/tracksApi';
-import { changeTheme } from '../../../../../redux/slices/lightDarkThemeSlice';
 import {
     holdRenderedTracks,
     setMyTracks,
@@ -20,11 +18,11 @@ import { PlaylistTitleAuthor } from '../../../../../components/ContentTitleBlock
 import { PlaylistTitleTrack } from '../../../../../components/ContentTitleBlock/PlayListTitleTrack';
 import { ContentPlaylist } from '../../../../../components/ContentPlaylist/ContentPlaylist';
 import { RootState } from '../../../../../redux/store';
+import { Track } from '../../../../../@types/slices/Track';
 
 const CentralBlockContent = () => {
-    const navigate = useNavigate();
     const { data, isLoading } = useGetFavouriteTracksQuery();
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState<number>(1);
     const { themeMode } = useContext(ThemeContext);
     const dispatch = useDispatch();
     const sortedTracks = useSelector(
@@ -36,7 +34,7 @@ const CentralBlockContent = () => {
         (state: RootState) => state.storeTracks.myTracksFiltered
     );
 
-    const renderedTracks = useSelector(
+    const renderedTracks: Track[] = useSelector(
         (state: RootState) => state.storeTracks.renderedTracks
     );
     useEffect(() => {
@@ -58,15 +56,15 @@ const CentralBlockContent = () => {
         }
     }, [chosenTracksbyName]);
 
-    useEffect(() => {
-        if (navigate) {
-            dispatch(changeTheme(true));
-        }
-    }, [navigate]);
-
     if (isLoading) {
         const array = [1, 2, 3, 4, 5, 6, 7, 8];
-        return array.map((el, index) => <PlaylistItemSkeleton key={index} />);
+        return (
+            <>
+                {array.map((_, index) => (
+                    <PlaylistItemSkeleton key={index} />
+                ))}
+            </>
+        );
     }
     return (
         <>
@@ -81,7 +79,7 @@ const CentralBlockContent = () => {
             </ContentTitleBlock>
 
             <ContentPlaylist>
-                {page === 1
+                {page === 1 && renderedTracks.length
                     ? renderedTracks
                           .slice(0, 8)
                           .map((track, index) => (

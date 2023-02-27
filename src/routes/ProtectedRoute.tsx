@@ -3,7 +3,6 @@ import { ProtectedRouteProps } from '../@types/props/ProtectedRouteProps';
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     const isAuth = sessionStorage.getItem('Auth');
-    console.log(isAuth);
     if (!isAuth) {
         return <Navigate to="/" />;
     }
