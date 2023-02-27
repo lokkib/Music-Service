@@ -21,7 +21,7 @@ const TrackPlayContain = () => {
     return (
         <TrackPlayContainBlock>
             <TrackPlayImage style={themeMode.trackTitle}>
-                <TrackPlayContainIcon className="track-play__svg" />
+                <TrackPlayContainIcon />
             </TrackPlayImage>
             <TrackPlayAuthor>
                 <TrackPlayAuthorLink style={themeMode.main}>

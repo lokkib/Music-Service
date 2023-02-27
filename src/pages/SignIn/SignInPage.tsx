@@ -10,10 +10,11 @@ import { useLoginMutation, useTokenMutation } from '../../redux/api/tracksApi';
 import StyledBlock from './StyledBlock';
 
 const SignInPage = () => {
-    const [email, setMail] = useState('');
-    const [password, setPassword] = useState('');
-    const [placeholderMail, setPlaceholderMail] = useState('Почта');
-    const [placeholderPassword, setPlaceholderPassword] = useState('Пароль');
+    const [email, setMail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [placeholderMail, setPlaceholderMail] = useState<string>('Почта');
+    const [placeholderPassword, setPlaceholderPassword] =
+        useState<string>('Пароль');
     const [, setCookie] = useCookies();
 
     const navigate = useNavigate();

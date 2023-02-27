@@ -1,14 +1,17 @@
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-
+import { IconAltProps } from '../../../../../../../@types/props/IconAltProps';
 import ThemeContext from '../../../../../../../themes';
 import { Svg } from './SvgIconSample';
+import { RootState } from '../../../../../../../redux/store';
 
-const SvgShuffle = styled(Svg)``;
-export const IconShuffle = ({ alt }) => {
+const SvgShuffle = styled(Svg)<IconAltProps>``;
+
+export const IconShuffle = ({ alt }: IconAltProps) => {
     const shuffleButtonisPressed = useSelector(
-        (state) => state.orderOfTracksPlaying.shuffleTracks.isButtonPressed
+        (state: RootState) =>
+            state.orderOfTracksPlaying.shuffleTracks.isButtonPressed
     );
     const { themeMode } = useContext(ThemeContext);
     return (

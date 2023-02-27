@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { getAuthTracksApi } from './api/tracksApi';
 import checkingToken from './slices/checkingTokenSlice';
-import filteredChosenAuthors from './slices/filterTracks/filterTrackAuthorSlice';
 import filterReducer from './slices/filterTracks/filterTrackYearSlice';
 import getPlaylists from './slices/getPlaylistTracksSlice';
 import changingThemeReducer from './slices/lightDarkThemeSlice';
@@ -18,7 +17,6 @@ export const store = configureStore({
         playing: playingReducer,
         filterYear: filterReducer,
         storeTracks: storingTracksReducer,
-        chosenAuthors: filteredChosenAuthors,
         getPlaylist: getPlaylists,
         tokenIsValid: checkingToken,
         theme: changingThemeReducer,

@@ -5,10 +5,11 @@ import { motion } from 'framer-motion';
 import ThemeContext, { themes } from '../../themes';
 import Bar from '../../components/Bar/Bar';
 import MainContent from './MainContent/MainContent';
+import { DarkTheme, BarVisibility } from '../../@types/themes/GlobalContext';
 
 const MyTracks = () => {
-    const [themeMode, setThemeMode] = useState(themes.darkTheme);
-    const [visibilityBar, setVisibility] = useState(
+    const [themeMode, setThemeMode] = useState<DarkTheme>(themes.darkTheme);
+    const [visibilityBar, setVisibility] = useState<BarVisibility>(
         themes.barVisibility.hidden
     );
 

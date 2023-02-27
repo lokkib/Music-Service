@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getCookie } from 'cookies-next';
+import { Track } from '../../@types/slices/Track';
+import { PlayListTrack } from '../../@types/slices/PlayListTrack';
 
 export const getAuthTracksApi = createApi({
     reducerPath: 'TracksApi',
@@ -34,7 +36,7 @@ export const getAuthTracksApi = createApi({
                 body,
             }),
         }),
-        getAllTracks: build.query({
+        getAllTracks: build.query<Track[], void>({
             query: () => ({
                 headers: {
                     Authorization: `Bearer ${getCookie('access')}`,
@@ -42,10 +44,10 @@ export const getAuthTracksApi = createApi({
                 url: 'catalog/track/all/',
             }),
         }),
-        getPlaylist: build.query({
+        getPlaylist: build.query<PlayListTrack, string>({
             query: (id) => `catalog/selection/${id}`,
         }),
-        getFavouriteTracks: build.query({
+        getFavouriteTracks: build.query<Track[], void>({
             query: () => ({
                 url: 'catalog/track/favorite/all',
                 headers: {

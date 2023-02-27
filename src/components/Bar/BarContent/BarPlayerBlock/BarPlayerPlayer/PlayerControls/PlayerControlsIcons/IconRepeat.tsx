@@ -1,15 +1,17 @@
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-
+import { IconAltProps } from '../../../../../../../@types/props/IconAltProps';
 import ThemeContext from '../../../../../../../themes';
 import { Svg } from './SvgIconSample';
+import { RootState } from '../../../../../../../redux/store';
 
-const SvgRepeat = styled(Svg)``;
+const SvgRepeat = styled(Svg)<IconAltProps>``;
 
-export const IconRepeat = ({ alt }) => {
+export const IconRepeat = ({ alt }: IconAltProps) => {
     const shuffleButtonisPressed = useSelector(
-        (state) => state.orderOfTracksPlaying.repeatTracks.isButtonPressed
+        (state: RootState) =>
+            state.orderOfTracksPlaying.repeatTracks.isButtonPressed
     );
     const { themeMode } = useContext(ThemeContext);
     return (

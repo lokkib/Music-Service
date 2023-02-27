@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-
+import { IconAltProps } from '../../../../../../../@types/props/IconAltProps';
 import ThemeContext from '../../../../../../../themes';
 import { Svg } from './SvgIconSample';
 
-const SvgNext = styled(Svg)``;
+const SvgNext = styled(Svg)<IconAltProps>``;
 
-export const IconNext = ({ alt }) => {
+export const IconNext = ({ alt }: IconAltProps) => {
     const { themeMode } = useContext(ThemeContext);
 
     return (

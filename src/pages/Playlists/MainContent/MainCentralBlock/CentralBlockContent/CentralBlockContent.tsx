@@ -1,9 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useGetPlaylistQuery } from '../../../../../redux/api/tracksApi';
 import { getPlaylist } from '../../../../../redux/slices/getPlaylistTracksSlice';
-import { changeTheme } from '../../../../../redux/slices/lightDarkThemeSlice';
 import { holdRenderedTracks } from '../../../../../redux/slices/storingAllTracksSlice';
 import ThemeContext from '../../../../../themes';
 import { ContentTitleBlock } from '../../../../../components/ContentTitleBlock/ContentTitleBlock';
@@ -21,9 +20,8 @@ import { RootState } from '../../../../../redux/store';
 import { Track } from '../../../../../@types/slices/Track';
 
 const CentralBlockContent = () => {
-    const navigate = useNavigate();
     const { id } = useParams();
-    const { data } = useGetPlaylistQuery(id);
+    const { data } = useGetPlaylistQuery(id as string);
 
     const playlistTracksData = useSelector(
         (state: RootState) => state.getPlaylist[0]
@@ -50,7 +48,7 @@ const CentralBlockContent = () => {
     }, [data]);
 
     useEffect(() => {
-        if (playlistTracksData.length) {
+        if (playlistTracksData.length && data) {
             dispatch(holdRenderedTracks(data.items));
         }
     }, [playlistTracksData]);
@@ -63,13 +61,6 @@ const CentralBlockContent = () => {
 
     const [page, setPage] = useState(1);
     const { themeMode } = useContext(ThemeContext);
-
-    useEffect(() => {
-        if (navigate) {
-            dispatch(holdRenderedTracks(playlistTracksData));
-            dispatch(changeTheme(true));
-        }
-    }, [navigate]);
 
     useEffect(() => {
         if (chosenTracksbyName.length) {

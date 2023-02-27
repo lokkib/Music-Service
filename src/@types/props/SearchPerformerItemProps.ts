@@ -1,3 +1,4 @@
 export type SearchPerformerGenreItemProps = {
-    active: string;
+    active?: string;
+    value: string;
 };

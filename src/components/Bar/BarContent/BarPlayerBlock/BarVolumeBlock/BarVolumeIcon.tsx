@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
-
+import { RootState } from '../../../../../redux/store';
 import ThemeContext from '../../../../../themes';
+import { BarVolumeIconProps } from '../../../../../@types/props/BarVolumeIcon';
 
-const BarVolumeIcon = ({ className, alt }) => {
+const BarVolumeIcon = ({ className }: BarVolumeIconProps) => {
     const { themeMode } = useContext(ThemeContext);
-    const volume = useSelector((state) => state.volume.volume);
+    const volume = useSelector((state: RootState) => state.volume.volume);
     return (
         <svg
             width="14"
@@ -14,7 +15,6 @@ const BarVolumeIcon = ({ className, alt }) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={className}
-            alt={alt}
             cursor="pointer"
         >
             <mask

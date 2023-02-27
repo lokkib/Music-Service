@@ -1,15 +1,21 @@
 import { Track } from './Track';
-import { ChosenAuthor } from './ChosenAuthor';
 
 export type AllTracksState = {
     allTracks: Track[];
-    toggledAuthorTracks: Track[];
-    toggledGenreTracks: {};
-    allTracksChosen: false;
-    filteredTracksbyName: [];
-    renderedTracks: [];
-    trackIsPlayed: {};
-    myTracks: [];
-    myTracksFiltered: [];
-    finalAuthorTracksData: Track[] | never[];
+    toggledAuthorTracks: {
+        performer: string;
+        content?: Track;
+        chosen: boolean;
+    }[];
+    finalGenreTracks: Track[];
+    filteredTracksbyName: Track[];
+    renderedTracks: Track[];
+    trackIsPlayed: number;
+    myTracks: Track[];
+    myTracksFiltered: Track[];
+    finalAuthorTracksData: Track[];
+    filterAuthorsValue: string[];
+    filteredByAuthor: boolean;
+    filterGenreValue: string[];
+    allGenresChosen: string;
 };

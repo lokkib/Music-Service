@@ -1,3 +1,11 @@
+type StaredUser = {
+    id: number;
+    username: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+};
+
 export type Track = {
     id: number;
     name: string;
@@ -8,4 +16,5 @@ export type Track = {
     album: string;
     logo: null;
     track_file: string;
+    stared_user?: StaredUser[];
 };

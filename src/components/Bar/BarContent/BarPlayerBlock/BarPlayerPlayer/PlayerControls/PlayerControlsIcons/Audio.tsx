@@ -1,8 +1,9 @@
 import { forwardRef } from 'react';
 import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../../../redux/store';
 
-const Audio = forwardRef((props, ref) => {
-    const trackfile = useSelector((state) => state.playing.src);
+const Audio = forwardRef<HTMLAudioElement>((_, ref) => {
+    const trackfile = useSelector((state: RootState) => state.playing.src);
 
     return (
         <audio ref={ref} style={{ display: 'none' }} controls src={trackfile} />
