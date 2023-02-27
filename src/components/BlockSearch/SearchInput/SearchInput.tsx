@@ -19,7 +19,7 @@ const SearchInput = ({ type = 'search', name = 'search' }) => {
     const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValueInput(e.target.value);
         dispatch(filteringTracksName(e.target.value.toLowerCase()));
-        dispatch(filteringPlaylistTracks(e.target.value));
+        dispatch(filteringPlaylistTracks(e.target.value.toLowerCase()));
         dispatch(filteringMyTracks(e.target.value.toLowerCase()));
     };
 
