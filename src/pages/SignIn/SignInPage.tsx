@@ -7,7 +7,7 @@ import { ButtonSignUp } from '../../components/Button/ButtonSignUp';
 import { Input } from '../../components/Input/Input';
 import Logo from '../../components/Logo/Logo';
 import { useLoginMutation, useTokenMutation } from '../../redux/api/tracksApi';
-import StyledBlock from './StyledBlock';
+import StyledBlock from './Styledblock';
 
 const SignInPage = () => {
     const [email, setMail] = useState<string>('');
