@@ -6,12 +6,6 @@ import { Track } from '../../@types/slices/Track';
 
 const initialState: AllTracksState = {
     allTracks: [],
-    toggledAuthorTracks: [
-        {
-            performer: '',
-            chosen: false,
-        },
-    ],
     finalGenreTracks: [],
     filteredTracksbyName: [],
     renderedTracks: [],

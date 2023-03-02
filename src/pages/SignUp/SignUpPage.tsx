@@ -5,7 +5,7 @@ import { SecondButtonSignUp } from '../../components/Button/ButtonSignUp';
 import { Input } from '../../components/Input/Input';
 import Logo from '../../components/Logo/Logo';
 import { useSignupMutation } from '../../redux/api/tracksApi';
-import StyledBlock from '../SignIn/StyledBlock';
+import StyledBlock from '../SignIn/Styledblock';
 
 const SignUpPage = () => {
     const [placeholderLogin, setPlaceholderLogin] = useState<string>('Логин');
