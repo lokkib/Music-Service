@@ -19,6 +19,7 @@ import { PlaylistTitleTrack } from '../../../../../components/ContentTitleBlock/
 import { ContentPlaylist } from '../../../../../components/ContentPlaylist/ContentPlaylist';
 import { RootState } from '../../../../../redux/store';
 import { Track } from '../../../../../@types/slices/Track';
+import { shuffleTracks } from '../../../../../redux/slices/orderOfPlayingSlice';
 
 const CentralBlockContent = () => {
     const { data, isLoading } = useGetFavouriteTracksQuery();
@@ -34,12 +35,13 @@ const CentralBlockContent = () => {
         (state: RootState) => state.storeTracks.myTracksFiltered
     );
 
-    const renderedTracks: Track[] = useSelector(
+    const renderedTracks = useSelector(
         (state: RootState) => state.storeTracks.renderedTracks
     );
     useEffect(() => {
         if (data) {
             dispatch(setMyTracks(data));
+            dispatch(shuffleTracks(false));
             dispatch(holdRenderedTracks(data));
         }
     }, [data]);
@@ -79,8 +81,8 @@ const CentralBlockContent = () => {
             </ContentTitleBlock>
 
             <ContentPlaylist>
-                {page === 1 && renderedTracks.length
-                    ? renderedTracks
+                {page === 1 && (renderedTracks as Track[]).length
+                    ? (renderedTracks as Track[])
                           .slice(0, 8)
                           .map((track, index) => (
                               <PlaylistItem

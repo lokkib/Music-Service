@@ -73,7 +73,7 @@ const storingAllTracks = createSlice({
                 el.name.toLowerCase().startsWith(action.payload)
             );
         },
-        holdRenderedTracks(state, action) {
+        holdRenderedTracks(state, action: PayloadAction<Track[] | boolean>) {
             state.renderedTracks = action.payload;
         },
         setPlayingRenderedTracks(state, action) {
@@ -84,8 +84,8 @@ const storingAllTracks = createSlice({
             state.myTracks = action.payload;
         },
         filteringMyTracks(state, action) {
-            state.myTracksFiltered = state.renderedTracks.filter((el) =>
-                el.name.toLowerCase().startsWith(action.payload)
+            state.myTracksFiltered = (state.renderedTracks as Track[]).filter(
+                (el) => el.name.toLowerCase().startsWith(action.payload)
             );
         },
     },
