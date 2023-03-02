@@ -28,6 +28,7 @@ import { IconShuffle } from './PlayerControlsIcons/IconShuffle';
 import { IconStop } from './PlayerControlsIcons/IconStop';
 import { RootState } from '../../../../../../redux/store';
 import { PlayerControlsPlayerProps } from '../../../../../../@types/props/PlayerControlsProps';
+import { Track } from '../../../../../../@types/slices/Track';
 
 const PlayerControls = ({ refPlayer }: PlayerControlsPlayerProps) => {
     const [repeatButton, setRepeatButton] = useState(false);
@@ -112,9 +113,9 @@ const PlayerControls = ({ refPlayer }: PlayerControlsPlayerProps) => {
     }
 
     const playNextTrack = () => {
-        if (numberOfTrackPlaying + 1 > renderedTracks.length - 1) {
+        if (numberOfTrackPlaying + 1 > (renderedTracks as Track[]).length - 1) {
             dispatch(setPlayingRenderedTracks(numberOfTrackPlaying));
-            const track = renderedTracks.filter(
+            const track = (renderedTracks as Track[]).filter(
                 (element, index) => index === numberOfTrackPlaying
             );
             dispatch(playingNextTrack(track));
@@ -126,7 +127,7 @@ const PlayerControls = ({ refPlayer }: PlayerControlsPlayerProps) => {
             );
         } else {
             dispatch(setPlayingRenderedTracks(numberOfTrackPlaying + 1));
-            const track = renderedTracks.filter(
+            const track = (renderedTracks as Track[]).filter(
                 (element, index) => index === numberOfTrackPlaying + 1
             );
             dispatch(playingNextTrack(track));
@@ -143,7 +144,7 @@ const PlayerControls = ({ refPlayer }: PlayerControlsPlayerProps) => {
     const playPreviousTrack = () => {
         if (numberOfTrackPlaying - 1 < 0) {
             dispatch(setPlayingRenderedTracks(numberOfTrackPlaying));
-            const track = renderedTracks.filter(
+            const track = (renderedTracks as Track[]).filter(
                 (element, index) => index === numberOfTrackPlaying
             );
             dispatch(playingNextTrack(track));
@@ -155,7 +156,7 @@ const PlayerControls = ({ refPlayer }: PlayerControlsPlayerProps) => {
         } else {
             dispatch(setPlayingRenderedTracks(numberOfTrackPlaying - 1));
 
-            const track = renderedTracks.filter(
+            const track = (renderedTracks as Track[]).filter(
                 (_, index) => index === numberOfTrackPlaying - 1
             );
             dispatch(playingNextTrack(track));

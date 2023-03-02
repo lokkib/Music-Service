@@ -20,14 +20,11 @@ import PlaylistItemSkeleton from '../../../../../components/PlaylistItemSkeleton
 import PlaylistTitleTimeIcon from '../../../../../components/ContentTitleBlock/PlaylistTitleTimeIcon';
 import { RootState } from '../../../../../redux/store';
 import { Track } from '../../../../../@types/slices/Track';
+import { shuffleTracks } from '../../../../../redux/slices/orderOfPlayingSlice';
 
 const CentralBlockContent = () => {
-    const AuthorsChosen = useSelector(
-        (state: RootState) => state.storeTracks.filterAuthorsValue
-    );
-
-    const GenresChosen = useSelector(
-        (state: RootState) => state.storeTracks.filterGenreValue
+    const tracksMainPage = useSelector(
+        (state: RootState) => state.storeTracks.allTracks
     );
 
     const chosenAuthorTracks = useSelector(
@@ -52,9 +49,18 @@ const CentralBlockContent = () => {
 
     const [finalChosenTracksGenreData, setFinalChosenTracksGenreData] =
         useState<Track[] | boolean>(false);
+
+    const AuthorsChosen = useSelector(
+        (state: RootState) => state.storeTracks.filterAuthorsValue
+    );
+
+    const GenresChosen = useSelector(
+        (state: RootState) => state.storeTracks.filterGenreValue
+    );
+
     const [page, setPage] = useState(1);
 
-    const [allTracks, setAllTracks] = useState<Track[] | undefined>(undefined);
+    const [allTracks, setAllTracks] = useState<Track[] | boolean>(false);
     const [sortedTracksData, setSortedTracks] = useState<Track[] | boolean>(
         false
     );
@@ -82,32 +88,24 @@ const CentralBlockContent = () => {
 
     useEffect(() => {
         if (data && AuthorsChosen.includes('Все исполнители')) {
-            setAllTracks(data);
-            setFilteredTRacksData(false);
-            setFilteredAuthorTracks(false);
-            setFinalChosenTracksGenreData(false);
-            setFilteredTracksName(false);
-            setSortedTracks(false);
+            dispatch(holdRenderedTracks(data));
         }
     }, [AuthorsChosen, data]);
 
     useEffect(() => {
         if (data && GenresChosen.includes('Все жанры')) {
-            setAllTracks(data);
-            setFilteredTRacksData(false);
-            setFilteredAuthorTracks(false);
-            setFinalChosenTracksGenreData(false);
-            setFilteredTracksName(false);
-            setSortedTracks(false);
+            dispatch(holdRenderedTracks(data));
         }
     }, [GenresChosen, data]);
 
     useEffect(() => {
         if (data) {
             dispatch(storeAllTracks(data));
+            dispatch(shuffleTracks(false));
             setAllTracks(data);
+            dispatch(holdRenderedTracks(data));
         }
-    }, [data, allTracks]);
+    }, [data]);
 
     useEffect(() => {
         if (oldTracksFirstClicked && data) {
@@ -122,7 +120,7 @@ const CentralBlockContent = () => {
             setFinalChosenTracksGenreData(false);
             setFilteredTracksName(false);
             setSortedTracks(false);
-            setAllTracks(undefined);
+            setAllTracks(false);
         }
 
         if (newTracksFirstClicked && data) {
@@ -137,7 +135,7 @@ const CentralBlockContent = () => {
             setFinalChosenTracksGenreData(false);
             setFilteredTracksName(false);
             setSortedTracks(false);
-            setAllTracks(undefined);
+            setAllTracks(false);
         }
     }, [oldTracksFirstClicked, newTracksFirstClicked]);
 
@@ -164,7 +162,7 @@ const CentralBlockContent = () => {
 
     useEffect(() => {
         if (data && chosenGenreTracks) {
-            setAllTracks(undefined);
+            setAllTracks(false);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);
             setFilteredTracksName(false);
@@ -180,7 +178,7 @@ const CentralBlockContent = () => {
 
     useEffect(() => {
         if (data && chosenTracksbyName) {
-            setAllTracks(undefined);
+            setAllTracks(false);
             setFilteredTracksName(chosenTracksbyName);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);
@@ -190,35 +188,40 @@ const CentralBlockContent = () => {
     }, [chosenTracksbyName]);
 
     useEffect(() => {
-        if (data && sortedTracks.length) {
-            setAllTracks(undefined);
+        if (sortedTracks.length) {
+            setAllTracks(false);
             setFilteredTracksName(false);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
             setSortedTracks(sortedTracks);
+            dispatch(holdRenderedTracks(sortedTracks));
         }
     }, [sortedTracks]);
 
     useEffect(() => {
-        dispatch(
-            holdRenderedTracks(
-                sortedTracksData ||
-                    filteredTracksbyName ||
-                    finalChosenTracksGenreData ||
-                    filteredTracksAuthorData ||
-                    filteredTracksData ||
-                    allTracks
-            )
-        );
-    }, [
-        filteredTracksbyName,
-        finalChosenTracksGenreData,
-        filteredTracksData,
-        filteredTracksAuthorData,
-        allTracks,
-        sortedTracksData,
-    ]);
+        if (
+            !sortedTracksData &&
+            !filteredTracksbyName &&
+            !finalChosenTracksGenreData &&
+            !filteredTracksAuthorData &&
+            !filteredTracksData &&
+            !allTracks
+        ) {
+            holdRenderedTracks(tracksMainPage);
+        } else {
+            dispatch(
+                holdRenderedTracks(
+                    sortedTracksData ||
+                        filteredTracksbyName ||
+                        finalChosenTracksGenreData ||
+                        filteredTracksAuthorData ||
+                        filteredTracksData ||
+                        allTracks
+                )
+            );
+        }
+    }, []);
 
     if (isLoading) {
         const array = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -244,8 +247,10 @@ const CentralBlockContent = () => {
             </ContentTitleBlock>
 
             <ContentPlaylist>
-                {page === 1 && renderedTracks && renderedTracks.length
-                    ? renderedTracks
+                {page === 1 &&
+                renderedTracks &&
+                (renderedTracks as Track[]).length
+                    ? (renderedTracks as Track[])
                           .slice(0, 8)
                           .map((track, index) => (
                               <PlaylistItem
@@ -262,8 +267,10 @@ const CentralBlockContent = () => {
                           ))
                     : ''}
 
-                {page === 2 && renderedTracks && renderedTracks.length
-                    ? renderedTracks
+                {page === 2 &&
+                renderedTracks &&
+                (renderedTracks as Track[]).length
+                    ? (renderedTracks as Track[])
                           .slice(8, 16)
                           .map((track, index) => (
                               <PlaylistItem
@@ -280,8 +287,10 @@ const CentralBlockContent = () => {
                           ))
                     : ''}
 
-                {page === 3 && renderedTracks && renderedTracks.length
-                    ? renderedTracks
+                {page === 3 &&
+                renderedTracks &&
+                (renderedTracks as Track[]).length
+                    ? (renderedTracks as Track[])
                           .slice(16, 24)
                           .map((track, index) => (
                               <PlaylistItem
@@ -298,8 +307,10 @@ const CentralBlockContent = () => {
                           ))
                     : ''}
 
-                {page === 4 && renderedTracks && renderedTracks.length
-                    ? renderedTracks
+                {page === 4 &&
+                renderedTracks &&
+                (renderedTracks as Track[]).length
+                    ? (renderedTracks as Track[])
                           .slice(24, 29)
                           .map((track, index) => (
                               <PlaylistItem

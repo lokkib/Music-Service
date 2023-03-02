@@ -4,7 +4,7 @@ export type AllTracksState = {
     allTracks: Track[];
     finalGenreTracks: Track[];
     filteredTracksbyName: Track[];
-    renderedTracks: Track[];
+    renderedTracks: Track[] | boolean;
     trackIsPlayed: number;
     myTracks: Track[];
     myTracksFiltered: Track[];
