@@ -15,6 +15,7 @@ import { StyledErrorMessage } from '../../components/ErrorMessage/StyledErrorMes
 const SignupSchema = Yup.object().shape({
     mail: Yup.string()
         .min(6, 'Слишком короткий адрес')
+        .email('Введите валидный адрес электронной почты')
         .required('Поле обязательно для заполнения'),
     password: Yup.string()
         .min(8, 'Пароль должен содержать минимум 8 символов')
@@ -100,7 +101,6 @@ const SignInPage = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="sort__popup"
                         >
                             <StyledErrorMessage fontSize="14px">
                                 Пользователь с таким email или паролем не найден
