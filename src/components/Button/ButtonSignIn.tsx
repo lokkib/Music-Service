@@ -7,7 +7,8 @@ export const Button = styled.button`
 `;
 
 export const ButtonSignIn = styled(Button)`
-    margin-top: 60px;
+    position: absolute;
+    top: 260px;
     margin-bottom: 20px;
     background-color: purple;
     color: white;
