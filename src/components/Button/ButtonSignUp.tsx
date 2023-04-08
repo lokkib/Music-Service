@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { ButtonSignIn, Button } from './ButtonSignIn';
 
 export const ButtonSignUp = styled(Button)`
+    position: absolute;
+    top: 330px;
     background-color: white;
     color: black;
     &:hover {
@@ -14,5 +16,6 @@ export const ButtonSignUp = styled(Button)`
 `;
 
 export const SecondButtonSignUp = styled(ButtonSignIn)`
-    margin-top: 40px;
+    position: absolute;
+    top: 440px;
 `;
