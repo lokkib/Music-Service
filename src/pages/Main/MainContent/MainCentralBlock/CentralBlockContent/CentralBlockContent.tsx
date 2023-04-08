@@ -213,7 +213,6 @@ const CentralBlockContent = () => {
             dispatch(
                 holdRenderedTracks(
                     sortedTracksData ||
-                        filteredTracksbyName ||
                         finalChosenTracksGenreData ||
                         filteredTracksAuthorData ||
                         filteredTracksData ||
@@ -251,7 +250,9 @@ const CentralBlockContent = () => {
                 renderedTracks &&
                 (renderedTracks as Track[]).length
                     ? (renderedTracks as Track[])
+
                           .slice(0, 8)
+
                           .map((track, index) => (
                               <PlaylistItem
                                   track={track}

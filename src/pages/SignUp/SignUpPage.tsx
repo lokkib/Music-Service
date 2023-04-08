@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { SecondButtonSignUp } from '../../components/Button/ButtonSignUp';
@@ -12,17 +12,19 @@ import { StyledErrorMessage } from '../../components/ErrorMessage/StyledErrorMes
 
 const SignupSchema = Yup.object().shape({
     login: Yup.string()
-        .min(2, 'Слишком короткий логин')
-        .required('Поле обязательно для заполнения'),
+        .required('Поле обязательно для заполнения')
+        .min(2, 'Слишком короткий логин'),
     mail: Yup.string()
-        .min(6, 'Введите правильный адрес электронной почты.')
-        .required('Поле обязательно для заполнения'),
+        .required('Поле обязательно для заполнения')
+        .min(6, 'Адрес электронной почты слишком короткий')
+        .email('Введите валидный адрес электронной почты'),
     password: Yup.string()
         .min(8, 'Пароль должен содержать минимум 8 символов')
         .required('Поле обязательно для заполнения'),
     repeatPassword: Yup.string()
+        .required('Поле обязательно для заполнения')
         .min(8, 'Пароль должен содержать минимум 8 символов')
-        .required('Поле обязательно для заполнения'),
+        .oneOf([Yup.ref('password')], 'Пароли должны совпадать'),
 });
 
 const SignUpPage = () => {
@@ -37,9 +39,17 @@ const SignUpPage = () => {
     const [mail, setMail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [passwordRepeat, setPasswordRepeat] = useState<string>('');
+    const [userExists, setUserExists] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const [signUp] = useSignupMutation();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setUserExists(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, [userExists]);
 
     const handleSignUp = async () => {
         await signUp({
@@ -49,6 +59,12 @@ const SignUpPage = () => {
         })
             .unwrap()
             .catch((error) => {
+                if (
+                    error.data.username[0] ===
+                    'Пользователь с таким именем уже существует.'
+                ) {
+                    setUserExists(true);
+                }
                 throw new Error();
             })
             .then((response) => {
@@ -80,6 +96,21 @@ const SignUpPage = () => {
             transition={{ duration: 1 }}
         >
             <StyledBlock height="540px">
+                <AnimatePresence>
+                    {userExists && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            <StyledErrorMessage fontSize="14px">
+                                Пользователь с таким именем уже существует
+                            </StyledErrorMessage>
+                            ;
+                        </motion.div>
+                    )}
+                </AnimatePresence>
                 <div
                     style={{
                         position: 'absolute',
@@ -113,7 +144,11 @@ const SignUpPage = () => {
                                         onFocus={() => setPlaceholderLogin('')}
                                         placeholder={placeholderLogin}
                                         onChange={(e) => [
-                                            setLogin(e.target.value),
+                                            setLogin(
+                                                e.target.value
+                                                    .trim()
+                                                    .replace(/[А-Яа-яЁё]/, '')
+                                            ),
                                             handleChange(e),
                                         ]}
                                         value={username}
@@ -131,7 +166,11 @@ const SignUpPage = () => {
                                         name="mail"
                                         placeholder={placeholderMail}
                                         onChange={(e) => [
-                                            setMail(e.target.value),
+                                            setMail(
+                                                e.target.value
+                                                    .trim()
+                                                    .replace(/[А-Яа-яЁё]/, '')
+                                            ),
                                             handleChange(e),
                                         ]}
                                         value={mail}
@@ -150,7 +189,11 @@ const SignUpPage = () => {
                                         name="password"
                                         placeholder={placeholderPassword}
                                         onChange={(e) => [
-                                            setPassword(e.target.value),
+                                            setPassword(
+                                                e.target.value
+                                                    .trim()
+                                                    .replace(/[А-Яа-яЁё]/, '')
+                                            ),
                                             handleChange(e),
                                         ]}
                                         value={password}
@@ -171,7 +214,11 @@ const SignUpPage = () => {
                                         name="repeatPassword"
                                         placeholder={placeholderPasswordRepeat}
                                         onChange={(e) => [
-                                            setPasswordRepeat(e.target.value),
+                                            setPasswordRepeat(
+                                                e.target.value
+                                                    .trim()
+                                                    .replace(/[А-Яа-яЁё]/, '')
+                                            ),
                                             handleChange(e),
                                         ]}
                                         value={passwordRepeat}
