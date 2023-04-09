@@ -89,171 +89,154 @@ const SignUpPage = () => {
     };
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-        >
-            <StyledBlock height="540px">
-                <AnimatePresence>
-                    {userExists && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <StyledErrorMessage fontSize="14px">
-                                Пользователь с таким именем уже существует
-                            </StyledErrorMessage>
-                            ;
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-                <div
-                    style={{
-                        position: 'absolute',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Logo />
-                    <Formik
-                        initialValues={{
-                            login: '',
-                            mail: '',
-                            password: '',
-                            repeatPassword: '',
-                        }}
-                        validationSchema={SignupSchema}
-                        onSubmit={handleSignUp}
+        <StyledBlock height="540px">
+            <AnimatePresence>
+                {userExists && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
                     >
-                        {({ handleChange, errors, touched }) => (
-                            <Form>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                    }}
+                        <StyledErrorMessage fontSize="14px">
+                            Пользователь с таким именем уже существует
+                        </StyledErrorMessage>
+                        ;
+                    </motion.div>
+                )}
+            </AnimatePresence>
+            <div
+                style={{
+                    position: 'absolute',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Logo />
+                <Formik
+                    initialValues={{
+                        login: '',
+                        mail: '',
+                        password: '',
+                        repeatPassword: '',
+                    }}
+                    validationSchema={SignupSchema}
+                    onSubmit={handleSignUp}
+                >
+                    {({ handleChange, errors, touched }) => (
+                        <Form>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Input
+                                    name="login"
+                                    onFocus={() => setPlaceholderLogin('')}
+                                    placeholder={placeholderLogin}
+                                    onChange={(e) => [
+                                        setLogin(
+                                            e.target.value
+                                                .trim()
+                                                .replace(/[А-Яа-яЁё]/, '')
+                                        ),
+                                        handleChange(e),
+                                    ]}
+                                    value={username}
+                                    onClick={() => clearInput(username)}
+                                    onBlur={() => setPlaceholderLogin('Логин')}
+                                />
+                                <StyledErrorMessage>
+                                    {errors.login &&
+                                        touched.login &&
+                                        errors.login}
+                                </StyledErrorMessage>
+                                <Input
+                                    name="mail"
+                                    placeholder={placeholderMail}
+                                    onChange={(e) => [
+                                        setMail(
+                                            e.target.value
+                                                .trim()
+                                                .replace(/[А-Яа-яЁё]/, '')
+                                        ),
+                                        handleChange(e),
+                                    ]}
+                                    value={mail}
+                                    onClick={() => clearInput(mail)}
+                                    onFocus={() => setPlaceholderMail('')}
+                                    onBlur={() => setPlaceholderMail('Почта')}
+                                />
+                                <StyledErrorMessage>
+                                    {errors.mail && touched.mail && errors.mail}
+                                </StyledErrorMessage>
+                                <Input
+                                    name="password"
+                                    placeholder={placeholderPassword}
+                                    onChange={(e) => [
+                                        setPassword(
+                                            e.target.value
+                                                .trim()
+                                                .replace(/[А-Яа-яЁё]/, '')
+                                        ),
+                                        handleChange(e),
+                                    ]}
+                                    value={password}
+                                    onClick={() => clearInput(password)}
+                                    onFocus={() => setPlaceholderPassword('')}
+                                    onBlur={() =>
+                                        setPlaceholderPassword('Пароль')
+                                    }
+                                />
+                                <StyledErrorMessage>
+                                    {errors.password &&
+                                        touched.password &&
+                                        errors.password}
+                                </StyledErrorMessage>
+                                <Input
+                                    name="repeatPassword"
+                                    placeholder={placeholderPasswordRepeat}
+                                    onChange={(e) => [
+                                        setPasswordRepeat(
+                                            e.target.value
+                                                .trim()
+                                                .replace(/[А-Яа-яЁё]/, '')
+                                        ),
+                                        handleChange(e),
+                                    ]}
+                                    value={passwordRepeat}
+                                    onClick={() => clearInput(passwordRepeat)}
+                                    onFocus={() =>
+                                        setPlaceholderPasswordRepeat('')
+                                    }
+                                    onBlur={() =>
+                                        setPlaceholderPasswordRepeat(
+                                            'Повторите пароль'
+                                        )
+                                    }
+                                />
+                                <StyledErrorMessage>
+                                    {errors.repeatPassword &&
+                                        touched.repeatPassword &&
+                                        errors.repeatPassword}
+                                </StyledErrorMessage>
+                                <SecondButtonSignUp
+                                    onKeyDown={(e) =>
+                                        e.key === 'Enter' && handleSignUp
+                                    }
+                                    onClick={handleSignUp}
                                 >
-                                    <Input
-                                        name="login"
-                                        onFocus={() => setPlaceholderLogin('')}
-                                        placeholder={placeholderLogin}
-                                        onChange={(e) => [
-                                            setLogin(
-                                                e.target.value
-                                                    .trim()
-                                                    .replace(/[А-Яа-яЁё]/, '')
-                                            ),
-                                            handleChange(e),
-                                        ]}
-                                        value={username}
-                                        onClick={() => clearInput(username)}
-                                        onBlur={() =>
-                                            setPlaceholderLogin('Логин')
-                                        }
-                                    />
-                                    <StyledErrorMessage>
-                                        {errors.login &&
-                                            touched.login &&
-                                            errors.login}
-                                    </StyledErrorMessage>
-                                    <Input
-                                        name="mail"
-                                        placeholder={placeholderMail}
-                                        onChange={(e) => [
-                                            setMail(
-                                                e.target.value
-                                                    .trim()
-                                                    .replace(/[А-Яа-яЁё]/, '')
-                                            ),
-                                            handleChange(e),
-                                        ]}
-                                        value={mail}
-                                        onClick={() => clearInput(mail)}
-                                        onFocus={() => setPlaceholderMail('')}
-                                        onBlur={() =>
-                                            setPlaceholderMail('Почта')
-                                        }
-                                    />
-                                    <StyledErrorMessage>
-                                        {errors.mail &&
-                                            touched.mail &&
-                                            errors.mail}
-                                    </StyledErrorMessage>
-                                    <Input
-                                        name="password"
-                                        placeholder={placeholderPassword}
-                                        onChange={(e) => [
-                                            setPassword(
-                                                e.target.value
-                                                    .trim()
-                                                    .replace(/[А-Яа-яЁё]/, '')
-                                            ),
-                                            handleChange(e),
-                                        ]}
-                                        value={password}
-                                        onClick={() => clearInput(password)}
-                                        onFocus={() =>
-                                            setPlaceholderPassword('')
-                                        }
-                                        onBlur={() =>
-                                            setPlaceholderPassword('Пароль')
-                                        }
-                                    />
-                                    <StyledErrorMessage>
-                                        {errors.password &&
-                                            touched.password &&
-                                            errors.password}
-                                    </StyledErrorMessage>
-                                    <Input
-                                        name="repeatPassword"
-                                        placeholder={placeholderPasswordRepeat}
-                                        onChange={(e) => [
-                                            setPasswordRepeat(
-                                                e.target.value
-                                                    .trim()
-                                                    .replace(/[А-Яа-яЁё]/, '')
-                                            ),
-                                            handleChange(e),
-                                        ]}
-                                        value={passwordRepeat}
-                                        onClick={() =>
-                                            clearInput(passwordRepeat)
-                                        }
-                                        onFocus={() =>
-                                            setPlaceholderPasswordRepeat('')
-                                        }
-                                        onBlur={() =>
-                                            setPlaceholderPasswordRepeat(
-                                                'Повторите пароль'
-                                            )
-                                        }
-                                    />
-                                    <StyledErrorMessage>
-                                        {errors.repeatPassword &&
-                                            touched.repeatPassword &&
-                                            errors.repeatPassword}
-                                    </StyledErrorMessage>
-                                    <SecondButtonSignUp
-                                        onKeyDown={(e) =>
-                                            e.key === 'Enter' && handleSignUp
-                                        }
-                                        onClick={handleSignUp}
-                                    >
-                                        Зарегистрироваться
-                                    </SecondButtonSignUp>
-                                </div>
-                            </Form>
-                        )}
-                    </Formik>
-                </div>
-            </StyledBlock>
-        </motion.div>
+                                    Зарегистрироваться
+                                </SecondButtonSignUp>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
+            </div>
+        </StyledBlock>
     );
 };
 

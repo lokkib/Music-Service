@@ -44,18 +44,17 @@ const TrackTitle = ({
     };
 
     return (
-        <TrackTitleBlock>
+        <TrackTitleBlock
+            onClick={() => {
+                playTrack();
+            }}
+        >
             <TrackTitleImage style={themeMode.trackTitle}>
                 <TrackPlayContainIcon />
             </TrackTitleImage>
 
             <div className="track__title-text">
-                <TrackTitleLink
-                    onClick={() => {
-                        playTrack();
-                    }}
-                    style={themeMode.main}
-                >
+                <TrackTitleLink style={themeMode.main}>
                     {name}
                     <TrackTitleSpan />
                 </TrackTitleLink>

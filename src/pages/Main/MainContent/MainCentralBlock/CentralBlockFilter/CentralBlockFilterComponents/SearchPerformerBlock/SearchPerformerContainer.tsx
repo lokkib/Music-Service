@@ -7,7 +7,6 @@ const SearchPerformerGenreContainer = styled.div.attrs((props) => ({
     align-items: flex-start;
     position: absolute;
     z-index: 1;
-
     width: 248px;
     height: 305px;
     background: #313131;
@@ -16,7 +15,7 @@ const SearchPerformerGenreContainer = styled.div.attrs((props) => ({
     overflow-y: scroll;
     overflow-x: hidden;
     &::-webkit-scrollbar {
-        width: 5px;
+        width: 8px;
         background: rgba(0, 0, 0, 0.05);
         border-radius: 10px;
     }

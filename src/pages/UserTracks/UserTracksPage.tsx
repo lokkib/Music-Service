@@ -20,7 +20,6 @@ const MyTracks = () => {
                 transition={{ duration: 1 }}
             >
                 <MainContent />
-                <Bar />
             </motion.div>
         </StyledContainer>
     );

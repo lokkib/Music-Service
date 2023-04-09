@@ -6,8 +6,9 @@ import { Svg } from './LikeDislikeIconSample';
 
 const SvgLike = styled(Svg)``;
 
-export const PlayIconLike = () => {
+const PlayIconLike = () => {
     const { themeMode } = useContext(ThemeContext);
+
     return (
         <SvgLike
             xmlns="http://www.w3.org/2000/svg"
@@ -24,3 +25,5 @@ export const PlayIconLike = () => {
         </SvgLike>
     );
 };
+
+export default PlayIconLike;
