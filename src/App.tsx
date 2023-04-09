@@ -1,13 +1,13 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { getCookie, setCookie } from 'cookies-next';
-
 import { GlobalStyle } from './GlobalStyle';
 import { AppRoutes } from './routes/Approutes';
-import { RootState } from './redux/store';
 import { checkToken } from './redux/slices/checkingTokenSlice';
 import { useRefreshTokenMutation } from './redux/api/tracksApi';
+import ThemeContext, { themes } from './themes';
+import { DarkTheme, BarVisibility } from './@types/themes/GlobalContext';
 
 type MyToken = {
     name: string;
@@ -15,10 +15,16 @@ type MyToken = {
 };
 
 const App = () => {
-    const theme = useSelector((state: RootState) => state.theme.darkTheme);
     const isLoggedIn = sessionStorage.getItem('Auth');
     const [gettingNewToken] = useRefreshTokenMutation();
     const dispatch = useDispatch();
+
+    const [themeMode, setThemeMode] = useState<DarkTheme>(themes.darkTheme);
+
+    const [visibilityBar, setVisibility] = useState<BarVisibility>(
+        themes.barVisibility.hidden
+    );
+
     useEffect(() => {
         const timer = setInterval(() => {
             if (isLoggedIn) {
@@ -50,11 +56,18 @@ const App = () => {
     }, []);
 
     return (
-        <>
-            <GlobalStyle theme={theme} />
+        <ThemeContext.Provider
+            value={{
+                themeMode,
+                setThemeMode,
+                visibilityBar,
+                setVisibility,
+            }}
+        >
+            <GlobalStyle />
 
             <AppRoutes />
-        </>
+        </ThemeContext.Provider>
     );
 };
 

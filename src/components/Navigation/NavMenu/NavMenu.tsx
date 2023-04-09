@@ -1,7 +1,5 @@
 import { useState, useContext } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { changeTheme } from '../../../redux/slices/lightDarkThemeSlice';
 import ThemeContext, { themes } from '../../../themes';
 import MenuItem from './MenuList/MenuItem';
 import { StyledNavMenu } from './StyledNavMenu';
@@ -9,14 +7,12 @@ import { NightThemeIcon } from './ThemeIcons/NightThemeIcon';
 import { SunThemeIcon } from './ThemeIcons/SunTemeIcon';
 
 const NavMenu = () => {
-    const [theme, setTheme] = useState(false);
-    const dispatch = useDispatch();
+    const [darkTheme, setTheme] = useState(true);
 
     const { themeMode, setThemeMode } = useContext(ThemeContext);
 
     const changeThemeIcon = () => {
-        setTheme(!theme);
-        dispatch(changeTheme(theme));
+        setTheme(!darkTheme);
 
         setThemeMode(
             themeMode === themes.darkTheme
@@ -25,16 +21,27 @@ const NavMenu = () => {
         );
     };
 
+    const logOut = () => {
+        sessionStorage.removeItem('Auth');
+    };
+
     return (
         <StyledNavMenu>
             <MenuItem navigation="/main" content="Главное" />
             <MenuItem navigation="/mytracks" content="Мой плейлист" />
-            <MenuItem navigation="/" content="Выйти" />
-            {!theme ? (
-                <NightThemeIcon changeThemeIcon={changeThemeIcon} />
-            ) : (
-                <SunThemeIcon changeThemeIcon={changeThemeIcon} />
-            )}
+            <MenuItem onClick={logOut} navigation="/" content="Выйти" />
+            <div
+                onKeyDown={changeThemeIcon}
+                tabIndex={0}
+                role="button"
+                onClick={changeThemeIcon}
+            >
+                {themeMode === themes.darkTheme ? (
+                    <NightThemeIcon />
+                ) : (
+                    <SunThemeIcon />
+                )}
+            </div>
         </StyledNavMenu>
     );
 };

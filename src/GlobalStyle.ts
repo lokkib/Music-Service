@@ -3,8 +3,6 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 
 
-
-
 * {
     margin: 0;
     padding: 0;
@@ -232,12 +230,4 @@ body {
     background-color: #383838;
 }
 
-.container {
-    max-width: 1920px;
-    height: 100vh;
-    margin: 0 auto;
-    position: relative;
-    background-color: ${(props: { theme: boolean }) =>
-        props.theme ? '#181818' : '#ffffff'}
-}
 `;
