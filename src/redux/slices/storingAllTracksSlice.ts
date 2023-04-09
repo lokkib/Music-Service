@@ -69,8 +69,8 @@ const storingAllTracks = createSlice({
             state.allGenresChosen = action.payload;
         },
         filteringTracksName(state, action) {
-            state.filteredTracksbyName = state.allTracks.filter((el) =>
-                el.name.toLowerCase().startsWith(action.payload)
+            state.filteredTracksbyName = (state.allTracks as Track[]).filter(
+                (el) => el.name.toLowerCase().startsWith(action.payload)
             );
         },
         holdRenderedTracks(state, action: PayloadAction<Track[] | boolean>) {
