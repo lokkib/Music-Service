@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 
 import ThemeContext from '../../../../../themes';
 import { FilterButton } from './CentralBlockFilterComponents/FilterButton';
@@ -13,6 +13,26 @@ const CentralBlockFilter = () => {
     const [searchPerformer, setSearchPerfomer] = useState(false);
     const [searchGenre, setSearchGenre] = useState(false);
     const [searchYear, setSearchYear] = useState(false);
+
+    const blockFilter = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (
+                blockFilter.current &&
+                !e.composedPath().includes(blockFilter.current)
+            ) {
+                setSearchPerfomer(false);
+                setSearchGenre(false);
+                setSearchYear(false);
+            }
+        };
+        document.body.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.body.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
 
     const showSearchResult = () => {
         setSearchPerfomer(!searchPerformer);
@@ -33,7 +53,7 @@ const CentralBlockFilter = () => {
     };
 
     return (
-        <FilterContainer>
+        <FilterContainer ref={blockFilter}>
             <FilterTitle>Искать по:</FilterTitle>
             <div>
                 <FilterButton

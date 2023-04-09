@@ -67,7 +67,7 @@ const CentralBlockContent = () => {
     const [filteredTracksData, setFilteredTRacksData] = useState<
         Track[] | boolean
     >(false);
-    const [filteredTracksbyName, setFilteredTracksName] = useState<
+    const [filteredTracksbySearch, setFilteredTracksName] = useState<
         Track[] | boolean
     >(false);
     const [filteredTracksAuthorData, setFilteredAuthorTracks] = useState<
@@ -110,32 +110,38 @@ const CentralBlockContent = () => {
     useEffect(() => {
         if (oldTracksFirstClicked && data) {
             const data2 = [...data];
-            setFilteredTRacksData(
-                data2.sort(
-                    (a, b) =>
-                        +new Date(a.release_date) - +new Date(b.release_date)
-                )
-            );
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
             setFilteredTracksName(false);
             setSortedTracks(false);
             setAllTracks(false);
+            dispatch(
+                holdRenderedTracks(
+                    data2.sort(
+                        (a, b) =>
+                            +new Date(a.release_date) -
+                            +new Date(b.release_date)
+                    )
+                )
+            );
         }
 
         if (newTracksFirstClicked && data) {
             const data2 = [...data];
-            setFilteredTRacksData(
-                data2.sort(
-                    (a, b) =>
-                        +new Date(b.release_date) - +new Date(a.release_date)
-                )
-            );
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
             setFilteredTracksName(false);
             setSortedTracks(false);
             setAllTracks(false);
+            dispatch(
+                holdRenderedTracks(
+                    data2.sort(
+                        (a, b) =>
+                            +new Date(b.release_date) -
+                            +new Date(a.release_date)
+                    )
+                )
+            );
         }
     }, [oldTracksFirstClicked, newTracksFirstClicked]);
 
@@ -150,15 +156,16 @@ const CentralBlockContent = () => {
     }, [chosenAuthorTracks]);
 
     useEffect(() => {
-        if (data && allTracks && !chosenAuthorTracks) {
+        if (data && !chosenAuthorTracks.length) {
             setAllTracks(data);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
             setFilteredTracksName(false);
             setSortedTracks(false);
+            dispatch(holdRenderedTracks(data));
         }
-    }, [allTracks, chosenAuthorTracks]);
+    }, [chosenAuthorTracks]);
 
     useEffect(() => {
         if (data && chosenGenreTracks) {
@@ -174,16 +181,21 @@ const CentralBlockContent = () => {
             }
             setFinalChosenTracksGenreData(array);
         }
+
+        if (data && !chosenGenreTracks.length) {
+            dispatch(holdRenderedTracks(data));
+        }
     }, [chosenGenreTracks]);
 
     useEffect(() => {
-        if (data && chosenTracksbyName) {
+        if (data && chosenTracksbyName.length) {
             setAllTracks(false);
             setFilteredTracksName(chosenTracksbyName);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);
             setFinalChosenTracksGenreData(false);
             setSortedTracks(false);
+            dispatch(holdRenderedTracks(chosenTracksbyName));
         }
     }, [chosenTracksbyName]);
 
@@ -202,13 +214,13 @@ const CentralBlockContent = () => {
     useEffect(() => {
         if (
             !sortedTracksData &&
-            !filteredTracksbyName &&
+            !filteredTracksbySearch &&
             !finalChosenTracksGenreData &&
             !filteredTracksAuthorData &&
             !filteredTracksData &&
             !allTracks
         ) {
-            holdRenderedTracks(tracksMainPage);
+            dispatch(holdRenderedTracks(tracksMainPage));
         } else {
             dispatch(
                 holdRenderedTracks(
@@ -216,6 +228,7 @@ const CentralBlockContent = () => {
                         finalChosenTracksGenreData ||
                         filteredTracksAuthorData ||
                         filteredTracksData ||
+                        filteredTracksbySearch ||
                         allTracks
                 )
             );
