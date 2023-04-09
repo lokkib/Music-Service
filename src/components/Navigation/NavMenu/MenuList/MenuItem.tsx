@@ -4,11 +4,11 @@ import { MenuItemProps } from '../../../../@types/props/MenuItemProps';
 import ThemeContext from '../../../../themes';
 import { StyledMenuItem } from './StyledMenuItem';
 
-const MenuItem = ({ navigation, content }: MenuItemProps) => {
+const MenuItem = ({ navigation, content, onClick }: MenuItemProps) => {
     const { themeMode } = useContext(ThemeContext);
 
     return (
-        <StyledMenuItem>
+        <StyledMenuItem onClick={onClick && onClick}>
             <Link style={{ ...themeMode.main }} to={navigation}>
                 {content}
             </Link>
