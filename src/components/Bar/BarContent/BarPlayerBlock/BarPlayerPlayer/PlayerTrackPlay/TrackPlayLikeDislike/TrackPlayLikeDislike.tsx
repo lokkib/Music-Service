@@ -8,7 +8,7 @@ import { TrackPlayDislikeContainer } from './TrackPlayerLikeDislikeContainers/Tr
 import { TrackPlayLikeDislikeContainer } from './TrackPlayerLikeDislikeContainers/TrackPlayerLikeDislikeContainer';
 import { TrackPlayLikeContainer } from './TrackPlayerLikeDislikeContainers/TrackPlayLikeContainer';
 import { PlayIconDislike } from './TrackPlayLikeDislikeIcons/StyledPlayIconDislike';
-import { PlayIconLike } from './TrackPlayLikeDislikeIcons/StyledPlayIconLike';
+import PlayIconLike from './TrackPlayLikeDislikeIcons/StyledPlayIconLike';
 import { RootState } from '../../../../../../../redux/store';
 
 const TrackPlayLikeDislike = () => {

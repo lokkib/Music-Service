@@ -5,4 +5,5 @@ export const TrackTitleBlock = styled.div`
     flex-direction: row;
     align-items: center;
     width: 447px;
+    cursor: pointer;
 `;

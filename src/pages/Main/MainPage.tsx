@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
-import Bar from '../../components/Bar/Bar';
 import ThemeContext from '../../themes';
 import MainContent from './MainContent/MainContent';
 import { StyledContainer } from '../../components/StyledContainer/StyledContainer';
@@ -17,9 +16,9 @@ const MainPage = () => {
                 transition={{ duration: 1 }}
             >
                 <MainContent />
-                <Bar />
             </motion.div>
         </StyledContainer>
     );
 };
+
 export default MainPage;

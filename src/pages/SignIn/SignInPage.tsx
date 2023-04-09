@@ -87,120 +87,107 @@ const SignInPage = () => {
     };
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-        >
-            <StyledBlock>
-                <AnimatePresence>
-                    {errorUserNotFound && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <StyledErrorMessage fontSize="14px">
-                                Пользователь с таким email или паролем не найден
-                            </StyledErrorMessage>
-                            ;
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-                <div
-                    style={{
-                        position: 'absolute',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Logo />
-                    <Formik
-                        initialValues={{
-                            mail: '',
-                            password: '',
-                        }}
-                        validationSchema={SignupSchema}
-                        onSubmit={handleLogin}
+        <StyledBlock>
+            <AnimatePresence>
+                {errorUserNotFound && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
                     >
-                        {({ handleChange, errors, touched }) => (
-                            <Form>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <Input
-                                        name="mail"
-                                        onClick={() => clearInput(email)}
-                                        onChange={(e) => [
-                                            setMail(
-                                                e.target.value
-                                                    .trim()
-                                                    .replace(/[А-Яа-яЁё]/, '')
-                                            ),
-                                            handleChange(e),
-                                        ]}
-                                        value={email}
-                                        onFocus={() => setPlaceholderMail('')}
-                                        placeholder={placeholderMail}
-                                        onBlur={() =>
-                                            setPlaceholderMail('Почта')
-                                        }
-                                    />
-                                    <StyledErrorMessage>
-                                        {errors.mail &&
-                                            touched.mail &&
-                                            errors.mail}
-                                    </StyledErrorMessage>
+                        <StyledErrorMessage fontSize="14px">
+                            Пользователь с таким email или паролем не найден
+                        </StyledErrorMessage>
+                        ;
+                    </motion.div>
+                )}
+            </AnimatePresence>
+            <div
+                style={{
+                    position: 'absolute',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Logo />
+                <Formik
+                    initialValues={{
+                        mail: '',
+                        password: '',
+                    }}
+                    validationSchema={SignupSchema}
+                    onSubmit={handleLogin}
+                >
+                    {({ handleChange, errors, touched }) => (
+                        <Form>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Input
+                                    name="mail"
+                                    onClick={() => clearInput(email)}
+                                    onChange={(e) => [
+                                        setMail(
+                                            e.target.value
+                                                .trim()
+                                                .replace(/[А-Яа-яЁё]/, '')
+                                        ),
+                                        handleChange(e),
+                                    ]}
+                                    value={email}
+                                    onFocus={() => setPlaceholderMail('')}
+                                    placeholder={placeholderMail}
+                                    onBlur={() => setPlaceholderMail('Почта')}
+                                />
+                                <StyledErrorMessage>
+                                    {errors.mail && touched.mail && errors.mail}
+                                </StyledErrorMessage>
 
-                                    <Input
-                                        name="password"
-                                        onClick={() => clearInput(password)}
-                                        onChange={(e) => [
-                                            setPassword(
-                                                e.target.value
-                                                    .trim()
-                                                    .replace(/[А-Яа-яЁё]/, '')
-                                            ),
-                                            handleChange(e),
-                                        ]}
-                                        onKeyDown={(e) =>
-                                            e.key === 'Enter' && handleLogin()
-                                        }
-                                        value={password}
-                                        onFocus={() =>
-                                            setPlaceholderPassword('')
-                                        }
-                                        placeholder={placeholderPassword}
-                                        onBlur={() =>
-                                            setPlaceholderPassword('Пароль')
-                                        }
-                                    />
-                                    <StyledErrorMessage>
-                                        {errors.password &&
-                                            touched.password &&
-                                            errors.password}
-                                    </StyledErrorMessage>
-                                    <ButtonSignIn onClick={handleLogin}>
-                                        Войти
-                                    </ButtonSignIn>
-                                </div>
-                            </Form>
-                        )}
-                    </Formik>
-                </div>
+                                <Input
+                                    name="password"
+                                    onClick={() => clearInput(password)}
+                                    onChange={(e) => [
+                                        setPassword(
+                                            e.target.value
+                                                .trim()
+                                                .replace(/[А-Яа-яЁё]/, '')
+                                        ),
+                                        handleChange(e),
+                                    ]}
+                                    onKeyDown={(e) =>
+                                        e.key === 'Enter' && handleLogin()
+                                    }
+                                    value={password}
+                                    onFocus={() => setPlaceholderPassword('')}
+                                    placeholder={placeholderPassword}
+                                    onBlur={() =>
+                                        setPlaceholderPassword('Пароль')
+                                    }
+                                />
+                                <StyledErrorMessage>
+                                    {errors.password &&
+                                        touched.password &&
+                                        errors.password}
+                                </StyledErrorMessage>
+                                <ButtonSignIn onClick={handleLogin}>
+                                    Войти
+                                </ButtonSignIn>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
+            </div>
 
-                <ButtonSignUp onClick={handleClick2}>
-                    Зарегистрироваться
-                </ButtonSignUp>
-            </StyledBlock>
-        </motion.div>
+            <ButtonSignUp onClick={handleClick2}>
+                Зарегистрироваться
+            </ButtonSignUp>
+        </StyledBlock>
     );
 };
 

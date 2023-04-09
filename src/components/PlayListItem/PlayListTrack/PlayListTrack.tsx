@@ -28,7 +28,7 @@ const PlaylistTrack = ({
         />
         <TrackAuthor author={author} />
         <TrackAlbum album={album} />
-        <TrackTime duration={duration} />
+        <TrackTime id={id} duration={duration} />
     </StyledPlayListTrack>
 );
 

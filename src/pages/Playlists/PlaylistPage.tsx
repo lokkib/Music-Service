@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { motion } from 'framer-motion';
 
 import ThemeContext from '../../themes';
-import Bar from '../../components/Bar/Bar';
+
 import MainContent from './MainContent/MainContent';
 import { StyledContainer } from '../../components/StyledContainer/StyledContainer';
 
@@ -19,7 +19,6 @@ const PlaylistPage = () => {
                 transition={{ duration: 1 }}
             >
                 <MainContent />
-                <Bar />
             </motion.div>
         </StyledContainer>
     );
