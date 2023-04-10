@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 import ThemeContext from '../../../../../../../../themes';
 import { Svg } from './LikeDislikeIconSample';
+import { IconLikeProps } from '../../../../../../../../@types/props/LikeIconProps';
 
 const SvgLike = styled(Svg)``;
 
-const PlayIconLike = () => {
+const PlayIconLike = ({ iconColor }: IconLikeProps) => {
     const { themeMode } = useContext(ThemeContext);
 
     return (
@@ -14,7 +15,7 @@ const PlayIconLike = () => {
             xmlns="http://www.w3.org/2000/svg"
             width="14px"
             height="12px"
-            fill="none"
+            fill={iconColor}
             viewBox="0 0 16 15"
         >
             <path
