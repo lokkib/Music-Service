@@ -6,6 +6,7 @@ import { Track } from '../../@types/slices/Track';
 
 const initialState: AllTracksState = {
     allTracks: [],
+
     finalGenreTracks: [],
     filteredTracksbyName: [],
     renderedTracks: [],
@@ -26,6 +27,7 @@ const storingAllTracks = createSlice({
         storeAllTracks(state, action: PayloadAction<Track[]>) {
             state.allTracks = action.payload;
         },
+
         addFilterByAuthor: (state, action: PayloadAction<string>) => {
             state.filterAuthorsValue.push(action.payload);
             state.filteredByAuthor = true;
