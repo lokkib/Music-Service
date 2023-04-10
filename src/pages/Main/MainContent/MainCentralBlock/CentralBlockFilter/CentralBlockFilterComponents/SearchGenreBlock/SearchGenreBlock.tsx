@@ -9,6 +9,10 @@ import SearchPerformerGenreContainer from '../SearchPerformerBlock/SearchPerform
 import SearchGenreItem from './SearchGenreItem';
 import { RootState } from '../../../../../../../redux/store';
 import { SearchGenreLabel } from './SearchGenreLabel';
+import {
+    passGenreChosen,
+    deleteGenreChosen,
+} from '../../../../../../../redux/slices/filterTracks/filteringTracksGenreAuthor';
 
 const SearchGenreBlock = () => {
     const [selected, setSelected] = useState<string[]>([]);
@@ -16,10 +20,17 @@ const SearchGenreBlock = () => {
     const dispatch = useDispatch();
 
     const genres = ['Классическая музыка', 'Рок музыка', 'Электронная музыка'];
-
+    const genresChosen = useSelector(
+        (state: RootState) => state.filteringGenresAuthors.genresChosen
+    );
     const GenresChosen = useSelector(
         (state: RootState) => state.storeTracks.filterGenreValue
     );
+    const [isChecked, setIsChecked] = useState(false);
+
+    const checkHandler = () => {
+        setIsChecked(!isChecked);
+    };
 
     const changeColorAllGenres = (value: string) => {
         selectedAll.push(value);
@@ -41,9 +52,10 @@ const SearchGenreBlock = () => {
     function changeColorGenre(value: string) {
         selected.push(value);
         setSelected(selected);
-
+        dispatch(passGenreChosen(value));
         if (GenresChosen.includes(value)) {
             setSelected(selected.filter((el) => el !== value));
+            dispatch(deleteGenreChosen(value));
         }
     }
 
@@ -63,14 +75,17 @@ const SearchGenreBlock = () => {
                         <SearchGenreLabel
                             value={el}
                             active={
-                                selected.length && selected.includes(el)
+                                (selected.length && selected.includes(el)) ||
+                                genresChosen.includes(el)
                                     ? '#b672ff'
                                     : 'white'
                             }
                         >
                             {el}
                             <SearchGenreItem
+                                checked={!!genresChosen.includes(el)}
                                 value={el}
+                                onChange={checkHandler}
                                 type="checkbox"
                                 onClick={(e) => {
                                     chooseGenre(e);

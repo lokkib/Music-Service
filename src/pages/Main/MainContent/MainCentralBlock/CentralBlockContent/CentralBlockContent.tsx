@@ -168,7 +168,7 @@ const CentralBlockContent = () => {
     }, [chosenAuthorTracks]);
 
     useEffect(() => {
-        if (data && chosenGenreTracks) {
+        if (data && chosenGenreTracks.length) {
             setAllTracks(false);
             setFilteredTRacksData(false);
             setFilteredAuthorTracks(false);

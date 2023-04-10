@@ -1,7 +1,12 @@
 import { Track } from './Track';
 
+type GenreInfo = {
+    string: { string: boolean };
+};
+
 export type AllTracksState = {
     allTracks: Track[];
+
     finalGenreTracks: Track[];
     filteredTracksbyName: Track[];
     renderedTracks: Track[] | boolean;

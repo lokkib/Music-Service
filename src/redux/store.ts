@@ -9,6 +9,7 @@ import orderTracksPlayingReducer from './slices/orderOfPlayingSlice';
 import playingReducer from './slices/playTrackSlice';
 import VolumeSlice from './slices/progressPlayerSlice';
 import storingTracksReducer from './slices/storingAllTracksSlice';
+import filteringGenresAuthors from './slices/filterTracks/filteringTracksGenreAuthor';
 
 export const store = configureStore({
     reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
         tokenIsValid: checkingToken,
         theme: changingThemeReducer,
         orderOfTracksPlaying: orderTracksPlayingReducer,
+        filteringGenresAuthors,
     },
 
     middleware: (getDefaultMiddleWare) =>
