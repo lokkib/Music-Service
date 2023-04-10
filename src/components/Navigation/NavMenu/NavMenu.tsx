@@ -1,16 +1,18 @@
 import { useState, useContext } from 'react';
 
+import { useDispatch } from 'react-redux';
 import ThemeContext, { themes } from '../../../themes';
 import MenuItem from './MenuList/MenuItem';
 import { StyledNavMenu } from './StyledNavMenu';
 import { NightThemeIcon } from './ThemeIcons/NightThemeIcon';
 import { SunThemeIcon } from './ThemeIcons/SunTemeIcon';
+import { setPlay2 } from '../../../redux/slices/playTrackSlice';
 
 const NavMenu = () => {
     const [darkTheme, setTheme] = useState(true);
 
-    const { themeMode, setThemeMode } = useContext(ThemeContext);
-
+    const { themeMode, setThemeMode, setVisibility } = useContext(ThemeContext);
+    const dispatch = useDispatch();
     const changeThemeIcon = () => {
         setTheme(!darkTheme);
 
@@ -23,6 +25,8 @@ const NavMenu = () => {
 
     const logOut = () => {
         sessionStorage.removeItem('Auth');
+        setVisibility(themes.barVisibility.hidden);
+        dispatch(setPlay2(false));
     };
 
     return (

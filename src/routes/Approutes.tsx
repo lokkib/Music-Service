@@ -12,7 +12,7 @@ export const AppRoutes = () => (
     <Routes>
         <Route element={<Layout />}>
             <Route path="/" element={<SignInPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="signup" element={<SignUpPage />} />
             <Route
                 path="/main"
                 element={
@@ -22,7 +22,7 @@ export const AppRoutes = () => (
                 }
             />
             <Route
-                path="/mytracks"
+                path="mytracks"
                 element={
                     <ProtectedRoute>
                         <UserTracksPage />
@@ -30,7 +30,7 @@ export const AppRoutes = () => (
                 }
             />
             <Route
-                path="/playlist/:id"
+                path="playlist/:id"
                 element={
                     <ProtectedRoute>
                         <PlaylistPage />
